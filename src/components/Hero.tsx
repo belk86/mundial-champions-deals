@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Star, ShieldCheck, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import stadiumBg from '@/assets/stadium-hero.jpg';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -16,8 +17,14 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-championship-black via-championship-charcoal to-championship-black" />
+      {/* Stadium Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${stadiumBg})` }}
+      />
+      
+      {/* Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-wc-navy/85 via-wc-navy/75 to-wc-navy/95" />
       
       {/* Gold Accent Lines */}
       <div className="absolute inset-0 overflow-hidden">

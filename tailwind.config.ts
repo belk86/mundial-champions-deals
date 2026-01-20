@@ -57,10 +57,10 @@ export default {
           dark: "hsl(var(--gold-dark))",
           muted: "hsl(var(--gold-muted))",
         },
-        championship: {
-          black: "hsl(var(--championship-black))",
-          charcoal: "hsl(var(--championship-charcoal))",
-          surface: "hsl(var(--championship-surface))",
+        wc: {
+          navy: "hsl(var(--wc-navy))",
+          "navy-light": "hsl(var(--wc-navy-light))",
+          "navy-dark": "hsl(var(--wc-navy-dark))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

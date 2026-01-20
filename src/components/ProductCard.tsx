@@ -9,6 +9,7 @@ export interface Product {
   id: string;
   name: string;
   nameAr: string;
+  nameEs: string;
   price: number;
   originalPrice?: number;
   image: string;
@@ -31,7 +32,22 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : null;
 
-  const displayName = language === 'ar' ? product.nameAr : product.name;
+  const getDisplayName = () => {
+    switch (language) {
+      case 'ar':
+        return product.nameAr;
+      case 'es':
+        return product.nameEs;
+      default:
+        return product.name;
+    }
+  };
+
+  const handleGetDeal = () => {
+    if (product.affiliateUrl) {
+      window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <motion.div
@@ -47,7 +63,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           variant="secondary"
           className={`${
             product.source === 'amazon'
-              ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+              ? 'bg-[#FF9900]/20 text-[#FF9900] border-[#FF9900]/30'
               : 'bg-red-500/20 text-red-400 border-red-500/30'
           } border font-medium`}
         >
@@ -68,7 +84,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       <div className="relative aspect-square overflow-hidden bg-secondary/30">
         <img
           src={product.image}
-          alt={displayName}
+          alt={getDisplayName()}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
@@ -95,7 +111,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 
         {/* Title */}
         <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-gold transition-colors">
-          {displayName}
+          {getDisplayName()}
         </h3>
 
         {/* Price */}
@@ -113,7 +129,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         {/* CTA Button */}
         <Button
           className="w-full bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-primary-foreground font-semibold group/btn transition-all duration-300"
-          onClick={() => window.open(product.affiliateUrl, '_blank')}
+          onClick={handleGetDeal}
         >
           {t('products.getDeal')}
           <ExternalLink className={`w-4 h-4 ${isRTL ? 'mr-2' : 'ml-2'} group-hover/btn:translate-x-1 transition-transform`} />
