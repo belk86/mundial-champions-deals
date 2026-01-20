@@ -10,6 +10,7 @@ const mockProducts: Product[] = [
     id: '1',
     name: 'World Cup 2026 Official Match Ball',
     nameAr: 'كرة المباراة الرسمية لكأس العالم 2026',
+    nameEs: 'Balón Oficial del Mundial 2026',
     price: 149.99,
     originalPrice: 179.99,
     image: 'https://images.unsplash.com/photo-1614632537423-1e6c2e7e0aab?w=500&q=80',
@@ -22,6 +23,7 @@ const mockProducts: Product[] = [
     id: '2',
     name: 'Premium Team Jersey - Home Kit',
     nameAr: 'قميص الفريق الفاخر - طقم الملعب',
+    nameEs: 'Camiseta Premium del Equipo - Local',
     price: 89.99,
     originalPrice: 119.99,
     image: 'https://images.unsplash.com/photo-1577212017184-80cc0da11082?w=500&q=80',
@@ -34,6 +36,7 @@ const mockProducts: Product[] = [
     id: '3',
     name: 'Fan Scarf Collection - Limited Edition',
     nameAr: 'مجموعة شال المشجعين - إصدار محدود',
+    nameEs: 'Colección de Bufandas - Edición Limitada',
     price: 24.99,
     originalPrice: 34.99,
     image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=500&q=80',
@@ -46,6 +49,7 @@ const mockProducts: Product[] = [
     id: '4',
     name: 'Championship Trophy Replica',
     nameAr: 'نسخة طبق الأصل من كأس البطولة',
+    nameEs: 'Réplica del Trofeo del Campeonato',
     price: 59.99,
     originalPrice: 79.99,
     image: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=500&q=80',
@@ -58,6 +62,7 @@ const mockProducts: Product[] = [
     id: '5',
     name: 'Premium Football Boots - Pro Series',
     nameAr: 'أحذية كرة القدم الفاخرة - السلسلة الاحترافية',
+    nameEs: 'Botas de Fútbol Premium - Serie Pro',
     price: 199.99,
     originalPrice: 249.99,
     image: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?w=500&q=80',
@@ -70,6 +75,7 @@ const mockProducts: Product[] = [
     id: '6',
     name: 'World Cup 2026 Cap Collection',
     nameAr: 'مجموعة قبعات كأس العالم 2026',
+    nameEs: 'Colección de Gorras Mundial 2026',
     price: 29.99,
     image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&q=80',
     source: 'aliexpress',
@@ -81,6 +87,7 @@ const mockProducts: Product[] = [
     id: '7',
     name: 'Team Training Kit Bundle',
     nameAr: 'حزمة طقم التدريب',
+    nameEs: 'Pack de Equipamiento de Entrenamiento',
     price: 129.99,
     originalPrice: 169.99,
     image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=500&q=80',
@@ -93,6 +100,7 @@ const mockProducts: Product[] = [
     id: '8',
     name: 'Commemorative Pin Set',
     nameAr: 'مجموعة دبابيس تذكارية',
+    nameEs: 'Set de Pins Conmemorativos',
     price: 19.99,
     image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80',
     source: 'aliexpress',
@@ -120,7 +128,7 @@ const ProductGrid = () => {
   ];
 
   return (
-    <section id="products" className="py-20 bg-championship-charcoal">
+    <section id="products" className="py-20 bg-wc-navy-light">
       <div className="container px-4">
         {/* Header */}
         <motion.div
