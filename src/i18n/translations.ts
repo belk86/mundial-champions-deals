@@ -25,10 +25,18 @@ export const translations = {
         subtitle: "Curated selection of premium World Cup 2026 merchandise",
         getDeal: "Get Deal",
         source: "Source",
+        categories: "Categories",
+        noProducts: "No products found. Try adjusting your filters.",
         filter: {
           all: "All Products",
           amazon: "Amazon US",
           aliexpress: "AliExpress",
+        },
+        sort: {
+          trust: "Most Trusted",
+          rating: "Top Rated",
+          priceLow: "Price: Low",
+          priceHigh: "Price: High",
         },
         badges: {
           verified: "Verified Trust",
@@ -99,10 +107,18 @@ export const translations = {
         subtitle: "مجموعة مختارة من منتجات كأس العالم 2026 الفاخرة",
         getDeal: "اشتري الآن",
         source: "المصدر",
+        categories: "الفئات",
+        noProducts: "لم يتم العثور على منتجات. حاول تعديل الفلاتر.",
         filter: {
           all: "جميع المنتجات",
           amazon: "أمازون أمريكا",
           aliexpress: "علي إكسبريس",
+        },
+        sort: {
+          trust: "الأكثر موثوقية",
+          rating: "الأعلى تقييماً",
+          priceLow: "السعر: منخفض",
+          priceHigh: "السعر: مرتفع",
         },
         badges: {
           verified: "موثوق ومعتمد",
@@ -173,10 +189,18 @@ export const translations = {
         subtitle: "Selección curada de productos premium del Mundial 2026",
         getDeal: "Ver Oferta",
         source: "Fuente",
+        categories: "Categorías",
+        noProducts: "No se encontraron productos. Intenta ajustar los filtros.",
         filter: {
           all: "Todos los Productos",
           amazon: "Amazon US",
           aliexpress: "AliExpress",
+        },
+        sort: {
+          trust: "Más Confiable",
+          rating: "Mejor Calificado",
+          priceLow: "Precio: Bajo",
+          priceHigh: "Precio: Alto",
         },
         badges: {
           verified: "Confianza Verificada",

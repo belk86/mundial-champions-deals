@@ -1,163 +1,47 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import ProductCard, { Product } from './ProductCard';
+import { Filter, TrendingUp, ArrowUpDown, Loader2 } from 'lucide-react';
+import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useProducts, useCategories, type ProductCategory, type SortOption } from '@/hooks/useProducts';
 
-// Mock product data - In production, this would come from the database
-const mockProducts: Product[] = [
-  {
-    id: '1',
-    name: 'World Cup 2026 Official Match Ball',
-    nameAr: 'كرة المباراة الرسمية لكأس العالم 2026',
-    nameEs: 'Balón Oficial del Mundial 2026',
-    price: 149.99,
-    originalPrice: 179.99,
-    image: 'https://images.unsplash.com/photo-1614632537423-1e6c2e7e0aab?w=500&q=80',
-    source: 'amazon',
-    rating: 4.8,
-    reviews: 2341,
-    affiliateUrl: '#',
-    trustBadge: 'verified',
-    trendingReason: 'Viral on TikTok - 2.3M views this week',
-    trendingReasonAr: 'فيروسي على تيك توك - 2.3 مليون مشاهدة هذا الأسبوع',
-    trendingReasonEs: 'Viral en TikTok - 2.3M vistas esta semana',
-  },
-  {
-    id: '2',
-    name: 'Premium Team Jersey - Home Kit',
-    nameAr: 'قميص الفريق الفاخر - طقم الملعب',
-    nameEs: 'Camiseta Premium del Equipo - Local',
-    price: 89.99,
-    originalPrice: 119.99,
-    image: 'https://images.unsplash.com/photo-1577212017184-80cc0da11082?w=500&q=80',
-    source: 'amazon',
-    rating: 4.7,
-    reviews: 5672,
-    affiliateUrl: '#',
-    trustBadge: 'hot',
-    trendingReason: 'Top seller on Amazon - Fans favorite',
-    trendingReasonAr: 'الأكثر مبيعاً على أمازون - مفضل المشجعين',
-    trendingReasonEs: 'Más vendido en Amazon - Favorito de fans',
-  },
-  {
-    id: '3',
-    name: 'Fan Scarf Collection - Limited Edition',
-    nameAr: 'مجموعة شال المشجعين - إصدار محدود',
-    nameEs: 'Colección de Bufandas - Edición Limitada',
-    price: 24.99,
-    originalPrice: 34.99,
-    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=500&q=80',
-    source: 'aliexpress',
-    rating: 4.5,
-    reviews: 1289,
-    affiliateUrl: '#',
-    trustBadge: 'limited',
-    trendingReason: 'Only 50 left - High demand from Morocco',
-    trendingReasonAr: 'متبقي 50 فقط - طلب عالي من المغرب',
-    trendingReasonEs: 'Solo quedan 50 - Alta demanda de Marruecos',
-  },
-  {
-    id: '4',
-    name: 'Championship Trophy Replica',
-    nameAr: 'نسخة طبق الأصل من كأس البطولة',
-    nameEs: 'Réplica del Trofeo del Campeonato',
-    price: 59.99,
-    originalPrice: 79.99,
-    image: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=500&q=80',
-    source: 'aliexpress',
-    rating: 4.6,
-    reviews: 892,
-    affiliateUrl: '#',
-    trustBadge: 'trending',
-    trendingReason: 'Featured on ESPN - Perfect gift item',
-    trendingReasonAr: 'مميز على ESPN - هدية مثالية',
-    trendingReasonEs: 'Destacado en ESPN - Regalo perfecto',
-  },
-  {
-    id: '5',
-    name: 'Premium Football Boots - Pro Series',
-    nameAr: 'أحذية كرة القدم الفاخرة - السلسلة الاحترافية',
-    nameEs: 'Botas de Fútbol Premium - Serie Pro',
-    price: 199.99,
-    originalPrice: 249.99,
-    image: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?w=500&q=80',
-    source: 'amazon',
-    rating: 4.9,
-    reviews: 3456,
-    affiliateUrl: '#',
-    trustBadge: 'verified',
-    trendingReason: 'Same model worn by pro players',
-    trendingReasonAr: 'نفس الموديل الذي يرتديه المحترفون',
-    trendingReasonEs: 'Mismo modelo usado por profesionales',
-  },
-  {
-    id: '6',
-    name: 'World Cup 2026 Cap Collection',
-    nameAr: 'مجموعة قبعات كأس العالم 2026',
-    nameEs: 'Colección de Gorras Mundial 2026',
-    price: 29.99,
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&q=80',
-    source: 'aliexpress',
-    rating: 4.4,
-    reviews: 2156,
-    affiliateUrl: '#',
-    trustBadge: 'hot',
-    trendingReason: 'TikTok influencers choice - Summer essential',
-    trendingReasonAr: 'اختيار مؤثري تيك توك - ضروري للصيف',
-    trendingReasonEs: 'Elección de influencers TikTok - Esencial de verano',
-  },
-  {
-    id: '7',
-    name: 'Team Training Kit Bundle',
-    nameAr: 'حزمة طقم التدريب',
-    nameEs: 'Pack de Equipamiento de Entrenamiento',
-    price: 129.99,
-    originalPrice: 169.99,
-    image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=500&q=80',
-    source: 'amazon',
-    rating: 4.7,
-    reviews: 1834,
-    affiliateUrl: '#',
-    trustBadge: 'trending',
-    trendingReason: 'Best value bundle - Amazon bestseller',
-    trendingReasonAr: 'أفضل حزمة قيمة - الأكثر مبيعاً على أمازون',
-    trendingReasonEs: 'Mejor valor - Bestseller de Amazon',
-  },
-  {
-    id: '8',
-    name: 'Commemorative Pin Set',
-    nameAr: 'مجموعة دبابيس تذكارية',
-    nameEs: 'Set de Pins Conmemorativos',
-    price: 19.99,
-    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80',
-    source: 'aliexpress',
-    rating: 4.3,
-    reviews: 673,
-    affiliateUrl: '#',
-    trustBadge: 'limited',
-    trendingReason: 'Collector edition - Perfect for trading',
-    trendingReasonAr: 'إصدار جامعي - مثالي للتبادل',
-    trendingReasonEs: 'Edición coleccionista - Perfecto para intercambio',
-  },
-];
-
-type FilterType = 'all' | 'amazon' | 'aliexpress';
+type SourceFilter = 'all' | 'amazon' | 'aliexpress';
 
 const ProductGrid = () => {
   const { t } = useTranslation();
-  const [filter, setFilter] = useState<FilterType>('all');
+  const { language } = useLanguage();
+  const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all');
+  const [categoryFilter, setCategoryFilter] = useState<ProductCategory | 'all'>('all');
+  const [sortBy, setSortBy] = useState<SortOption>('trust');
 
-  const filteredProducts = mockProducts.filter((product) => {
-    if (filter === 'all') return true;
-    return product.source === filter;
-  });
+  const { data: products, isLoading: productsLoading } = useProducts(sourceFilter, categoryFilter, sortBy);
+  const { data: categories, isLoading: categoriesLoading } = useCategories();
 
-  const filters: { key: FilterType; label: string }[] = [
+  const sourceFilters: { key: SourceFilter; label: string }[] = [
     { key: 'all', label: t('products.filter.all') },
     { key: 'amazon', label: t('products.filter.amazon') },
     { key: 'aliexpress', label: t('products.filter.aliexpress') },
   ];
+
+  const sortOptions: { key: SortOption; label: string }[] = [
+    { key: 'trust', label: t('products.sort.trust') },
+    { key: 'rating', label: t('products.sort.rating') },
+    { key: 'price_low', label: t('products.sort.priceLow') },
+    { key: 'price_high', label: t('products.sort.priceHigh') },
+  ];
+
+  const getCategoryName = (cat: typeof categories extends (infer T)[] ? T : never) => {
+    switch (language) {
+      case 'ar':
+        return cat.name_ar;
+      case 'es':
+        return cat.name_es;
+      default:
+        return cat.name;
+    }
+  };
 
   return (
     <section id="products" className="py-20 bg-wc-navy-light">
@@ -178,35 +62,123 @@ const ProductGrid = () => {
           </p>
         </motion.div>
 
-        {/* Filters */}
+        {/* Category Filters */}
+        {!categoriesLoading && categories && categories.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mb-6"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <Filter className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground font-medium">
+                {t('products.categories')}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={categoryFilter === 'all' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setCategoryFilter('all')}
+                className={
+                  categoryFilter === 'all'
+                    ? 'bg-gold hover:bg-gold-light text-primary-foreground'
+                    : 'border-border text-foreground/70 hover:text-foreground hover:border-gold/50'
+                }
+              >
+                {t('products.filter.all')}
+              </Button>
+              {categories.map((cat) => (
+                <Button
+                  key={cat.key}
+                  variant={categoryFilter === cat.key ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setCategoryFilter(cat.key as ProductCategory)}
+                  className={
+                    categoryFilter === cat.key
+                      ? 'bg-gold hover:bg-gold-light text-primary-foreground'
+                      : 'border-border text-foreground/70 hover:text-foreground hover:border-gold/50'
+                  }
+                >
+                  {getCategoryName(cat)}
+                </Button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Source and Sort Filters */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-10"
+          className="flex flex-wrap items-center justify-between gap-4 mb-10"
         >
-          {filters.map((f) => (
-            <Button
-              key={f.key}
-              variant={filter === f.key ? 'default' : 'outline'}
-              onClick={() => setFilter(f.key)}
-              className={
-                filter === f.key
-                  ? 'bg-gold hover:bg-gold-light text-primary-foreground'
-                  : 'border-border text-foreground/70 hover:text-foreground hover:border-gold/50'
-              }
-            >
-              {f.label}
-            </Button>
-          ))}
+          {/* Source Filters */}
+          <div className="flex flex-wrap gap-3">
+            {sourceFilters.map((f) => (
+              <Button
+                key={f.key}
+                variant={sourceFilter === f.key ? 'default' : 'outline'}
+                onClick={() => setSourceFilter(f.key)}
+                className={
+                  sourceFilter === f.key
+                    ? 'bg-gold hover:bg-gold-light text-primary-foreground'
+                    : 'border-border text-foreground/70 hover:text-foreground hover:border-gold/50'
+                }
+              >
+                {f.label}
+              </Button>
+            ))}
+          </div>
+
+          {/* Sort Options */}
+          <div className="flex items-center gap-2">
+            <ArrowUpDown className="w-4 h-4 text-muted-foreground" />
+            <div className="flex gap-2">
+              {sortOptions.map((opt) => (
+                <Button
+                  key={opt.key}
+                  variant={sortBy === opt.key ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setSortBy(opt.key)}
+                  className={
+                    sortBy === opt.key
+                      ? 'bg-purple-600 hover:bg-purple-500 text-white'
+                      : 'text-foreground/60 hover:text-foreground'
+                  }
+                >
+                  {opt.key === 'trust' && <TrendingUp className="w-3 h-3 mr-1" />}
+                  {opt.label}
+                </Button>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
+        {/* Loading State */}
+        {productsLoading && (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-gold" />
+          </div>
+        )}
+
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
-          ))}
-        </div>
+        {!productsLoading && products && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {products.map((product, index) => (
+              <ProductCard key={product.id} product={product} index={index} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!productsLoading && (!products || products.length === 0) && (
+          <div className="text-center py-20">
+            <p className="text-muted-foreground">{t('products.noProducts')}</p>
+          </div>
+        )}
       </div>
     </section>
   );

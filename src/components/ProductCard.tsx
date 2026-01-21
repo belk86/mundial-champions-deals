@@ -4,31 +4,14 @@ import { ExternalLink, Star, ShieldCheck, Flame, TrendingUp, Package } from 'luc
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-export interface Product {
-  id: string;
-  name: string;
-  nameAr: string;
-  nameEs: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  source: 'amazon' | 'aliexpress';
-  rating: number;
-  reviews: number;
-  affiliateUrl: string;
-  trustBadge?: 'verified' | 'hot' | 'trending' | 'limited';
-  trendingReason?: string;
-  trendingReasonAr?: string;
-  trendingReasonEs?: string;
-}
+import { trackProductClick, type Product, type TrustBadge } from '@/hooks/useProducts';
 
 interface ProductCardProps {
   product: Product;
   index: number;
 }
 
-const trustBadgeConfig = {
+const trustBadgeConfig: Record<TrustBadge, { icon: typeof ShieldCheck; colorClass: string }> = {
   verified: { icon: ShieldCheck, colorClass: 'bg-purple-600/30 text-purple-300 border-purple-500/40' },
   hot: { icon: Flame, colorClass: 'bg-orange-600/30 text-orange-300 border-orange-500/40' },
   trending: { icon: TrendingUp, colorClass: 'bg-pink-600/30 text-pink-300 border-pink-500/40' },
@@ -39,39 +22,42 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   const { t } = useTranslation();
   const { language, isRTL } = useLanguage();
 
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  const discount = product.original_price
+    ? Math.round(((product.original_price - product.price) / product.original_price) * 100)
     : null;
 
   const getDisplayName = () => {
     switch (language) {
       case 'ar':
-        return product.nameAr;
+        return product.name_ar;
       case 'es':
-        return product.nameEs;
+        return product.name_es;
       default:
         return product.name;
     }
   };
 
-  const getTrendingReason = () => {
+  const getTrendSignal = () => {
     switch (language) {
       case 'ar':
-        return product.trendingReasonAr || 'رائج على تيك توك وأمازون';
+        return product.trend_signal_ar || product.trend_signal;
       case 'es':
-        return product.trendingReasonEs || 'Tendencia en TikTok y Amazon';
+        return product.trend_signal_es || product.trend_signal;
       default:
-        return product.trendingReason || 'Trending on TikTok & Amazon';
+        return product.trend_signal;
     }
   };
 
-  const handleGetDeal = () => {
-    if (product.affiliateUrl) {
-      window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer');
+  const handleGetDeal = async () => {
+    // Track click before opening link
+    await trackProductClick(product.id);
+    
+    if (product.affiliate_url && product.affiliate_url !== '#') {
+      window.open(product.affiliate_url, '_blank', 'noopener,noreferrer');
     }
   };
 
-  const badgeConfig = product.trustBadge ? trustBadgeConfig[product.trustBadge] : null;
+  const badgeConfig = product.trust_badge ? trustBadgeConfig[product.trust_badge] : null;
   const BadgeIcon = badgeConfig?.icon;
 
   return (
@@ -106,11 +92,11 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       )}
 
       {/* Trust Badge */}
-      {product.trustBadge && badgeConfig && BadgeIcon && (
+      {product.trust_badge && badgeConfig && BadgeIcon && (
         <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10`}>
           <Badge className={`${badgeConfig.colorClass} border font-medium text-xs`}>
             <BadgeIcon className="w-3 h-3 mr-1" />
-            {t(`products.badges.${product.trustBadge}`)}
+            {t(`products.badges.${product.trust_badge}`)}
           </Badge>
         </div>
       )}
@@ -118,7 +104,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-secondary/30">
         <img
-          src={product.image}
+          src={product.image_url}
           alt={getDisplayName()}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
@@ -153,24 +139,26 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </h3>
 
         {/* Why this is trending */}
-        <div className="bg-purple-900/20 rounded-lg p-2 border border-purple-500/20">
-          <p className="text-xs text-purple-300 flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" />
-            <span className="font-medium">{t('products.whyTrending')}:</span>
-          </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            {getTrendingReason()}
-          </p>
-        </div>
+        {getTrendSignal() && (
+          <div className="bg-purple-900/20 rounded-lg p-2 border border-purple-500/20">
+            <p className="text-xs text-purple-300 flex items-center gap-1">
+              <TrendingUp className="w-3 h-3" />
+              <span className="font-medium">{t('products.whyTrending')}:</span>
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {getTrendSignal()}
+            </p>
+          </div>
+        )}
 
         {/* Price */}
         <div className="flex items-baseline gap-2">
           <span className="text-xl font-bold text-gold">
             ${product.price.toFixed(2)}
           </span>
-          {product.originalPrice && (
+          {product.original_price && (
             <span className="text-sm text-muted-foreground line-through">
-              ${product.originalPrice.toFixed(2)}
+              ${product.original_price.toFixed(2)}
             </span>
           )}
         </div>
@@ -189,4 +177,3 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 };
 
 export default ProductCard;
-

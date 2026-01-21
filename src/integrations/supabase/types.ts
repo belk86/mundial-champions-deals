@@ -14,10 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
+      categories: {
+        Row: {
+          created_at: string
+          display_order: number
+          icon: string | null
+          id: string
+          is_active: boolean
+          key: string
+          name: string
+          name_ar: string
+          name_es: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          key: string
+          name: string
+          name_ar: string
+          name_es: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          key?: string
+          name?: string
+          name_ar?: string
+          name_es?: string
+        }
+        Relationships: []
+      }
+      product_clicks: {
+        Row: {
+          clicked_at: string
+          id: string
+          product_id: string
+          referrer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          clicked_at?: string
+          id?: string
+          product_id: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          clicked_at?: string
+          id?: string
+          product_id?: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_clicks_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           affiliate_url: string
+          category: Database["public"]["Enums"]["product_category"]
+          click_count: number
           created_at: string
+          description: string | null
+          description_ar: string | null
+          description_es: string | null
           id: string
           image_url: string
           is_active: boolean
@@ -29,11 +102,21 @@ export type Database = {
           rating: number
           reviews: number
           source: string
+          trend_signal: string | null
+          trend_signal_ar: string | null
+          trend_signal_es: string | null
+          trust_badge: Database["public"]["Enums"]["trust_badge"] | null
+          trust_score: number
           updated_at: string
         }
         Insert: {
           affiliate_url: string
+          category?: Database["public"]["Enums"]["product_category"]
+          click_count?: number
           created_at?: string
+          description?: string | null
+          description_ar?: string | null
+          description_es?: string | null
           id?: string
           image_url: string
           is_active?: boolean
@@ -45,11 +128,21 @@ export type Database = {
           rating?: number
           reviews?: number
           source: string
+          trend_signal?: string | null
+          trend_signal_ar?: string | null
+          trend_signal_es?: string | null
+          trust_badge?: Database["public"]["Enums"]["trust_badge"] | null
+          trust_score?: number
           updated_at?: string
         }
         Update: {
           affiliate_url?: string
+          category?: Database["public"]["Enums"]["product_category"]
+          click_count?: number
           created_at?: string
+          description?: string | null
+          description_ar?: string | null
+          description_es?: string | null
           id?: string
           image_url?: string
           is_active?: boolean
@@ -61,6 +154,11 @@ export type Database = {
           rating?: number
           reviews?: number
           source?: string
+          trend_signal?: string | null
+          trend_signal_ar?: string | null
+          trend_signal_es?: string | null
+          trust_badge?: Database["public"]["Enums"]["trust_badge"] | null
+          trust_score?: number
           updated_at?: string
         }
         Relationships: []
@@ -70,10 +168,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_product_click: {
+        Args: { product_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
-      [_ in never]: never
+      product_category:
+        | "national_jerseys"
+        | "football_gear"
+        | "stadium_accessories"
+        | "exclusive_tech"
+      trust_badge: "verified" | "hot" | "trending" | "limited"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -200,6 +306,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      product_category: [
+        "national_jerseys",
+        "football_gear",
+        "stadium_accessories",
+        "exclusive_tech",
+      ],
+      trust_badge: ["verified", "hot", "trending", "limited"],
+    },
   },
 } as const
