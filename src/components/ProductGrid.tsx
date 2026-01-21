@@ -18,6 +18,10 @@ const mockProducts: Product[] = [
     rating: 4.8,
     reviews: 2341,
     affiliateUrl: '#',
+    trustBadge: 'verified',
+    trendingReason: 'Viral on TikTok - 2.3M views this week',
+    trendingReasonAr: 'فيروسي على تيك توك - 2.3 مليون مشاهدة هذا الأسبوع',
+    trendingReasonEs: 'Viral en TikTok - 2.3M vistas esta semana',
   },
   {
     id: '2',
@@ -31,6 +35,10 @@ const mockProducts: Product[] = [
     rating: 4.7,
     reviews: 5672,
     affiliateUrl: '#',
+    trustBadge: 'hot',
+    trendingReason: 'Top seller on Amazon - Fans favorite',
+    trendingReasonAr: 'الأكثر مبيعاً على أمازون - مفضل المشجعين',
+    trendingReasonEs: 'Más vendido en Amazon - Favorito de fans',
   },
   {
     id: '3',
@@ -44,6 +52,10 @@ const mockProducts: Product[] = [
     rating: 4.5,
     reviews: 1289,
     affiliateUrl: '#',
+    trustBadge: 'limited',
+    trendingReason: 'Only 50 left - High demand from Morocco',
+    trendingReasonAr: 'متبقي 50 فقط - طلب عالي من المغرب',
+    trendingReasonEs: 'Solo quedan 50 - Alta demanda de Marruecos',
   },
   {
     id: '4',
@@ -57,6 +69,10 @@ const mockProducts: Product[] = [
     rating: 4.6,
     reviews: 892,
     affiliateUrl: '#',
+    trustBadge: 'trending',
+    trendingReason: 'Featured on ESPN - Perfect gift item',
+    trendingReasonAr: 'مميز على ESPN - هدية مثالية',
+    trendingReasonEs: 'Destacado en ESPN - Regalo perfecto',
   },
   {
     id: '5',
@@ -70,6 +86,10 @@ const mockProducts: Product[] = [
     rating: 4.9,
     reviews: 3456,
     affiliateUrl: '#',
+    trustBadge: 'verified',
+    trendingReason: 'Same model worn by pro players',
+    trendingReasonAr: 'نفس الموديل الذي يرتديه المحترفون',
+    trendingReasonEs: 'Mismo modelo usado por profesionales',
   },
   {
     id: '6',
@@ -82,6 +102,10 @@ const mockProducts: Product[] = [
     rating: 4.4,
     reviews: 2156,
     affiliateUrl: '#',
+    trustBadge: 'hot',
+    trendingReason: 'TikTok influencers choice - Summer essential',
+    trendingReasonAr: 'اختيار مؤثري تيك توك - ضروري للصيف',
+    trendingReasonEs: 'Elección de influencers TikTok - Esencial de verano',
   },
   {
     id: '7',
@@ -95,6 +119,10 @@ const mockProducts: Product[] = [
     rating: 4.7,
     reviews: 1834,
     affiliateUrl: '#',
+    trustBadge: 'trending',
+    trendingReason: 'Best value bundle - Amazon bestseller',
+    trendingReasonAr: 'أفضل حزمة قيمة - الأكثر مبيعاً على أمازون',
+    trendingReasonEs: 'Mejor valor - Bestseller de Amazon',
   },
   {
     id: '8',
@@ -107,6 +135,10 @@ const mockProducts: Product[] = [
     rating: 4.3,
     reviews: 673,
     affiliateUrl: '#',
+    trustBadge: 'limited',
+    trendingReason: 'Collector edition - Perfect for trading',
+    trendingReasonAr: 'إصدار جامعي - مثالي للتبادل',
+    trendingReasonEs: 'Edición coleccionista - Perfecto para intercambio',
   },
 ];
 
