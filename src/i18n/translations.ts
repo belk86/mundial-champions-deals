@@ -30,6 +30,24 @@ export const translations = {
           amazon: "Amazon US",
           aliexpress: "AliExpress",
         },
+        badges: {
+          verified: "Verified Trust",
+          hot: "Hot in Al Hoceima",
+          trending: "Trending Now",
+          limited: "Limited Stock",
+        },
+        whyTrending: "Why this is trending",
+      },
+      // Daily Deal
+      dailyDeal: {
+        title: "Daily Secret Deal",
+        subtitle: "Unlock exclusive savings - Limited time only!",
+        endsIn: "Offer ends in",
+        hours: "h",
+        minutes: "m",
+        seconds: "s",
+        unlockNow: "Unlock Now",
+        secretReveal: "Secret revealed!",
       },
       // Common
       common: {
@@ -86,6 +104,24 @@ export const translations = {
           amazon: "أمازون أمريكا",
           aliexpress: "علي إكسبريس",
         },
+        badges: {
+          verified: "موثوق ومعتمد",
+          hot: "رائج في الحسيمة",
+          trending: "الأكثر رواجاً",
+          limited: "كمية محدودة",
+        },
+        whyTrending: "لماذا هذا رائج",
+      },
+      // Daily Deal
+      dailyDeal: {
+        title: "صفقة اليوم السرية",
+        subtitle: "افتح توفيرات حصرية - لفترة محدودة فقط!",
+        endsIn: "ينتهي العرض في",
+        hours: "س",
+        minutes: "د",
+        seconds: "ث",
+        unlockNow: "افتح الآن",
+        secretReveal: "تم الكشف عن السر!",
       },
       // Common
       common: {
@@ -135,13 +171,31 @@ export const translations = {
       products: {
         title: "Productos Destacados",
         subtitle: "Selección curada de productos premium del Mundial 2026",
-        getDeal: "Get Deal",
+        getDeal: "Ver Oferta",
         source: "Fuente",
         filter: {
           all: "Todos los Productos",
           amazon: "Amazon US",
           aliexpress: "AliExpress",
         },
+        badges: {
+          verified: "Confianza Verificada",
+          hot: "Popular en Al Hoceima",
+          trending: "En Tendencia",
+          limited: "Stock Limitado",
+        },
+        whyTrending: "Por qué es tendencia",
+      },
+      // Daily Deal
+      dailyDeal: {
+        title: "Oferta Secreta Diaria",
+        subtitle: "¡Desbloquea ahorros exclusivos - Solo por tiempo limitado!",
+        endsIn: "La oferta termina en",
+        hours: "h",
+        minutes: "m",
+        seconds: "s",
+        unlockNow: "Desbloquear Ahora",
+        secretReveal: "¡Secreto revelado!",
       },
       // Common
       common: {
