@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, Star, ShieldCheck, Flame, TrendingUp, Package } from 'lucide-react';
+import { ExternalLink, Star, ShieldCheck, Flame, TrendingUp, Package, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -21,6 +22,37 @@ const trustBadgeConfig: Record<TrustBadge, { icon: typeof ShieldCheck; colorClas
 const ProductCard = ({ product, index }: ProductCardProps) => {
   const { t } = useTranslation();
   const { language, isRTL } = useLanguage();
+  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 47, seconds: 33 });
+
+  // Limited time countdown for special products (like the ball)
+  const isLimitedTimeDeal = product.name.toLowerCase().includes('ball') || product.trust_badge === 'limited';
+
+  useEffect(() => {
+    if (!isLimitedTimeDeal) return;
+    
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          hours--;
+        }
+        if (hours < 0) {
+          hours = 23;
+          minutes = 59;
+          seconds = 59;
+        }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isLimitedTimeDeal]);
 
   const discount = product.original_price
     ? Math.round(((product.original_price - product.price) / product.original_price) * 100)
@@ -152,7 +184,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         )}
 
         {/* Price */}
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-baseline gap-2 flex-wrap">
           <span className="text-xl font-bold text-gold">
             ${product.price.toFixed(2)}
           </span>
@@ -162,6 +194,19 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
             </span>
           )}
         </div>
+
+        {/* Limited Time Countdown */}
+        {isLimitedTimeDeal && (
+          <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
+            <Clock className="w-4 h-4 text-red-400" />
+            <span className="text-xs font-medium text-red-400">
+              {t('dailyDeal.endsIn')}:
+            </span>
+            <span className="text-sm font-bold text-red-300">
+              {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+            </span>
+          </div>
+        )}
 
         {/* CTA Button with pulse effect */}
         <Button

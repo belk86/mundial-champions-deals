@@ -144,17 +144,19 @@ const TikaAdvisor = () => {
 
   return (
     <>
-      {/* Floating Button */}
+      {/* Floating Button with Purple Pulse Glow */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white hover:shadow-purple-500/40 transition-shadow"
-        whileHover={{ scale: 1.05 }}
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white transition-all animate-[pulse-purple_2s_ease-in-out_infinite]"
+        style={{
+          boxShadow: '0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.2)',
+        }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <Sparkles className="w-6 h-6" />
-      </motion.button>
+        <Sparkles className="w-7 h-7" /></motion.button>
 
       {/* Chat Window */}
       <AnimatePresence>
