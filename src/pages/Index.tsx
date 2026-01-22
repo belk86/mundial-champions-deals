@@ -4,6 +4,7 @@ import DailySecretDeal from '@/components/DailySecretDeal';
 import ProductGrid from '@/components/ProductGrid';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import TikaAdvisor from '@/components/TikaAdvisor';
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <ProductGrid />
       <Footer />
       <ScrollToTop />
+      <TikaAdvisor />
     </div>
   );
 };
