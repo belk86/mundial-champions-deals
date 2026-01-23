@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import mLogo from '@/assets/m-logo.png';
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -36,7 +37,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
+          <a href="#home" className="flex items-center gap-3">
+            <img 
+              src={mLogo} 
+              alt="MundialGear" 
+              className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover"
+            />
             <div className="relative">
               <span className="text-xl md:text-2xl font-bold text-gradient-gold">
                 MundialGear

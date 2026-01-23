@@ -1,13 +1,40 @@
-import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const AnnouncementBar = () => {
-  const { t } = useTranslation();
-
+  const marqueeText = "⚽ WORLD CUP 2026 EXCLUSIVE: Best Deals curated by Med Belk! ⚽";
+  
   return (
-    <div className="bg-gold text-primary-foreground py-2 px-4 text-center text-sm font-medium">
-      <span className="inline-flex items-center gap-2">
-        ⚽ Exclusive 2026 Gear Launch | Free Shipping on Orders Over $100 | Arabic/Spanish/English Support Active
-      </span>
+    <div className="bg-gold text-primary-foreground py-2 overflow-hidden relative">
+      <div className="flex whitespace-nowrap">
+        <motion.div
+          className="flex gap-16 text-sm font-semibold"
+          animate={{
+            x: ['0%', '-50%'],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 20,
+              ease: 'linear',
+            },
+          }}
+        >
+          {/* Duplicate content for seamless loop */}
+          {[...Array(4)].map((_, i) => (
+            <span key={i} className="flex items-center gap-16">
+              <span>{marqueeText}</span>
+              <span className="text-primary-foreground/80">|</span>
+              <span>🏆 Free Shipping Over $100</span>
+              <span className="text-primary-foreground/80">|</span>
+              <span>🌍 Ships to 50+ Countries</span>
+              <span className="text-primary-foreground/80">|</span>
+              <span>🔒 Secure Checkout</span>
+              <span className="text-primary-foreground/80">|</span>
+            </span>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };
