@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Trophy, Mail, MapPin, Phone } from 'lucide-react';
+import { Trophy, Mail, MapPin, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -45,7 +45,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-gold/60" />
-                <span>USA | Mexico | Canada</span>
+                <span>Tangier, Morocco</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4 text-gold/60" />
+                <span>Owner: Med Belk</span>
               </div>
             </div>
           </div>
@@ -112,6 +116,14 @@ const Footer = () => {
               {t('footer.affiliate')}
             </p>
           </div>
+          
+          {/* Amazon Disclaimer */}
+          <div className="mt-6 pt-4 border-t border-border/50">
+            <p className="text-xs text-muted-foreground/50 text-center max-w-3xl mx-auto leading-relaxed">
+              <strong>Amazon Affiliate Disclaimer:</strong> MundialGear 2026 is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.
+            </p>
+          </div>
+          
           {/* System Status */}
           <div className="mt-6 pt-4 border-t border-border/50 text-center">
             <p className="text-xs text-green-400 font-medium flex items-center justify-center gap-2">
