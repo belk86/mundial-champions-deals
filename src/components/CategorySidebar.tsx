@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Shirt, Footprints, Headphones, Trophy } from 'lucide-react';
+import { Shirt, Goal, Headphones, Trophy, Ticket, Flag, Timer, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCategories, type ProductCategory } from '@/hooks/useProducts';
 import { Button } from '@/components/ui/button';
@@ -12,8 +12,8 @@ interface CategorySidebarProps {
 
 const categoryIcons: Record<string, typeof Shirt> = {
   national_jerseys: Shirt,
-  football_gear: Footprints,
-  stadium_accessories: Trophy,
+  football_gear: Goal,
+  stadium_accessories: Ticket,
   exclusive_tech: Headphones,
 };
 
@@ -49,9 +49,15 @@ const CategorySidebar = ({ selectedCategory, onCategoryChange }: CategorySidebar
       animate={{ opacity: 1, x: 0 }}
       className="bg-card/50 backdrop-blur-sm rounded-xl border border-border p-4 sticky top-24"
     >
-      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-        {t('products.categories')}
-      </h3>
+      {/* Header with sports icon */}
+      <div className="flex items-center gap-2 mb-4">
+        <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center">
+          <Flag className="w-4 h-4 text-gold" />
+        </div>
+        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+          {t('products.categories')}
+        </h3>
+      </div>
       
       <div className="space-y-2">
         <Button
@@ -87,6 +93,31 @@ const CategorySidebar = ({ selectedCategory, onCategoryChange }: CategorySidebar
             </Button>
           );
         })}
+      </div>
+
+      {/* Quick Stats */}
+      <div className="mt-6 pt-4 border-t border-border space-y-3">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Timer className="w-3 h-3 text-orange-400" />
+          <span>Updated: Live</span>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Sparkles className="w-3 h-3 text-purple-400" />
+          <span>5 Active Deals</span>
+        </div>
+      </div>
+
+      {/* World Cup 2026 Banner */}
+      <div className="mt-4 p-3 bg-gradient-to-br from-gold/10 to-gold/5 rounded-lg border border-gold/20">
+        <div className="text-center">
+          <span className="text-2xl">🏆</span>
+          <p className="text-xs font-semibold text-gold mt-1">
+            World Cup 2026
+          </p>
+          <p className="text-xs text-muted-foreground">
+            USA • Mexico • Canada
+          </p>
+        </div>
       </div>
     </motion.aside>
   );
