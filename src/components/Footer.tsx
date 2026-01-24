@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Trophy className="w-6 h-6 text-gold" />
-              <span className="text-xl font-bold text-gradient-gold">MundialGear 2026</span>
+              <span className="text-xl font-bold text-gradient-gold">FanZone 26</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               {t('footer.tagline')}
@@ -41,7 +41,9 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-gold/60" />
-                <span>support@mundialgear2026.com</span>
+                <a href="mailto:belkm757@gmail.com" className="hover:text-gold transition-colors">
+                  belkm757@gmail.com
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-gold/60" />
@@ -92,16 +94,30 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t('footer.legal')}</h4>
             <ul className="space-y-2">
-              {legalLinks.map((link) => (
-                <li key={link.key}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-gold transition-colors text-sm"
-                  >
-                    {t(`footer.${link.key}`)}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="/privacy"
+                  className="text-muted-foreground hover:text-gold transition-colors text-sm"
+                >
+                  {t('footer.privacy')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/terms"
+                  className="text-muted-foreground hover:text-gold transition-colors text-sm"
+                >
+                  {t('footer.terms')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-muted-foreground hover:text-gold transition-colors text-sm"
+                >
+                  {t('footer.contact')}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

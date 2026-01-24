@@ -123,12 +123,15 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </div>
       )}
 
-      {/* Trust Badge */}
+      {/* Trust Badge with "Hot in Tangier" style */}
       {product.trust_badge && badgeConfig && BadgeIcon && (
         <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10`}>
           <Badge className={`${badgeConfig.colorClass} border font-medium text-xs`}>
             <BadgeIcon className="w-3 h-3 mr-1" />
-            {t(`products.badges.${product.trust_badge}`)}
+            {product.trust_badge === 'hot' 
+              ? (language === 'ar' ? '🔥 ساخن في طنجة' : language === 'es' ? '🔥 Popular en Tánger' : '🔥 Hot in Tangier')
+              : t(`products.badges.${product.trust_badge}`)
+            }
           </Badge>
         </div>
       )}
