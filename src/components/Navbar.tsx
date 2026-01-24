@@ -36,21 +36,18 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-3">
-            <img 
-              src={mLogo} 
-              alt="MundialGear" 
-              className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover"
-            />
+          {/* Logo - Glowing M with FanZone 26 tagline */}
+          <a href="#home" className="flex items-center gap-2">
             <div className="relative">
-              <span className="text-xl md:text-2xl font-bold text-gradient-gold">
-                MundialGear
-              </span>
-              <span className="absolute -top-1 -right-6 text-xs font-semibold text-gold px-1 py-0.5 bg-gold/10 rounded">
-                2026
-              </span>
+              <img 
+                src={mLogo} 
+                alt="FanZone 26" 
+                className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover glow-gold-sm"
+              />
             </div>
+            <span className="text-sm md:text-base font-semibold text-gold/90">
+              FanZone 26
+            </span>
           </a>
 
           {/* Desktop Navigation */}

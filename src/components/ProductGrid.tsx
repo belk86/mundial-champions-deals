@@ -20,8 +20,8 @@ const ProductGrid = () => {
 
   const sourceFilters: { key: SourceFilter; label: string }[] = [
     { key: 'all', label: t('products.filter.all') },
-    { key: 'amazon', label: t('products.filter.amazon') },
-    { key: 'aliexpress', label: t('products.filter.aliexpress') },
+    { key: 'amazon', label: '🛒 Amazon US' },
+    { key: 'aliexpress', label: '🌏 AliExpress' },
   ];
 
   const sortOptions: { key: SortOption; label: string }[] = [
