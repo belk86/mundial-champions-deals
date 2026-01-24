@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Shirt, Goal, Headphones, Trophy, Ticket, Flag, Timer, Sparkles } from 'lucide-react';
+import { Shirt, Flag as FansGear, Tv, Trophy, Flag, Timer, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCategories, type ProductCategory } from '@/hooks/useProducts';
 import { Button } from '@/components/ui/button';
@@ -11,10 +11,9 @@ interface CategorySidebarProps {
 }
 
 const categoryIcons: Record<string, typeof Shirt> = {
-  national_jerseys: Shirt,
-  football_gear: Goal,
-  stadium_accessories: Ticket,
-  exclusive_tech: Headphones,
+  football_gear: FansGear,        // Fans Gear
+  exclusive_tech: Tv,             // Home Cinema & Tech
+  national_jerseys: Shirt,        // Apparel
 };
 
 const CategorySidebar = ({ selectedCategory, onCategoryChange }: CategorySidebarProps) => {
