@@ -23,8 +23,8 @@ const Hero = () => {
         style={{ backgroundImage: `url(${stadiumBg})` }}
       />
       
-      {/* Dark Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-wc-navy/85 via-wc-navy/75 to-wc-navy/95" />
+      {/* Dark Overlay for readability - enhanced with premium dark gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-wc-navy/90 via-wc-navy/80 to-wc-navy/95" />
       
       {/* Gold Accent Lines */}
       <div className="absolute inset-0 overflow-hidden">
@@ -52,7 +52,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/30 rounded-full mb-8"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gold/10 border border-gold/30 rounded-full mb-6 sm:mb-8"
           >
             <Trophy className="w-4 h-4 text-gold" />
             <span className="text-sm text-gold font-medium">{t('hero.badge')}</span>
@@ -63,7 +63,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
           >
             <span className="text-foreground">{t('hero.title')}</span>
             <br />
@@ -77,7 +77,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2"
           >
             {t('hero.subtitle')}
           </motion.p>

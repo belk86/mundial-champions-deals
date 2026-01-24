@@ -13,8 +13,6 @@ const Navbar = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   const navItems = [
-    { key: 'home', href: '#home' },
-    { key: 'products', href: '#products' },
     { key: 'amazon', href: '#amazon' },
     { key: 'aliexpress', href: '#aliexpress' },
   ];
@@ -36,16 +34,14 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Glowing M with FanZone 26 tagline */}
-          <a href="#home" className="flex items-center gap-2">
-            <div className="relative">
-              <img 
-                src={mLogo} 
-                alt="FanZone 26" 
-                className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover glow-gold-sm"
-              />
-            </div>
-            <span className="text-sm md:text-base font-semibold text-gold/90">
+          {/* Logo - Unified Gold M with FanZone 26 tagline */}
+          <a href="#home" className="flex items-center gap-2 md:gap-3">
+            <img 
+              src={mLogo} 
+              alt="FanZone 26" 
+              className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg object-cover glow-gold-sm flex-shrink-0"
+            />
+            <span className="text-sm sm:text-base font-semibold text-gold whitespace-nowrap">
               FanZone 26
             </span>
           </a>
