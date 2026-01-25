@@ -1,6 +1,7 @@
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import NewsHub from '@/components/NewsHub';
 import DailySecretDeal from '@/components/DailySecretDeal';
 import ProductGrid from '@/components/ProductGrid';
 import Footer from '@/components/Footer';
@@ -13,6 +14,7 @@ const Index = () => {
       <AnnouncementBar />
       <Navbar />
       <Hero />
+      <NewsHub />
       <DailySecretDeal />
       <ProductGrid />
       <Footer />
