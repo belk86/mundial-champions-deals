@@ -92,6 +92,7 @@ const Hero = () => {
             <Button
               size="lg"
               className="w-full sm:w-auto px-8 py-6 bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-primary-foreground font-semibold text-lg glow-gold-sm transition-all duration-300 hover:scale-105"
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.cta')}
               <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
@@ -100,6 +101,7 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="w-full sm:w-auto px-8 py-6 border-gold/50 text-gold hover:bg-gold/10 font-semibold text-lg transition-all duration-300"
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.ctaSecondary')}
             </Button>

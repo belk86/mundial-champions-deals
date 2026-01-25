@@ -18,13 +18,13 @@ interface DailyDeal {
 
 const secretDeal: DailyDeal = {
   id: 'secret-1',
-  name: 'Mystery World Cup 2026 Bundle',
-  nameAr: 'حزمة كأس العالم 2026 الغامضة',
-  nameEs: 'Paquete Misterioso Mundial 2026',
-  price: 79.99,
-  originalPrice: 199.99,
-  image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80',
-  affiliateUrl: '#',
+  name: '4K Portable Sports Projector',
+  nameAr: 'جهاز عرض رياضي محمول 4K',
+  nameEs: 'Proyector Deportivo Portátil 4K',
+  price: 119.99,
+  originalPrice: 159.99,
+  image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400',
+  affiliateUrl: 'https://amzn.to/4pOKPIY',
 };
 
 const DailySecretDeal = () => {
