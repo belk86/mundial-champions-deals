@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const AnnouncementBar = () => {
-  const marqueeText = "⚽ WORLD CUP 2026 EXCLUSIVE: Best Deals curated by Med Belk! ⚽";
+  const marqueeText = "🔥 World Cup 2026 Limited Edition Gear | 🚚 Fast Global Shipping | 🌟 Verified by FanZone 26";
   
   return (
     <div className="bg-gold text-primary-foreground py-2 overflow-hidden relative">
