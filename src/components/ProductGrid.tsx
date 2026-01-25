@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { TrendingUp, ArrowUpDown, Loader2 } from 'lucide-react';
-import ProductCard from './ProductCard';
+import ProductSlider from './ProductSlider';
 import CategorySidebar from './CategorySidebar';
 import TrendingSidebar from './TrendingSidebar';
 import { Button } from '@/components/ui/button';
@@ -127,13 +127,9 @@ const ProductGrid = () => {
               </div>
             )}
 
-            {/* Product Grid */}
+            {/* Horizontal Product Slider */}
             {!productsLoading && products && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {products.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
-              </div>
+              <ProductSlider products={products} />
             )}
 
             {/* Empty State */}
