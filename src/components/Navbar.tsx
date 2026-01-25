@@ -13,9 +13,21 @@ const Navbar = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   const navItems = [
-    { key: 'amazon', href: '#amazon' },
-    { key: 'aliexpress', href: '#aliexpress' },
+    { key: 'amazon', href: '#products', filter: 'amazon' },
+    { key: 'aliexpress', href: '#products', filter: 'aliexpress' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, filter?: string) => {
+    e.preventDefault();
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+      // Trigger filter change via custom event
+      if (filter) {
+        window.dispatchEvent(new CustomEvent('filterProducts', { detail: { source: filter } }));
+      }
+    }
+  };
 
   const languages = [
     { code: 'en' as const, label: 'English', displayCode: 'EN' },
@@ -52,7 +64,8 @@ const Navbar = () => {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium"
+                onClick={(e) => handleNavClick(e, item.filter)}
+                className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium cursor-pointer"
               >
                 {t(`nav.${item.key}`)}
               </a>
@@ -125,8 +138,8 @@ const Navbar = () => {
                   <a
                     key={item.key}
                     href={item.href}
-                    className="block py-2 px-4 text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-lg transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => { handleNavClick(e, item.filter); setIsMenuOpen(false); }}
+                    className="block py-2 px-4 text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-lg transition-colors cursor-pointer"
                   >
                     {t(`nav.${item.key}`)}
                   </a>

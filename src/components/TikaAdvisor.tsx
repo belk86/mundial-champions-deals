@@ -144,10 +144,10 @@ const TikaAdvisor = () => {
 
   return (
     <>
-      {/* Floating Button with Purple Pulse Glow */}
+      {/* Floating Button with Purple Pulse Glow - positioned higher on mobile */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white transition-all animate-[pulse-purple_2s_ease-in-out_infinite]"
+        className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white transition-all animate-[pulse-purple_2s_ease-in-out_infinite]"
         style={{
           boxShadow: '0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.2)',
         }}
@@ -156,16 +156,17 @@ const TikaAdvisor = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <Sparkles className="w-7 h-7" /></motion.button>
+        <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
+      </motion.button>
 
-      {/* Chat Window */}
+      {/* Chat Window - responsive positioning */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-50 w-[340px] sm:w-[360px] max-w-[calc(100vw-2rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-4 flex items-center justify-between">
