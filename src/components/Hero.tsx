@@ -101,7 +101,7 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="w-full sm:w-auto px-8 py-6 border-gold/50 text-gold hover:bg-gold/10 font-semibold text-lg transition-all duration-300"
-              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.querySelector('.bg-secret-gradient')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.ctaSecondary')}
             </Button>

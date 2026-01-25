@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { TrendingUp, ArrowUpDown, Loader2 } from 'lucide-react';
@@ -17,6 +17,19 @@ const ProductGrid = () => {
   const [sortBy, setSortBy] = useState<SortOption>('trust');
 
   const { data: products, isLoading: productsLoading } = useProducts(sourceFilter, categoryFilter, sortBy);
+
+  // Listen for filter events from navbar
+  useEffect(() => {
+    const handleFilterEvent = (e: CustomEvent<{ source: string }>) => {
+      const source = e.detail.source as SourceFilter;
+      if (source === 'amazon' || source === 'aliexpress') {
+        setSourceFilter(source);
+      }
+    };
+
+    window.addEventListener('filterProducts', handleFilterEvent as EventListener);
+    return () => window.removeEventListener('filterProducts', handleFilterEvent as EventListener);
+  }, []);
 
   const sourceFilters: { key: SourceFilter; label: string }[] = [
     { key: 'all', label: t('products.filter.all') },

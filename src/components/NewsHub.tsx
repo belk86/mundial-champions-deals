@@ -1,6 +1,8 @@
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Users } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, MapPin, Users, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
 
 interface NewsCard {
   id: string;
@@ -53,6 +55,7 @@ const newsCards: NewsCard[] = [
 const NewsHub = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language;
+  const [showPopup, setShowPopup] = useState(false);
 
   const getTitle = (card: NewsCard) => {
     if (lang === 'ar') return card.titleAr;
@@ -66,8 +69,47 @@ const NewsHub = () => {
     return card.description;
   };
 
+  const handleCardClick = () => {
+    setShowPopup(true);
+  };
+
   return (
     <section className="py-16 bg-background">
+      {/* Coming Soon Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowPopup(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-card border border-gold/30 rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl"
+            >
+              <div className="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">🏆</span>
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Coming Soon!</h3>
+              <p className="text-muted-foreground mb-6">
+                Stay Tuned for World Cup 2026 Updates!
+              </p>
+              <Button
+                onClick={() => setShowPopup(false)}
+                className="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-primary-foreground"
+              >
+                Got it!
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="container px-4">
         {/* Section Header */}
         <motion.div
@@ -96,6 +138,7 @@ const NewsHub = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                onClick={handleCardClick}
                 className={`
                   relative overflow-hidden rounded-xl p-6
                   bg-gradient-to-br ${card.gradient}
