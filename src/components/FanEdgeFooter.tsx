@@ -1,9 +1,25 @@
-import { Mail, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import FanEdgeLogo from './FanEdgeLogo';
+import { toast } from 'sonner';
 
 const FanEdgeFooter = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+    setIsSubmitted(true);
+    toast.success('Successfully subscribed! Welcome to FanEdge.');
+    setEmail('');
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
 
   const quickLinks = [
     { label: 'Home', href: '#home' },
@@ -76,22 +92,38 @@ const FanEdgeFooter = () => {
             </ul>
           </div>
 
-          {/* Newsletter Placeholder */}
+          {/* Newsletter Section */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Stay Updated</h4>
             <p className="text-muted-foreground text-sm mb-4">
               Get exclusive deals and World Cup 2026 updates.
             </p>
-            <div className="flex gap-2">
+            <form onSubmit={handleSubscribe} className="flex gap-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
-                className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon transition-all"
               />
-              <button className="px-4 py-2 bg-amazon hover:bg-amazon-dark text-black rounded-lg font-medium text-sm transition-colors">
-                {t('nav.joinNow')}
+              <button 
+                type="submit"
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 ${
+                  isSubmitted 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-amazon hover:bg-amazon-dark text-black'
+                }`}
+              >
+                {isSubmitted ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Success!
+                  </>
+                ) : (
+                  'Join Now'
+                )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
