@@ -80,13 +80,13 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     }
   };
 
-  const handleGetDeal = async () => {
-    // Track click before opening link
-    await trackProductClick(product.id);
-    
-    // Always use dynamic Amazon search URL with product name
+  const handleGetDeal = () => {
+    // Open Amazon search immediately - do not block on tracking
     const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}`;
     window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
+    
+    // Track click in background (fire and forget)
+    trackProductClick(product.id).catch(() => {});
   };
 
   const badgeConfig = product.trust_badge ? trustBadgeConfig[product.trust_badge] : null;
@@ -211,9 +211,9 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           </div>
         )}
 
-        {/* CTA Button with pulse effect */}
+        {/* CTA Button - Amazon Orange */}
         <Button
-          className="w-full bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-primary-foreground font-semibold group/btn transition-all duration-300 pulse-button"
+          className="w-full bg-amazon hover:bg-amazon-dark text-black font-bold group/btn transition-all duration-300"
           onClick={handleGetDeal}
         >
           {t('products.getDeal')}

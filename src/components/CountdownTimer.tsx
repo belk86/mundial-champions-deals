@@ -80,15 +80,15 @@ const CountdownTimer = () => {
             <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-amazon animate-pulse" />
           </div>
 
-          {/* Countdown - Translated */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          {/* Countdown - Translated with proper spacing */}
+          <div className="flex items-center gap-2 sm:gap-3">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-amazon mr-1 sm:mr-2" />
             <TimeBlock value={timeLeft.days} labelKey="countdown.days" />
-            <span className="text-amazon text-lg sm:text-xl font-bold">:</span>
+            <span className="text-amazon text-lg sm:text-xl font-bold mx-1">:</span>
             <TimeBlock value={timeLeft.hours} labelKey="countdown.hours" />
-            <span className="text-amazon text-lg sm:text-xl font-bold">:</span>
+            <span className="text-amazon text-lg sm:text-xl font-bold mx-1">:</span>
             <TimeBlock value={timeLeft.minutes} labelKey="countdown.mins" />
-            <span className="text-amazon text-lg sm:text-xl font-bold">:</span>
+            <span className="text-amazon text-lg sm:text-xl font-bold mx-1">:</span>
             <TimeBlock value={timeLeft.seconds} labelKey="countdown.secs" />
           </div>
         </div>
