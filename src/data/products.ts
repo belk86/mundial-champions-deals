@@ -128,7 +128,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Accessories',
-    affiliateUrl: 'https://amzn.to/placeholder1',
+    affiliateUrl: 'https://amzn.to/4k7B2mF',
   },
   {
     id: '13',
@@ -138,7 +138,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Accessories',
-    affiliateUrl: 'https://amzn.to/placeholder2',
+    affiliateUrl: 'https://amzn.to/3Z5M7K8',
   },
   {
     id: '14',
@@ -148,7 +148,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Travel',
-    affiliateUrl: 'https://amzn.to/placeholder3',
+    affiliateUrl: 'https://amzn.to/4qKX1vq',
   },
   {
     id: '15',
@@ -158,6 +158,6 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Accessories',
-    affiliateUrl: 'https://amzn.to/placeholder4',
+    affiliateUrl: 'https://amzn.to/3B77C2n',
   },
 ];
