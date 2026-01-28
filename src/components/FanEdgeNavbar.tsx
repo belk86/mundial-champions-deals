@@ -68,9 +68,12 @@ const FanEdgeNavbar = () => {
 
           {/* Right Section */}
           <div className="flex items-center gap-4">
-            {/* Join Now Button - Translated */}
+            {/* Join Now Button - Neon Blue/Purple Gradient */}
             <Button
-              className="hidden sm:flex bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm pulse-button-purple"
+              className="hidden sm:flex text-white font-semibold glow-purple-sm pulse-button-purple"
+              style={{
+                background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 100%)',
+              }}
             >
               {t('nav.joinNow')}
             </Button>
@@ -147,7 +150,10 @@ const FanEdgeNavbar = () => {
                   </a>
                 ))}
                 <Button
-                  className="w-full mt-4 bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
+                  className="w-full mt-4 text-white font-semibold glow-purple-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 100%)',
+                  }}
                 >
                   {t('nav.joinNow')}
                 </Button>

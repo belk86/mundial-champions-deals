@@ -20,16 +20,32 @@ const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
 
   return (
     <div className="flex items-center gap-2 sm:gap-3">
+      {/* Futuristic Soccer Ball Icon with Neon Blue/Purple Gradient */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-amazon via-amazon to-amazon-dark flex items-center justify-center font-bold text-black relative overflow-hidden`}
+        className={`${sizeClasses[size]} rounded-xl flex items-center justify-center font-bold text-white relative overflow-hidden`}
         style={{
-          boxShadow: '0 0 15px rgba(255, 153, 0, 0.5), 0 0 30px rgba(255, 153, 0, 0.3)',
+          background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 50%, #00D4FF 100%)',
+          boxShadow: `
+            0 0 15px rgba(77, 159, 255, 0.6),
+            0 0 30px rgba(155, 77, 255, 0.4),
+            0 0 45px rgba(0, 212, 255, 0.3),
+            inset 0 0 15px rgba(255, 255, 255, 0.2)
+          `,
+          border: '2px solid rgba(77, 159, 255, 0.6)',
         }}
       >
-        <span className="relative z-10 font-extrabold tracking-tight">FE</span>
+        {/* Hexagon pattern overlay for soccer ball effect */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='10,0 20,5 20,15 10,20 0,15 0,5' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E")`,
+            backgroundSize: '12px 12px',
+          }}
+        />
+        <span className="relative z-10 font-extrabold tracking-tight drop-shadow-lg">FE</span>
       </motion.div>
       
       {showText && (
@@ -37,15 +53,14 @@ const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
           initial={{ x: -10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={`${textSizes[size]} font-extrabold`}
+          className={`${textSizes[size]} font-extrabold tracking-tight`}
           style={{
-            color: '#FF9900',
-            textShadow: `
-              0 0 8px rgba(255, 153, 0, 0.6),
-              0 0 16px rgba(255, 153, 0, 0.4),
-              0 0 32px rgba(255, 153, 0, 0.3),
-              0 0 48px rgba(255, 153, 0, 0.2)
-            `,
+            background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 50%, #00D4FF 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            textShadow: 'none',
+            filter: 'drop-shadow(0 0 8px rgba(77, 159, 255, 0.5)) drop-shadow(0 0 16px rgba(155, 77, 255, 0.3))',
           }}
         >
           FanEdge
