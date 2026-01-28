@@ -7,22 +7,16 @@ const Footer = () => {
   const { isRTL } = useLanguage();
 
   const quickLinks = [
-    { key: 'home', href: '#home' },
-    { key: 'products', href: '#products' },
-    { key: 'amazon', href: '#amazon' },
-    { key: 'aliexpress', href: '#aliexpress' },
+    { label: 'Home', href: '#home' },
+    { label: 'Products', href: '#products' },
+    { label: 'Amazon Store', href: '#amazon' },
   ];
 
   const supportLinks = [
-    { key: 'faq', href: '#' },
-    { key: 'shipping', href: '#' },
-    { key: 'returns', href: '#' },
-    { key: 'contact', href: '#' },
-  ];
-
-  const legalLinks = [
-    { key: 'privacy', href: '#' },
-    { key: 'terms', href: '#' },
+    { label: 'FAQ', href: '#' },
+    { label: 'Shipping Info', href: '#' },
+    { label: 'Returns', href: '#' },
+    { label: 'Contact Us', href: '/contact' },
   ];
 
   return (
@@ -61,12 +55,12 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link.key}>
+                <li key={link.label}>
                   <a
                     href={link.href}
                     className="text-muted-foreground hover:text-gold transition-colors text-sm"
                   >
-                    {t(`nav.${link.key}`)}
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -78,12 +72,12 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2">
               {supportLinks.map((link) => (
-                <li key={link.key}>
+                <li key={link.label}>
                   <a
                     href={link.href}
                     className="text-muted-foreground hover:text-gold transition-colors text-sm"
                   >
-                    {t(`footer.${link.key}`)}
+                    {link.label}
                   </a>
                 </li>
               ))}

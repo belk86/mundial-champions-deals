@@ -6,10 +6,10 @@ const FanEdgeFooter = () => {
   const { t } = useTranslation();
 
   const quickLinks = [
-    { labelKey: 'nav.home', href: '#home' },
-    { labelKey: 'nav.fansGear', href: '#products' },
-    { labelKey: 'nav.travelGuide', href: '#travel' },
-    { labelKey: 'nav.schedule', href: '#schedule' },
+    { label: 'Home', href: '#home' },
+    { label: 'Fan Gear', href: '#products' },
+    { label: 'Travel Guide', href: '#travel' },
+    { label: 'Match Schedule', href: '#schedule' },
   ];
 
   const legalLinks = [
@@ -42,17 +42,17 @@ const FanEdgeFooter = () => {
             </div>
           </div>
 
-          {/* Quick Links - Translated */}
+          {/* Quick Links */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link.labelKey}>
+                <li key={link.label}>
                   <a
                     href={link.href}
                     className="text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
-                    {t(link.labelKey)}
+                    {link.label}
                   </a>
                 </li>
               ))}
