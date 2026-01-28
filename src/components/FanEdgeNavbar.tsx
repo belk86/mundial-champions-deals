@@ -31,16 +31,17 @@ const FanEdgeNavbar = () => {
     { code: 'en' as const, label: 'English', displayCode: 'EN' },
     { code: 'ar' as const, label: 'العربية', displayCode: 'AR' },
     { code: 'es' as const, label: 'Español', displayCode: 'ES' },
+    { code: 'fr' as const, label: 'Français', displayCode: 'FR' },
   ];
 
-  const currentLang = languages.find(l => l.code === language);
+  const currentLang = languages.find(l => l.code === language) || languages[0];
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border moroccan-pattern"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -72,7 +73,7 @@ const FanEdgeNavbar = () => {
               Join Now
             </Button>
 
-            {/* Language Switcher */}
+            {/* Language Switcher - All 4 languages */}
             <div className="relative">
               <Button
                 variant="ghost"
@@ -81,7 +82,7 @@ const FanEdgeNavbar = () => {
                 className="flex items-center gap-2 text-foreground/80 hover:text-primary hover:bg-secondary"
               >
                 <Globe className="w-4 h-4" />
-                <span className="hidden sm:inline">{currentLang?.displayCode}</span>
+                <span className="hidden sm:inline">{currentLang.displayCode}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
               </Button>
 

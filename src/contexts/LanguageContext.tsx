@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-type Language = 'en' | 'ar' | 'es';
+type Language = 'en' | 'ar' | 'es' | 'fr';
 
 interface LanguageContextType {
   language: Language;
@@ -34,7 +34,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Initialize with saved preference or default
     const saved = localStorage.getItem('mundialGear-lang') as Language | null;
-    if (saved && (saved === 'en' || saved === 'ar' || saved === 'es')) {
+    if (saved && (saved === 'en' || saved === 'ar' || saved === 'es' || saved === 'fr')) {
       setLanguage(saved);
     }
   }, []);

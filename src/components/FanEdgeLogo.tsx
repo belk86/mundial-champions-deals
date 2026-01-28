@@ -36,7 +36,10 @@ const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
           initial={{ x: -10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={`${textSizes[size]} font-bold text-gradient-purple`}
+          className={`${textSizes[size]} font-bold text-primary glow-purple-text`}
+          style={{
+            textShadow: '0 0 20px hsl(270, 100%, 60%, 0.6), 0 0 40px hsl(270, 100%, 60%, 0.4)',
+          }}
         >
           FanEdge
         </motion.span>
