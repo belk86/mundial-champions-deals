@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import FanEdgeLogo from './FanEdgeLogo';
 
 const FanEdgeNavbar = () => {
+  const { t } = useTranslation();
   const { language, setLanguage, isRTL } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   const navItems = [
-    { key: 'Home', href: '#home' },
-    { key: 'Fans Gear', href: '#products' },
-    { key: 'Travel Guide', href: '#travel' },
-    { key: 'World Cup Schedule', href: '#schedule' },
+    { key: 'nav.home', href: '#home' },
+    { key: 'nav.fansGear', href: '#products' },
+    { key: 'nav.travelGuide', href: '#travel' },
+    { key: 'nav.schedule', href: '#schedule' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -50,7 +52,7 @@ const FanEdgeNavbar = () => {
             <FanEdgeLogo size="sm" />
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Translated */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
@@ -59,18 +61,18 @@ const FanEdgeNavbar = () => {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium cursor-pointer"
               >
-                {item.key}
+                {t(item.key)}
               </a>
             ))}
           </div>
 
           {/* Right Section */}
           <div className="flex items-center gap-4">
-            {/* Join Now Button */}
+            {/* Join Now Button - Translated */}
             <Button
               className="hidden sm:flex bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm pulse-button-purple"
             >
-              Join Now
+              {t('nav.joinNow')}
             </Button>
 
             {/* Language Switcher - All 4 languages */}
@@ -92,7 +94,7 @@ const FanEdgeNavbar = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className={`absolute top-full mt-2 ${isRTL ? 'left-0' : 'right-0'} bg-card border border-border rounded-lg shadow-xl overflow-hidden min-w-[140px]`}
+                    className={`absolute top-full mt-2 ${isRTL ? 'left-0' : 'right-0'} bg-card border border-border rounded-lg shadow-xl overflow-hidden min-w-[140px] z-50`}
                   >
                     {languages.map((lang) => (
                       <button
@@ -123,7 +125,7 @@ const FanEdgeNavbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Translated */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -140,13 +142,13 @@ const FanEdgeNavbar = () => {
                     onClick={(e) => handleNavClick(e, item.href)}
                     className="block py-2 px-4 text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-lg transition-colors cursor-pointer"
                   >
-                    {item.key}
+                    {t(item.key)}
                   </a>
                 ))}
                 <Button
                   className="w-full mt-4 bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
                 >
-                  Join Now
+                  {t('nav.joinNow')}
                 </Button>
               </div>
             </motion.div>

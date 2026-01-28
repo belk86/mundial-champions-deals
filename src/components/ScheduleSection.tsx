@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, Trophy } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 const ScheduleSection = () => {
+  const { t } = useTranslation();
+
   const matches = [
     {
-      stage: 'Opening Match',
+      stageKey: 'schedule.openingMatch',
       date: 'June 11, 2026',
       time: '18:00 ET',
       teams: 'Mexico vs TBD',
@@ -15,7 +18,7 @@ const ScheduleSection = () => {
       country: 'Mexico',
     },
     {
-      stage: 'Group Stage',
+      stageKey: 'schedule.groupStage',
       date: 'June 12, 2026',
       time: '20:00 ET',
       teams: 'USA vs TBD',
@@ -24,7 +27,7 @@ const ScheduleSection = () => {
       country: 'USA',
     },
     {
-      stage: 'Group Stage',
+      stageKey: 'schedule.groupStage',
       date: 'June 13, 2026',
       time: '19:00 ET',
       teams: 'Canada vs TBD',
@@ -33,7 +36,7 @@ const ScheduleSection = () => {
       country: 'Canada',
     },
     {
-      stage: 'Quarter Final',
+      stageKey: 'schedule.quarterFinal',
       date: 'July 4, 2026',
       time: '21:00 ET',
       teams: 'TBD vs TBD',
@@ -42,7 +45,7 @@ const ScheduleSection = () => {
       country: 'USA',
     },
     {
-      stage: 'Semi Final',
+      stageKey: 'schedule.semiFinal',
       date: 'July 14, 2026',
       time: '20:00 ET',
       teams: 'TBD vs TBD',
@@ -51,7 +54,7 @@ const ScheduleSection = () => {
       country: 'USA',
     },
     {
-      stage: 'Final',
+      stageKey: 'schedule.final',
       date: 'July 19, 2026',
       time: '16:00 ET',
       teams: 'TBD vs TBD',
@@ -64,7 +67,7 @@ const ScheduleSection = () => {
   return (
     <section id="schedule" className="py-16 md:py-24 bg-secondary/20 moroccan-pattern">
       <div className="container px-4">
-        {/* Section Header */}
+        {/* Section Header - Translated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,14 +77,14 @@ const ScheduleSection = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Trophy className="w-6 h-6 text-primary" />
             <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              Match Schedule
+              {t('schedule.sectionLabel')}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            World Cup 2026 Schedule
+            {t('schedule.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Key matches across USA, Canada & Mexico. Full schedule to be announced closer to the tournament.
+            {t('schedule.subtitle')}
           </p>
         </motion.div>
 
@@ -97,10 +100,10 @@ const ScheduleSection = () => {
             >
               <Card className="bg-card border-border overflow-hidden card-hover-purple h-full">
                 <CardContent className="p-0">
-                  {/* Header */}
+                  {/* Header - Translated */}
                   <div className="bg-primary/20 border-b border-primary/30 px-4 py-3 flex items-center justify-between">
                     <Badge className="bg-primary/30 text-primary border-primary/50">
-                      {match.stage}
+                      {t(match.stageKey)}
                     </Badge>
                     <span className="text-xs text-muted-foreground font-medium">{match.country}</span>
                   </div>
@@ -129,14 +132,14 @@ const ScheduleSection = () => {
           ))}
         </div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer - Translated */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center text-xs text-muted-foreground mt-8"
         >
-          * Schedule is preliminary. Official FIFA World Cup 2026 schedule to be confirmed.
+          {t('schedule.disclaimer')}
         </motion.p>
       </div>
     </section>

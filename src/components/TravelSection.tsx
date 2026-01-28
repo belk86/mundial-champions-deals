@@ -1,33 +1,36 @@
 import { motion } from 'framer-motion';
 import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const TravelSection = () => {
+  const { t } = useTranslation();
+
   const travelOptions = [
     {
       icon: Hotel,
-      title: 'Match Day Stays',
-      description: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
-      buttonText: 'Find Hotels',
+      titleKey: 'travel.matchDayStays',
+      descKey: 'travel.matchDayStaysDesc',
+      buttonKey: 'travel.findHotels',
       link: 'https://www.booking.com',
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
       iconColor: 'text-blue-400',
     },
     {
       icon: Car,
-      title: 'Car Rentals',
-      description: 'Explore host cities in style. Rent a car and drive between match venues across North America.',
-      buttonText: 'Rent a Car',
+      titleKey: 'travel.carRentals',
+      descKey: 'travel.carRentalsDesc',
+      buttonKey: 'travel.rentCar',
       link: 'https://www.booking.com/cars',
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
     },
     {
       icon: Plane,
-      title: 'Flights to Host Cities',
-      description: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
-      buttonText: 'Search Flights',
+      titleKey: 'travel.flights',
+      descKey: 'travel.flightsDesc',
+      buttonKey: 'travel.searchFlights',
       link: 'https://www.skyscanner.com',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
@@ -59,7 +62,7 @@ const TravelSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-muted/10 to-transparent" />
       
       <div className="container px-4 relative z-10">
-        {/* Section Header */}
+        {/* Section Header - Translated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,22 +72,22 @@ const TravelSection = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Plane className="w-6 h-6 text-primary" />
             <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              Travel Guide
+              {t('travel.sectionLabel')}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Plan Your World Cup Trip
+            {t('travel.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Book your match day stays, car rentals, and flights to USA, Canada & Mexico for the World Cup 2026
+            {t('travel.subtitle')}
           </p>
         </motion.div>
 
-        {/* Travel Options Grid */}
+        {/* Travel Options Grid - Translated */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {travelOptions.map((option, index) => (
             <motion.div
-              key={option.title}
+              key={option.titleKey}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -95,13 +98,13 @@ const TravelSection = () => {
                   <div className={`w-14 h-14 rounded-xl ${option.color} border flex items-center justify-center mb-4`}>
                     <option.icon className={`w-7 h-7 ${option.iconColor}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{option.title}</h3>
-                  <p className="text-muted-foreground text-sm flex-grow mb-4">{option.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{t(option.titleKey)}</h3>
+                  <p className="text-muted-foreground text-sm flex-grow mb-4">{t(option.descKey)}</p>
                   <Button
-                    className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold"
+                    className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
                     onClick={() => window.open(option.link, '_blank')}
                   >
-                    {option.buttonText}
+                    {t(option.buttonKey)}
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -110,7 +113,7 @@ const TravelSection = () => {
           ))}
         </div>
 
-        {/* Host Cities */}
+        {/* Host Cities - Translated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +122,7 @@ const TravelSection = () => {
         >
           <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary" />
-            Host Cities - USA, Canada & Mexico
+            {t('travel.hostCities')}
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
             {cities.map((city, index) => (

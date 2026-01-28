@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Sparkles, TrendingUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/data/products';
@@ -10,6 +11,8 @@ interface ProductCardProps {
 }
 
 const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
+  const { t } = useTranslation();
+  
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : null;
@@ -26,7 +29,7 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className="group relative bg-card rounded-xl overflow-hidden border border-border card-hover-purple"
     >
-      {/* Tag Badge */}
+      {/* Tag Badge - Translated */}
       <div className="absolute top-3 left-3 z-10">
         <Badge
           className={`${
@@ -38,12 +41,12 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
           {product.tag === 'viral' ? (
             <>
               <Sparkles className="w-3 h-3 mr-1" />
-              Viral on TikTok
+              {t('products.viralTikTok')}
             </>
           ) : (
             <>
               <TrendingUp className="w-3 h-3 mr-1" />
-              Top Seller
+              {t('products.topSeller')}
             </>
           )}
         </Badge>
@@ -95,12 +98,12 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
           )}
         </div>
 
-        {/* CTA Button - Amazon Orange */}
+        {/* CTA Button - Amazon Orange, Translated */}
         <Button
           className="w-full bg-amazon hover:bg-amazon-dark text-white font-semibold group/btn transition-all duration-300 pulse-button-amazon"
           onClick={handleBuyClick}
         >
-          Buy on Amazon
+          {t('products.buyOnAmazon')}
           <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
         </Button>
       </div>
