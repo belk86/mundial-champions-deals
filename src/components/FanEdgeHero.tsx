@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ShoppingBag, Plane } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import FanEdgeLogo from './FanEdgeLogo';
+
 import stadiumHero from '@/assets/stadium-hero.jpg';
 
 const FanEdgeHero = () => {
@@ -44,16 +44,6 @@ const FanEdgeHero = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto"
         >
-          {/* Logo */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center mb-8"
-          >
-            <FanEdgeLogo size="lg" />
-          </motion.div>
-
           {/* Headline - Translated */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
