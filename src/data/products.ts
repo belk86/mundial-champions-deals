@@ -18,7 +18,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1626379953822-baec19c3accd?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Tech',
-    affiliateUrl: '#', // TODO: Add projector link
+    affiliateUrl: 'https://amzn.to/3B77C2n',
   },
   {
     id: '2',
