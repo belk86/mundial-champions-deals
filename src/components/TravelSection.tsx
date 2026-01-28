@@ -13,7 +13,7 @@ const TravelSection = () => {
       titleKey: 'travel.matchDayStays',
       descKey: 'travel.matchDayStaysDesc',
       buttonKey: 'travel.findHotels',
-      link: 'https://www.booking.com',
+      link: 'https://www.booking.com/searchresults.html?ss=World+Cup+2026',
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
       iconColor: 'text-blue-400',
     },
@@ -22,7 +22,7 @@ const TravelSection = () => {
       titleKey: 'travel.carRentals',
       descKey: 'travel.carRentalsDesc',
       buttonKey: 'travel.rentCar',
-      link: 'https://www.booking.com/cars',
+      link: 'https://www.rentalcars.com',
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
     },
@@ -31,7 +31,7 @@ const TravelSection = () => {
       titleKey: 'travel.flights',
       descKey: 'travel.flightsDesc',
       buttonKey: 'travel.searchFlights',
-      link: 'https://www.skyscanner.com',
+      link: 'https://www.kayak.com/flights',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
     },
@@ -113,7 +113,7 @@ const TravelSection = () => {
           ))}
         </div>
 
-        {/* Host Cities - Translated */}
+        {/* Host Cities - Horizontal Scroll on Mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,20 +124,23 @@ const TravelSection = () => {
             <MapPin className="w-5 h-5 text-primary" />
             {t('travel.hostCities')}
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
             {cities.map((city, index) => (
-              <motion.div
+              <motion.a
                 key={city.name}
+                href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.03 }}
-                className="bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 transition-colors"
+                className="flex-shrink-0 w-[140px] md:w-auto bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer snap-start"
               >
                 <h4 className="font-semibold text-foreground text-sm mb-1">{city.name}</h4>
                 <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
                 <span className="text-[10px] text-primary font-medium">{city.country}</span>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </motion.div>
