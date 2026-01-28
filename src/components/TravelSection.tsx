@@ -8,7 +8,7 @@ const TravelSection = () => {
     {
       icon: Hotel,
       title: 'Match Day Stays',
-      description: 'Book premium hotels near World Cup stadiums in Morocco. Best rates guaranteed.',
+      description: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
       buttonText: 'Find Hotels',
       link: 'https://www.booking.com',
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
@@ -17,7 +17,7 @@ const TravelSection = () => {
     {
       icon: Car,
       title: 'Car Rentals',
-      description: 'Explore Morocco in style. Rent a car and drive between match venues.',
+      description: 'Explore host cities in style. Rent a car and drive between match venues across North America.',
       buttonText: 'Rent a Car',
       link: 'https://www.booking.com/cars',
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
@@ -25,8 +25,8 @@ const TravelSection = () => {
     },
     {
       icon: Plane,
-      title: 'Flights to Morocco',
-      description: 'Find the best flight deals to Casablanca, Marrakech, and Tangier.',
+      title: 'Flights to Host Cities',
+      description: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
       buttonText: 'Search Flights',
       link: 'https://www.skyscanner.com',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
@@ -35,12 +35,22 @@ const TravelSection = () => {
   ];
 
   const cities = [
-    { name: 'Casablanca', stadium: 'Grand Stade de Casablanca' },
-    { name: 'Rabat', stadium: 'Complexe Sportif Prince Moulay Abdellah' },
-    { name: 'Tangier', stadium: 'Ibn Batouta Stadium' },
-    { name: 'Marrakech', stadium: 'Grand Stade de Marrakech' },
-    { name: 'Agadir', stadium: 'Stade Adrar' },
-    { name: 'Fes', stadium: 'Stade de Fès' },
+    { name: 'New York/NJ', stadium: 'MetLife Stadium', country: 'USA' },
+    { name: 'Los Angeles', stadium: 'SoFi Stadium', country: 'USA' },
+    { name: 'Miami', stadium: 'Hard Rock Stadium', country: 'USA' },
+    { name: 'Dallas', stadium: 'AT&T Stadium', country: 'USA' },
+    { name: 'Atlanta', stadium: 'Mercedes-Benz Stadium', country: 'USA' },
+    { name: 'Seattle', stadium: 'Lumen Field', country: 'USA' },
+    { name: 'San Francisco', stadium: "Levi's Stadium", country: 'USA' },
+    { name: 'Houston', stadium: 'NRG Stadium', country: 'USA' },
+    { name: 'Philadelphia', stadium: 'Lincoln Financial Field', country: 'USA' },
+    { name: 'Kansas City', stadium: 'Arrowhead Stadium', country: 'USA' },
+    { name: 'Boston', stadium: 'Gillette Stadium', country: 'USA' },
+    { name: 'Toronto', stadium: 'BMO Field', country: 'Canada' },
+    { name: 'Vancouver', stadium: 'BC Place', country: 'Canada' },
+    { name: 'Mexico City', stadium: 'Estadio Azteca', country: 'Mexico' },
+    { name: 'Guadalajara', stadium: 'Estadio Akron', country: 'Mexico' },
+    { name: 'Monterrey', stadium: 'Estadio BBVA', country: 'Mexico' },
   ];
 
   return (
@@ -66,7 +76,7 @@ const TravelSection = () => {
             Plan Your World Cup Trip
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Book your match day stays, car rentals, and flights to Morocco for the World Cup 2026
+            Book your match day stays, car rentals, and flights to USA, Canada & Mexico for the World Cup 2026
           </p>
         </motion.div>
 
@@ -109,20 +119,21 @@ const TravelSection = () => {
         >
           <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary" />
-            Host Cities in Morocco
+            Host Cities - USA, Canada & Mexico
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
             {cities.map((city, index) => (
               <motion.div
                 key={city.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-card rounded-lg p-4 border border-border text-center hover:border-primary/50 transition-colors"
+                transition={{ delay: index * 0.03 }}
+                className="bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 transition-colors"
               >
-                <h4 className="font-semibold text-foreground mb-1">{city.name}</h4>
-                <p className="text-xs text-muted-foreground line-clamp-2">{city.stadium}</p>
+                <h4 className="font-semibold text-foreground text-sm mb-1">{city.name}</h4>
+                <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
+                <span className="text-[10px] text-primary font-medium">{city.country}</span>
               </motion.div>
             ))}
           </div>
