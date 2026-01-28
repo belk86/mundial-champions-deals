@@ -45,21 +45,21 @@ const CountdownTimer = () => {
   }, []);
 
   const TimeBlock = ({ value, labelKey }: { value: number; labelKey: string }) => (
-    <div className="flex flex-col items-center mx-1 sm:mx-2">
+    <div className="flex flex-col items-center">
       <div 
-        className="bg-black/70 border border-amazon/50 rounded-lg px-3 sm:px-4 py-2 sm:py-3 min-w-[44px] sm:min-w-[56px] text-center"
+        className="bg-black/80 border-2 border-amazon/60 rounded-xl w-12 h-14 sm:w-16 sm:h-18 md:w-20 md:h-22 flex items-center justify-center"
         style={{
-          boxShadow: '0 0 12px rgba(255, 153, 0, 0.4), inset 0 0 6px rgba(255, 153, 0, 0.15)'
+          boxShadow: '0 0 20px rgba(255, 153, 0, 0.5), inset 0 0 10px rgba(255, 153, 0, 0.2)'
         }}
       >
         <span 
-          className="text-xl sm:text-2xl md:text-3xl font-extrabold tabular-nums"
+          className="text-2xl sm:text-3xl md:text-4xl font-black tabular-nums leading-none"
           style={{ color: '#FF9900' }}
         >
           {String(value).padStart(2, '0')}
         </span>
       </div>
-      <span className="text-[10px] sm:text-xs text-muted-foreground mt-1.5 font-medium uppercase tracking-wide">{t(labelKey)}</span>
+      <span className="text-[10px] sm:text-xs text-muted-foreground mt-2 font-semibold uppercase tracking-widest">{t(labelKey)}</span>
     </div>
   );
 
@@ -81,14 +81,14 @@ const CountdownTimer = () => {
           </div>
 
           {/* Countdown - Responsive with proper spacing */}
-          <div className="flex items-center">
-            <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amazon mr-2 sm:mr-3" />
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-amazon" />
             <TimeBlock value={timeLeft.days} labelKey="countdown.days" />
-            <span className="text-amazon text-xl sm:text-2xl font-bold">:</span>
+            <span className="text-amazon text-2xl sm:text-3xl font-black mx-1">:</span>
             <TimeBlock value={timeLeft.hours} labelKey="countdown.hours" />
-            <span className="text-amazon text-xl sm:text-2xl font-bold">:</span>
+            <span className="text-amazon text-2xl sm:text-3xl font-black mx-1">:</span>
             <TimeBlock value={timeLeft.minutes} labelKey="countdown.mins" />
-            <span className="text-amazon text-xl sm:text-2xl font-bold">:</span>
+            <span className="text-amazon text-2xl sm:text-3xl font-black mx-1">:</span>
             <TimeBlock value={timeLeft.seconds} labelKey="countdown.secs" />
           </div>
         </div>
