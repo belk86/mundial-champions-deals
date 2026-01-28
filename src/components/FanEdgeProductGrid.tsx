@@ -31,10 +31,12 @@ const FanEdgeProductGrid = () => {
           </p>
         </motion.div>
 
-        {/* Product Grid - 15 Products */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+        {/* Product Grid - Horizontal Scroll on Mobile, Grid on Desktop */}
+        <div className="flex md:grid md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0">
           {products.map((product, index) => (
-            <FanEdgeProductCard key={product.id} product={product} index={index} />
+            <div key={product.id} className="flex-shrink-0 w-[160px] sm:w-[180px] md:w-auto snap-start">
+              <FanEdgeProductCard product={product} index={index} />
+            </div>
           ))}
         </div>
       </div>

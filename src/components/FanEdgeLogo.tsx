@@ -7,24 +7,27 @@ interface FanEdgeLogoProps {
 
 const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
   const sizeClasses = {
-    sm: 'w-9 h-9 text-sm',
-    md: 'w-11 h-11 text-base',
+    sm: 'w-10 h-10 text-base',
+    md: 'w-12 h-12 text-lg',
     lg: 'w-16 h-16 text-xl',
   };
 
   const textSizes = {
-    sm: 'text-lg',
-    md: 'text-xl',
+    sm: 'text-xl sm:text-2xl',
+    md: 'text-2xl',
     lg: 'text-3xl',
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-amazon via-amazon to-amazon-dark flex items-center justify-center font-bold text-black glow-amazon relative overflow-hidden`}
+        className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-amazon via-amazon to-amazon-dark flex items-center justify-center font-bold text-black relative overflow-hidden`}
+        style={{
+          boxShadow: '0 0 15px rgba(255, 153, 0, 0.5), 0 0 30px rgba(255, 153, 0, 0.3)',
+        }}
       >
         <span className="relative z-10 font-extrabold tracking-tight">FE</span>
       </motion.div>
@@ -34,7 +37,7 @@ const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
           initial={{ x: -10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={`${textSizes[size]} font-extrabold`}
+          className={`${textSizes[size]} font-extrabold hidden xs:inline sm:inline`}
           style={{
             color: '#FF9900',
             textShadow: `
