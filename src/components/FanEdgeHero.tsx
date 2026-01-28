@@ -88,7 +88,10 @@ const FanEdgeHero = () => {
             <Button
               size="lg"
               onClick={scrollToProducts}
-              className="bg-primary hover:bg-purple-dark text-primary-foreground font-bold text-lg px-8 py-6 glow-purple pulse-button-purple"
+              className="text-white font-bold text-lg px-8 py-6 glow-purple pulse-button-purple"
+              style={{
+                background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 100%)',
+              }}
             >
               <ShoppingBag className="w-5 h-5 mr-2" />
               {t('hero.shopGear')}
