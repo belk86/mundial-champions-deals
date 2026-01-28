@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
         arabic: ['Cairo', 'sans-serif'],
       },
       colors: {
@@ -51,16 +51,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          dark: "hsl(var(--gold-dark))",
-          muted: "hsl(var(--gold-muted))",
+        purple: {
+          neon: "hsl(var(--purple-neon))",
+          light: "hsl(var(--purple-neon-light))",
+          dark: "hsl(var(--purple-neon-dark))",
+          muted: "hsl(var(--purple-muted))",
         },
-        wc: {
-          navy: "hsl(var(--wc-navy))",
-          "navy-light": "hsl(var(--wc-navy-light))",
-          "navy-dark": "hsl(var(--wc-navy-dark))",
+        amazon: {
+          DEFAULT: "hsl(var(--amazon))",
+          dark: "hsl(var(--amazon-dark))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -91,7 +90,7 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
-        "pulse-gold": {
+        "pulse-neon": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
@@ -100,7 +99,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "pulse-gold": "pulse-gold 2s ease-in-out infinite",
+        "pulse-neon": "pulse-neon 2s ease-in-out infinite",
       },
     },
   },
