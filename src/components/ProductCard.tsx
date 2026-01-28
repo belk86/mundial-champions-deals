@@ -81,8 +81,8 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   };
 
   const handleGetDeal = () => {
-    // Open Amazon search immediately - do not block on tracking
-    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}`;
+    // Open Amazon search with affiliate tracking tag - use full product name for accuracy
+    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}&tag=mundialgear26-20`;
     window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
     
     // Track click in background (fire and forget)
