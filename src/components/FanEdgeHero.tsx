@@ -18,24 +18,24 @@ const FanEdgeHero = () => {
 
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Stadium Background Image - More visible */}
+      {/* Stadium Background Image - Primary visual */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${stadiumHero})` }}
       />
       
-      {/* Dark Overlay - Less opacity to show stadium */}
-      <div className="absolute inset-0 bg-background/70" />
+      {/* Dark Overlay - Very subtle to keep stadium visible */}
+      <div className="absolute inset-0 bg-background/60" />
       
-      {/* Subtle Moroccan Pattern Overlay */}
-      <div className="absolute inset-0 moroccan-pattern opacity-40" />
+      {/* Subtle Moroccan Pattern Overlay - 10% opacity */}
+      <div className="absolute inset-0 moroccan-pattern-hero opacity-20" />
       
-      {/* Subtle Purple Gradient - Less intense */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/90" />
+      {/* Subtle bottom gradient for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       
-      {/* Animated Purple Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/25 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-dark/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      {/* Subtle Purple Orbs - Very muted */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container px-4 relative z-10">
         <motion.div
