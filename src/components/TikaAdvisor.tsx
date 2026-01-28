@@ -147,12 +147,12 @@ const TikaAdvisor = () => {
 
   return (
     <>
-      {/* Small Floating Purple Circle - Compact toggle */}
+      {/* Small Floating Amazon Orange Circle - Compact toggle */}
       {!isOpen && (
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-primary-foreground glow-purple-sm"
-          whileHover={{ scale: 1.1, boxShadow: '0 0 25px hsl(270, 100%, 60%, 0.6), 0 0 50px hsl(270, 100%, 60%, 0.4)' }}
+          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-amazon shadow-lg flex items-center justify-center text-black glow-amazon"
+          whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(255, 153, 0, 0.6), 0 0 50px rgba(255, 153, 0, 0.4)' }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -173,14 +173,14 @@ const TikaAdvisor = () => {
             className="fixed bottom-6 right-6 z-50 w-[320px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-amazon to-amazon-dark p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 rounded-full bg-black/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">Tika</h3>
-                  <p className="text-white/80 text-xs">
+                  <h3 className="font-bold text-black">Tika</h3>
+                  <p className="text-black/70 text-xs">
                     {language === 'ar' ? 'مستشارتك الذكية' : 
                      language === 'es' ? 'Tu Asesora IA' : 
                      language === 'fr' ? 'Conseillère IA' : 
@@ -190,7 +190,7 @@ const TikaAdvisor = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-black/70 hover:text-black transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -206,7 +206,7 @@ const TikaAdvisor = () => {
                   <div
                     className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
                       msg.role === 'user'
-                        ? 'bg-purple-600 text-white rounded-br-md'
+                        ? 'bg-amazon text-black rounded-br-md'
                         : 'bg-muted text-foreground rounded-bl-md'
                     }`}
                   >
@@ -233,14 +233,14 @@ const TikaAdvisor = () => {
                     language === 'fr' ? 'Demandez à Tika...' :
                     'Ask Tika...'
                   }
-                  className="flex-1 bg-muted rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="flex-1 bg-muted rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon"
                   disabled={isLoading}
                 />
                 <Button
                   onClick={sendMessage}
                   disabled={isLoading || !input.trim()}
                   size="icon"
-                  className="rounded-full bg-purple-600 hover:bg-purple-500"
+                  className="rounded-full bg-amazon hover:bg-amazon-dark text-black"
                 >
                   {isLoading ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
