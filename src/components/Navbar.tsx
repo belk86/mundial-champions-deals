@@ -46,15 +46,15 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Unified Gold M with FanZone 26 tagline */}
+          {/* Logo - Unified Gold M with FanEdge tagline */}
           <a href="#home" className="flex items-center gap-2 md:gap-3">
             <img 
               src={mLogo} 
-              alt="FanZone 26" 
+              alt="FanEdge" 
               className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg object-cover glow-gold-sm flex-shrink-0"
             />
             <span className="text-sm sm:text-base font-semibold text-gold whitespace-nowrap">
-              FanZone 26
+              FanEdge
             </span>
           </a>
 
