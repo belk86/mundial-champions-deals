@@ -84,9 +84,9 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     // Track click before opening link
     await trackProductClick(product.id);
     
-    if (product.affiliate_url && product.affiliate_url !== '#') {
-      window.open(product.affiliate_url, '_blank', 'noopener,noreferrer');
-    }
+    // Always use dynamic Amazon search URL with product name
+    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}`;
+    window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
   };
 
   const badgeConfig = product.trust_badge ? trustBadgeConfig[product.trust_badge] : null;

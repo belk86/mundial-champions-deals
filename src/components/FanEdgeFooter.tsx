@@ -88,7 +88,7 @@ const FanEdgeFooter = () => {
                 placeholder="Your email"
                 className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <button className="px-4 py-2 bg-primary hover:bg-purple-dark text-primary-foreground rounded-lg font-medium text-sm transition-colors glow-purple-sm">
+              <button className="px-4 py-2 bg-amazon hover:bg-amazon-dark text-black rounded-lg font-medium text-sm transition-colors">
                 {t('nav.joinNow')}
               </button>
             </div>
