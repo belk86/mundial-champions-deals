@@ -18,7 +18,8 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
     : null;
 
   const handleBuyClick = () => {
-    window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer');
+    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}`;
+    window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
