@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, ShoppingBag, Plane } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import FanEdgeLogo from './FanEdgeLogo';
 import stadiumHero from '@/assets/stadium-hero.jpg';
 
 const FanEdgeHero = () => {
+  const { t } = useTranslation();
+
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -21,15 +24,15 @@ const FanEdgeHero = () => {
         style={{ backgroundImage: `url(${stadiumHero})` }}
       />
       
-      {/* Dark Overlay with Moroccan Pattern */}
-      <div className="absolute inset-0 bg-background/85 moroccan-pattern-dense" />
+      {/* Dark Overlay with Moroccan Zellij Pattern */}
+      <div className="absolute inset-0 bg-background/80 moroccan-pattern-dense" />
       
       {/* Purple Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/15 via-transparent to-background/95" />
       
       {/* Animated Purple Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-dark/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/25 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-dark/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container px-4 relative z-10">
         <motion.div
@@ -48,32 +51,31 @@ const FanEdgeHero = () => {
             <FanEdgeLogo size="lg" />
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline - Translated */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-foreground">Your Premium</span>
+            <span className="text-foreground">{t('hero.yourPremium')}</span>
             <br />
-            <span className="text-gradient-purple">World Cup 2026</span>
+            <span className="text-gradient-purple">{t('hero.worldCup2026')}</span>
             <br />
-            <span className="text-foreground">Destination</span>
+            <span className="text-foreground">{t('hero.destination')}</span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Translated */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
-            Shop viral TikTok products, top-seller gear, and book your match day stays across USA, Canada & Mexico. 
-            Everything a true fan needs for the greatest show on earth.
+            {t('hero.subtitle')}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Translated */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +88,7 @@ const FanEdgeHero = () => {
               className="bg-primary hover:bg-purple-dark text-primary-foreground font-bold text-lg px-8 py-6 glow-purple pulse-button-purple"
             >
               <ShoppingBag className="w-5 h-5 mr-2" />
-              Shop Fans Gear
+              {t('hero.shopGear')}
             </Button>
             <Button
               size="lg"
@@ -95,11 +97,11 @@ const FanEdgeHero = () => {
               className="border-primary text-primary hover:bg-primary/10 font-bold text-lg px-8 py-6"
             >
               <Plane className="w-5 h-5 mr-2" />
-              Plan Your Trip
+              {t('hero.planTrip')}
             </Button>
           </motion.div>
 
-          {/* Scroll Indicator */}
+          {/* Scroll Indicator - Translated */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -112,7 +114,7 @@ const FanEdgeHero = () => {
               className="flex flex-col items-center text-muted-foreground cursor-pointer"
               onClick={scrollToProducts}
             >
-              <span className="text-sm mb-2">Scroll to explore</span>
+              <span className="text-sm mb-2">{t('hero.scrollExplore')}</span>
               <ChevronDown className="w-6 h-6" />
             </motion.div>
           </motion.div>

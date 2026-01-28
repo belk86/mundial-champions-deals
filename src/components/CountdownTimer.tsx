@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Flame } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const CountdownTimer = () => {
+  const { t } = useTranslation();
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 3,
     hours: 14,
@@ -41,14 +44,14 @@ const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const TimeBlock = ({ value, label }: { value: number; label: string }) => (
+  const TimeBlock = ({ value, labelKey }: { value: number; labelKey: string }) => (
     <div className="flex flex-col items-center">
       <div className="bg-secondary/80 border border-primary/30 rounded-lg px-2 sm:px-3 py-1 sm:py-2 min-w-[40px] sm:min-w-[50px] text-center countdown-glow-purple">
         <span className="text-lg sm:text-2xl font-bold text-primary">
           {String(value).padStart(2, '0')}
         </span>
       </div>
-      <span className="text-[10px] sm:text-xs text-muted-foreground mt-1">{label}</span>
+      <span className="text-[10px] sm:text-xs text-muted-foreground mt-1">{t(labelKey)}</span>
     </div>
   );
 
@@ -60,25 +63,25 @@ const CountdownTimer = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-          {/* Title */}
+          {/* Title - Translated */}
           <div className="flex items-center gap-2">
             <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-primary animate-pulse" />
             <span className="text-xs sm:text-sm font-semibold text-foreground">
-              Limited World Cup Offer - Deals End Soon!
+              {t('countdown.limitedOffer')} - {t('countdown.endsIn')}
             </span>
             <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-primary animate-pulse" />
           </div>
 
-          {/* Countdown */}
+          {/* Countdown - Translated */}
           <div className="flex items-center gap-1 sm:gap-2">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-primary mr-1 sm:mr-2" />
-            <TimeBlock value={timeLeft.days} label="Days" />
+            <TimeBlock value={timeLeft.days} labelKey="countdown.days" />
             <span className="text-primary text-lg sm:text-xl font-bold">:</span>
-            <TimeBlock value={timeLeft.hours} label="Hours" />
+            <TimeBlock value={timeLeft.hours} labelKey="countdown.hours" />
             <span className="text-primary text-lg sm:text-xl font-bold">:</span>
-            <TimeBlock value={timeLeft.minutes} label="Mins" />
+            <TimeBlock value={timeLeft.minutes} labelKey="countdown.mins" />
             <span className="text-primary text-lg sm:text-xl font-bold">:</span>
-            <TimeBlock value={timeLeft.seconds} label="Secs" />
+            <TimeBlock value={timeLeft.seconds} labelKey="countdown.secs" />
           </div>
         </div>
       </div>
