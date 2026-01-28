@@ -29,14 +29,15 @@ const TikaAdvisor = () => {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Initial greeting
-      const greeting = language === 'ar' 
-        ? 'مرحباً! أنا تيكا، مستشارتك الذكية للتسوق. كيف يمكنني مساعدتك في العثور على أفضل منتجات كأس العالم 2026؟ ⚽'
-        : language === 'es'
-        ? '¡Hola! Soy Tika, tu asesora de compras inteligente. ¿Cómo puedo ayudarte a encontrar los mejores productos del Mundial 2026? ⚽'
-        : 'Hey there! I\'m Tika, your AI shopping advisor. How can I help you find the perfect World Cup 2026 gear today? ⚽';
+      // Initial greeting based on language
+      const greetings: Record<string, string> = {
+        ar: 'مرحباً! أنا تيكا، مستشارتك الذكية للتسوق. كيف يمكنني مساعدتك في العثور على أفضل منتجات كأس العالم 2026؟ ⚽',
+        es: '¡Hola! Soy Tika, tu asesora de compras inteligente. ¿Cómo puedo ayudarte a encontrar los mejores productos del Mundial 2026? ⚽',
+        fr: 'Bonjour! Je suis Tika, votre conseillère shopping IA. Comment puis-je vous aider à trouver les meilleurs produits de la Coupe du Monde 2026? ⚽',
+        en: "Hey there! I'm Tika, your AI shopping advisor. How can I help you find the perfect World Cup 2026 gear today? ⚽",
+      };
       
-      setMessages([{ role: 'assistant', content: greeting }]);
+      setMessages([{ role: 'assistant', content: greetings[language] || greetings.en }]);
     }
   }, [isOpen, language]);
 
@@ -119,15 +120,17 @@ const TikaAdvisor = () => {
       }
     } catch (error) {
       console.error('Tika error:', error);
+      const errorMessages: Record<string, string> = {
+        ar: 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.',
+        es: 'Lo siento, ocurrió un error. Por favor, inténtalo de nuevo.',
+        fr: 'Désolé, une erreur s\'est produite. Veuillez réessayer.',
+        en: 'Sorry, something went wrong. Please try again.',
+      };
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content: language === 'ar'
-            ? 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.'
-            : language === 'es'
-            ? 'Lo siento, ocurrió un error. Por favor, inténtalo de nuevo.'
-            : 'Sorry, something went wrong. Please try again.',
+          content: errorMessages[language] || errorMessages.en,
         },
       ]);
     } finally {
@@ -178,7 +181,10 @@ const TikaAdvisor = () => {
                 <div>
                   <h3 className="font-bold text-white">Tika</h3>
                   <p className="text-white/80 text-xs">
-                    {language === 'ar' ? 'مستشارتك الذكية' : language === 'es' ? 'Tu Asesora IA' : 'AI Shopping Advisor'}
+                    {language === 'ar' ? 'مستشارتك الذكية' : 
+                     language === 'es' ? 'Tu Asesora IA' : 
+                     language === 'fr' ? 'Conseillère IA' : 
+                     'AI Shopping Advisor'}
                   </p>
                 </div>
               </div>
@@ -222,11 +228,10 @@ const TikaAdvisor = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={
-                    language === 'ar'
-                      ? 'اسأل تيكا...'
-                      : language === 'es'
-                      ? 'Pregunta a Tika...'
-                      : 'Ask Tika...'
+                    language === 'ar' ? 'اسأل تيكا...' :
+                    language === 'es' ? 'Pregunta a Tika...' :
+                    language === 'fr' ? 'Demandez à Tika...' :
+                    'Ask Tika...'
                   }
                   className="flex-1 bg-muted rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
                   disabled={isLoading}
