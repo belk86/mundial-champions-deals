@@ -27,7 +27,7 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="group relative bg-card rounded-xl overflow-hidden border border-border card-hover-purple"
+      className="group relative bg-card rounded-xl overflow-hidden border border-border card-hover-amazon"
     >
       {/* Tag Badge - Translated */}
       <div className="absolute top-3 left-3 z-10">
@@ -55,7 +55,7 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
       {/* Discount Badge */}
       {discount && (
         <div className="absolute top-3 right-3 z-10">
-          <Badge className="bg-primary text-primary-foreground font-bold">
+          <Badge className="bg-amazon text-black font-bold">
             -{discount}%
           </Badge>
         </div>
@@ -70,19 +70,19 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
         
-        {/* Purple glow overlay on hover */}
-        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-all duration-500" />
+        {/* Orange glow overlay on hover */}
+        <div className="absolute inset-0 bg-amazon/0 group-hover:bg-amazon/10 transition-all duration-500" />
       </div>
 
       {/* Content */}
       <div className="p-4 space-y-3">
         {/* Category */}
-        <span className="text-xs text-primary font-medium uppercase tracking-wider">
+        <span className="text-xs text-amazon font-medium uppercase tracking-wider">
           {product.category}
         </span>
 
         {/* Title */}
-        <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors text-sm leading-snug">
+        <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-amazon transition-colors text-sm leading-snug">
           {product.name}
         </h3>
 

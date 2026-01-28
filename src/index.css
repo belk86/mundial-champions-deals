@@ -156,6 +156,19 @@
     border-color: hsl(270, 100%, 60%, 0.5);
   }
 
+  /* Card Hover Effect with Amazon Orange Glow */
+  .card-hover-amazon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover-amazon:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.4),
+                0 0 50px rgba(255, 153, 0, 0.25),
+                0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 153, 0, 0.5);
+  }
+
   /* Moroccan Pattern Background - Very Subtle 10% opacity overlay */
   .moroccan-pattern {
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C40FF' fill-opacity='0.03'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
