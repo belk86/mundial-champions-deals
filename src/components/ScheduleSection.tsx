@@ -6,36 +6,58 @@ import { Badge } from '@/components/ui/badge';
 const ScheduleSection = () => {
   const matches = [
     {
-      stage: 'Group Stage',
+      stage: 'Opening Match',
       date: 'June 11, 2026',
-      time: '18:00 GMT',
-      teams: 'Morocco vs TBD',
-      venue: 'Casablanca',
-      stadium: 'Grand Stade de Casablanca',
+      time: '18:00 ET',
+      teams: 'Mexico vs TBD',
+      venue: 'Mexico City',
+      stadium: 'Estadio Azteca',
+      country: 'Mexico',
     },
     {
       stage: 'Group Stage',
-      date: 'June 15, 2026',
-      time: '21:00 GMT',
-      teams: 'Spain vs TBD',
-      venue: 'Rabat',
-      stadium: 'Complexe Sportif Prince Moulay Abdellah',
+      date: 'June 12, 2026',
+      time: '20:00 ET',
+      teams: 'USA vs TBD',
+      venue: 'Los Angeles',
+      stadium: 'SoFi Stadium',
+      country: 'USA',
     },
     {
-      stage: 'Round of 16',
-      date: 'June 28, 2026',
-      time: '20:00 GMT',
-      teams: 'TBD vs TBD',
-      venue: 'Tangier',
-      stadium: 'Ibn Batouta Stadium',
+      stage: 'Group Stage',
+      date: 'June 13, 2026',
+      time: '19:00 ET',
+      teams: 'Canada vs TBD',
+      venue: 'Toronto',
+      stadium: 'BMO Field',
+      country: 'Canada',
     },
     {
       stage: 'Quarter Final',
       date: 'July 4, 2026',
-      time: '20:00 GMT',
+      time: '21:00 ET',
       teams: 'TBD vs TBD',
-      venue: 'Marrakech',
-      stadium: 'Grand Stade de Marrakech',
+      venue: 'Dallas',
+      stadium: 'AT&T Stadium',
+      country: 'USA',
+    },
+    {
+      stage: 'Semi Final',
+      date: 'July 14, 2026',
+      time: '20:00 ET',
+      teams: 'TBD vs TBD',
+      venue: 'Miami',
+      stadium: 'Hard Rock Stadium',
+      country: 'USA',
+    },
+    {
+      stage: 'Final',
+      date: 'July 19, 2026',
+      time: '16:00 ET',
+      teams: 'TBD vs TBD',
+      venue: 'New York/NJ',
+      stadium: 'MetLife Stadium',
+      country: 'USA',
     },
   ];
 
@@ -56,40 +78,41 @@ const ScheduleSection = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            World Cup 2026 in Morocco
+            World Cup 2026 Schedule
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Key matches happening in Morocco. Full schedule to be announced closer to the tournament.
+            Key matches across USA, Canada & Mexico. Full schedule to be announced closer to the tournament.
           </p>
         </motion.div>
 
         {/* Schedule Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {matches.map((match, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="bg-card border-border overflow-hidden card-hover-purple">
+              <Card className="bg-card border-border overflow-hidden card-hover-purple h-full">
                 <CardContent className="p-0">
                   {/* Header */}
                   <div className="bg-primary/20 border-b border-primary/30 px-4 py-3 flex items-center justify-between">
                     <Badge className="bg-primary/30 text-primary border-primary/50">
                       {match.stage}
                     </Badge>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4" />
-                      {match.date}
-                    </div>
+                    <span className="text-xs text-muted-foreground font-medium">{match.country}</span>
                   </div>
                   
                   {/* Content */}
                   <div className="p-4">
-                    <h3 className="text-xl font-bold text-foreground mb-3">{match.teams}</h3>
+                    <h3 className="text-lg font-bold text-foreground mb-3">{match.teams}</h3>
                     <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Calendar className="w-4 h-4 text-primary" />
+                        <span>{match.date}</span>
+                      </div>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Clock className="w-4 h-4 text-primary" />
                         <span>{match.time}</span>
