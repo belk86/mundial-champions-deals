@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 type Language = 'en' | 'ar' | 'es' | 'fr';
 
@@ -12,8 +12,14 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const { i18n } = useTranslation();
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>(() => {
+    // Initialize with saved preference or default
+    const saved = localStorage.getItem('mundialGear-lang') as Language | null;
+    if (saved && ['en', 'ar', 'es', 'fr'].includes(saved)) {
+      return saved;
+    }
+    return 'en';
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
@@ -31,14 +37,12 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // Apply language settings on mount
   useEffect(() => {
-    // Initialize with saved preference or default
-    const saved = localStorage.getItem('mundialGear-lang') as Language | null;
-    if (saved && (saved === 'en' || saved === 'ar' || saved === 'es' || saved === 'fr')) {
-      setLanguage(saved);
-    }
+    setLanguage(language);
   }, []);
 
+  // Persist language preference
   useEffect(() => {
     localStorage.setItem('mundialGear-lang', language);
   }, [language]);
