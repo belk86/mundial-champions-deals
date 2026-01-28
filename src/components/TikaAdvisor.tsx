@@ -144,29 +144,30 @@ const TikaAdvisor = () => {
 
   return (
     <>
-      {/* Floating Button with Purple Pulse Glow - positioned higher on mobile */}
-      <motion.button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white transition-all animate-[pulse-purple_2s_ease-in-out_infinite]"
-        style={{
-          boxShadow: '0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.2)',
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
-      </motion.button>
+      {/* Small Floating Purple Circle - Compact toggle */}
+      {!isOpen && (
+        <motion.button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-primary-foreground glow-purple-sm"
+          whileHover={{ scale: 1.1, boxShadow: '0 0 25px hsl(270, 100%, 60%, 0.6), 0 0 50px hsl(270, 100%, 60%, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        >
+          <Sparkles className="w-5 h-5" />
+        </motion.button>
+      )}
 
-      {/* Chat Window - responsive positioning */}
+      {/* Compact Chat Window - Only visible when open */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-50 w-[340px] sm:w-[360px] max-w-[calc(100vw-2rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            className="fixed bottom-6 right-6 z-50 w-[320px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-4 flex items-center justify-between">
@@ -189,8 +190,8 @@ const TikaAdvisor = () => {
               </button>
             </div>
 
-            {/* Messages */}
-            <div className="h-80 overflow-y-auto p-4 space-y-4 bg-background">
+            {/* Messages - Compact height */}
+            <div className="h-64 overflow-y-auto p-3 space-y-3 bg-background">
               {messages.map((msg, i) => (
                 <div
                   key={i}

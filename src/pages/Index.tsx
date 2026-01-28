@@ -10,7 +10,7 @@ import TikaAdvisor from '@/components/TikaAdvisor';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background moroccan-pattern">
+    <div className="min-h-screen bg-background moroccan-pattern text-foreground">
       <CountdownTimer />
       <FanEdgeNavbar />
       <FanEdgeHero />
