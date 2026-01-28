@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ShoppingBag, Plane } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FanEdgeLogo from './FanEdgeLogo';
+import stadiumHero from '@/assets/stadium-hero.jpg';
 
 const FanEdgeHero = () => {
   const scrollToProducts = () => {
@@ -13,9 +14,18 @@ const FanEdgeHero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 moroccan-pattern-dense">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-dark-gradient" />
+    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+      {/* Stadium Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${stadiumHero})` }}
+      />
+      
+      {/* Dark Overlay with Moroccan Pattern */}
+      <div className="absolute inset-0 bg-background/85 moroccan-pattern-dense" />
+      
+      {/* Purple Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/90" />
       
       {/* Animated Purple Orbs */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -59,7 +69,7 @@ const FanEdgeHero = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
-            Shop viral TikTok products, top-seller gear, and book your match day stays in Morocco. 
+            Shop viral TikTok products, top-seller gear, and book your match day stays across USA, Canada & Mexico. 
             Everything a true fan needs for the greatest show on earth.
           </motion.p>
 
