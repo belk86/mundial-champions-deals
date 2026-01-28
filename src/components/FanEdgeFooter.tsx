@@ -31,8 +31,8 @@ const FanEdgeFooter = () => {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary/60" />
-                <a href="mailto:support@fanedge.com" className="hover:text-primary transition-colors">
-                  support@fanedge.com
+                <a href="mailto:medbelk@fanedge.com" className="hover:text-primary transition-colors">
+                  medbelk@fanedge.com
                 </a>
               </div>
               <div className="flex items-center gap-2">

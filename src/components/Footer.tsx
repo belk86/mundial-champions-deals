@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Trophy className="w-6 h-6 text-gold" />
-              <span className="text-xl font-bold text-gradient-gold">FanZone 26</span>
+              <span className="text-xl font-bold text-gradient-gold">FanEdge</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               {t('footer.tagline')}
@@ -41,8 +41,8 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-gold/60" />
-                <a href="mailto:belkm757@gmail.com" className="hover:text-gold transition-colors">
-                  belkm757@gmail.com
+                <a href="mailto:medbelk@fanedge.com" className="hover:text-gold transition-colors">
+                  medbelk@fanedge.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
