@@ -18,17 +18,20 @@ const FanEdgeHero = () => {
 
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Stadium Background Image */}
+      {/* Stadium Background Image - More visible */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${stadiumHero})` }}
       />
       
-      {/* Dark Overlay with Moroccan Zellij Pattern */}
-      <div className="absolute inset-0 bg-background/80 moroccan-pattern-dense" />
+      {/* Dark Overlay - Less opacity to show stadium */}
+      <div className="absolute inset-0 bg-background/70" />
       
-      {/* Purple Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/15 via-transparent to-background/95" />
+      {/* Subtle Moroccan Pattern Overlay */}
+      <div className="absolute inset-0 moroccan-pattern opacity-40" />
+      
+      {/* Subtle Purple Gradient - Less intense */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/90" />
       
       {/* Animated Purple Orbs */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/25 rounded-full blur-3xl animate-pulse" />

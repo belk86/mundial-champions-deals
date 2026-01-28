@@ -43,7 +43,7 @@ const FanEdgeNavbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border moroccan-pattern"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -100,7 +100,8 @@ const FanEdgeNavbar = () => {
                       <button
                         key={lang.code}
                         onClick={() => { setLanguage(lang.code); setIsLangOpen(false); }}
-                        className={`w-full px-4 py-2 text-left hover:bg-secondary transition-colors flex items-center justify-between ${language === lang.code ? 'text-primary bg-secondary/50' : 'text-foreground'}`}
+                        className={`w-full px-4 py-2 hover:bg-secondary transition-colors flex items-center justify-between ${language === lang.code ? 'text-primary bg-secondary/50' : 'text-foreground'}`}
+                        style={{ textAlign: 'start' }}
                       >
                         <span className={lang.code === 'ar' ? 'font-arabic' : 'font-english'}>
                           {lang.label}

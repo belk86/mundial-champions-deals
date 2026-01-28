@@ -36,9 +36,10 @@ const FanEdgeLogo = ({ size = 'md', showText = true }: FanEdgeLogoProps) => {
           initial={{ x: -10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className={`${textSizes[size]} font-bold text-primary glow-purple-text`}
+          className={`${textSizes[size]} font-extrabold`}
           style={{
-            textShadow: '0 0 20px hsl(270, 100%, 60%, 0.6), 0 0 40px hsl(270, 100%, 60%, 0.4)',
+            color: 'hsl(270, 100%, 65%)',
+            textShadow: '0 0 10px hsl(270, 100%, 70%, 0.8), 0 0 20px hsl(270, 100%, 60%, 0.6), 0 0 40px hsl(270, 100%, 55%, 0.4), 0 0 60px hsl(270, 100%, 50%, 0.3)',
           }}
         >
           FanEdge
