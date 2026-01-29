@@ -1,11 +1,19 @@
 import { motion } from 'framer-motion';
 import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const TravelSection = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
+
+  // Helper to append language parameter to URLs
+  const addLangParam = (url: string) => {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}lang=${language}`;
+  };
 
   const travelOptions = [
     {
@@ -102,7 +110,7 @@ const TravelSection = () => {
                   <p className="text-muted-foreground text-sm flex-grow mb-4">{t(option.descKey)}</p>
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                    onClick={() => window.open(option.link, '_blank')}
+                    onClick={() => window.open(addLangParam(option.link), '_blank')}
                   >
                     {t(option.buttonKey)}
                     <ExternalLink className="w-4 h-4 ml-2" />
@@ -128,7 +136,7 @@ const TravelSection = () => {
             {cities.map((city, index) => (
               <motion.a
                 key={city.name}
-                href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city.name)}`}
+                href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city.name)}&lang=${language}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
