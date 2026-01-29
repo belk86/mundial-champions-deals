@@ -9,10 +9,29 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // Helper to append language parameter to URLs
-  const addLangParam = (url: string) => {
-    const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}lang=${language}`;
+  // Get language-specific URLs for travel services
+  const getLink = (type: 'hotels' | 'cars' | 'flights') => {
+    const links = {
+      hotels: {
+        en: 'https://www.booking.com/searchresults.html?ss=World+Cup+2026',
+        ar: 'https://www.booking.com/index.ar.html',
+        es: 'https://www.booking.com/index.es.html',
+        fr: 'https://www.booking.com/index.fr.html',
+      },
+      cars: {
+        en: 'https://www.rentalcars.com',
+        ar: 'https://www.rentalcars.com/ar/',
+        es: 'https://www.rentalcars.com/es/',
+        fr: 'https://www.rentalcars.com/fr/',
+      },
+      flights: {
+        en: 'https://www.kayak.com/flights',
+        ar: 'https://www.kayak.ae/flights',
+        es: 'https://www.es.kayak.com/vuelos',
+        fr: 'https://www.fr.kayak.com/vols',
+      },
+    };
+    return links[type][language] || links[type].en;
   };
 
   // Direct translations for Travel section
@@ -62,21 +81,18 @@ const TravelSection = () => {
     {
       icon: Hotel,
       type: 'hotels' as const,
-      link: 'https://www.booking.com/searchresults.html?ss=World+Cup+2026',
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
       iconColor: 'text-blue-400',
     },
     {
       icon: Car,
       type: 'cars' as const,
-      link: 'https://www.rentalcars.com',
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
     },
     {
       icon: Plane,
       type: 'flights' as const,
-      link: 'https://www.kayak.com/flights',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
     },
@@ -147,7 +163,7 @@ const TravelSection = () => {
                   <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                    onClick={() => window.open(addLangParam(option.link), '_blank')}
+                    onClick={() => window.open(getLink(option.type), '_blank')}
                   >
                     {getButton(option.type)}
                     <ExternalLink className="w-4 h-4 ml-2" />
@@ -170,10 +186,19 @@ const TravelSection = () => {
             {t('travel.hostCities')}
           </h3>
           <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
-            {cities.map((city, index) => (
+            {cities.map((city, index) => {
+              const bookingBaseUrl = {
+                en: 'https://www.booking.com/searchresults.html',
+                ar: 'https://www.booking.com/searchresults.ar.html',
+                es: 'https://www.booking.com/searchresults.es.html',
+                fr: 'https://www.booking.com/searchresults.fr.html',
+              };
+              const baseUrl = bookingBaseUrl[language] || bookingBaseUrl.en;
+              
+              return (
               <motion.a
                 key={city.name}
-                href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city.name)}&lang=${language}`}
+                href={`${baseUrl}?ss=${encodeURIComponent(city.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -186,7 +211,7 @@ const TravelSection = () => {
                 <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
                 <span className="text-[10px] text-primary font-medium">{city.country}</span>
               </motion.a>
-            ))}
+            )})}
           </div>
         </motion.div>
       </div>
