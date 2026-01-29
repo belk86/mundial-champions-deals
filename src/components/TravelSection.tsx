@@ -15,30 +15,67 @@ const TravelSection = () => {
     return `${url}${separator}lang=${language}`;
   };
 
+  // Direct translations for Travel section
+  const getTitle = (type: 'hotels' | 'cars' | 'flights') => {
+    const titles = {
+      hotels: { en: 'Hotels', ar: 'فنادق', es: 'Hoteles', fr: 'Hôtels' },
+      cars: { en: 'Rental Cars', ar: 'تأجير سيارات', es: 'Alquiler de coches', fr: 'Location de voitures' },
+      flights: { en: 'Flights', ar: 'طيران', es: 'Vuelos', fr: 'Vols' },
+    };
+    return titles[type][language] || titles[type].en;
+  };
+
+  const getDesc = (type: 'hotels' | 'cars' | 'flights') => {
+    const descs = {
+      hotels: {
+        en: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
+        ar: 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.',
+        es: 'Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.',
+        fr: 'Réservez des hôtels premium près des stades. Meilleurs tarifs garantis.',
+      },
+      cars: {
+        en: 'Explore host cities in style. Rent a car and drive between match venues across North America.',
+        ar: 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.',
+        es: 'Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.',
+        fr: 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.',
+      },
+      flights: {
+        en: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
+        ar: 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.',
+        es: 'Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.',
+        fr: 'Trouvez les meilleures offres de vols vers New York, Los Angeles, Miami, Toronto, Mexico.',
+      },
+    };
+    return descs[type][language] || descs[type].en;
+  };
+
+  const getButton = (type: 'hotels' | 'cars' | 'flights') => {
+    const buttons = {
+      hotels: { en: 'Find Hotels', ar: 'ابحث عن فنادق', es: 'Buscar Hoteles', fr: 'Trouver Hôtels' },
+      cars: { en: 'Rent a Car', ar: 'استأجر سيارة', es: 'Alquilar Auto', fr: 'Louer Voiture' },
+      flights: { en: 'Search Flights', ar: 'ابحث عن رحلات', es: 'Buscar Vuelos', fr: 'Rechercher Vols' },
+    };
+    return buttons[type][language] || buttons[type].en;
+  };
+
   const travelOptions = [
     {
       icon: Hotel,
-      titleKey: 'travel.matchDayStays',
-      descKey: 'travel.matchDayStaysDesc',
-      buttonKey: 'travel.findHotels',
+      type: 'hotels' as const,
       link: 'https://www.booking.com/searchresults.html?ss=World+Cup+2026',
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
       iconColor: 'text-blue-400',
     },
     {
       icon: Car,
-      titleKey: 'travel.carRentals',
-      descKey: 'travel.carRentalsDesc',
-      buttonKey: 'travel.rentCar',
+      type: 'cars' as const,
       link: 'https://www.rentalcars.com',
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
     },
     {
       icon: Plane,
-      titleKey: 'travel.flights',
-      descKey: 'travel.flightsDesc',
-      buttonKey: 'travel.searchFlights',
+      type: 'flights' as const,
       link: 'https://www.kayak.com/flights',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
@@ -95,7 +132,7 @@ const TravelSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {travelOptions.map((option, index) => (
             <motion.div
-              key={option.titleKey}
+              key={option.type}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -106,13 +143,13 @@ const TravelSection = () => {
                   <div className={`w-14 h-14 rounded-xl ${option.color} border flex items-center justify-center mb-4`}>
                     <option.icon className={`w-7 h-7 ${option.iconColor}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{t(option.titleKey)}</h3>
-                  <p className="text-muted-foreground text-sm flex-grow mb-4">{t(option.descKey)}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{getTitle(option.type)}</h3>
+                  <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
                     onClick={() => window.open(addLangParam(option.link), '_blank')}
                   >
-                    {t(option.buttonKey)}
+                    {getButton(option.type)}
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
