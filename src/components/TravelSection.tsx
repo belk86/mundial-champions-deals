@@ -10,33 +10,35 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED travelLinks - Explicit URLs per language (v3 - fixed flights)
+  // HARDCODED travelLinks - v5: Static universal link for Flights
+  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
+  
   const getTravelLinks = () => {
     switch (language) {
       case 'ar':
         return {
-          flights: 'https://www.booking.com/flights/index.ar.html',
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.ar.html',
           hotels: 'https://www.booking.com/index.ar.html',
           btn: 'احجز الآن'
         };
       case 'es':
         return {
-          flights: 'https://www.booking.com/flights/index.es.html',
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.es.html',
           hotels: 'https://www.booking.com/index.es.html',
           btn: 'Reservar'
         };
       case 'fr':
         return {
-          flights: 'https://www.booking.com/flights/index.fr.html',
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.fr.html',
           hotels: 'https://www.booking.com/index.fr.html',
           btn: 'Réserver'
         };
       default:
         return {
-          flights: 'https://www.booking.com/flights/',
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/',
           hotels: 'https://www.booking.com/',
           btn: 'Book Now'
