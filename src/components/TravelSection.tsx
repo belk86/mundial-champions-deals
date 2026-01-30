@@ -46,15 +46,15 @@ const TravelSection = () => {
 
   const currentLinks = getTravelLinks();
 
-  // HARDCODED titles
+  // HARDCODED titles (v4 - updated flight labels)
   const getTitle = (type: 'hotels' | 'cars' | 'flights'): string => {
     switch (language) {
       case 'ar':
-        return type === 'hotels' ? 'فنادق' : type === 'cars' ? 'تأجير سيارات' : 'طيران';
+        return type === 'hotels' ? 'فنادق' : type === 'cars' ? 'تأجير سيارات' : 'تذاكر الطيران';
       case 'es':
-        return type === 'hotels' ? 'Hoteles' : type === 'cars' ? 'Alquiler de coches' : 'Vuelos';
+        return type === 'hotels' ? 'Hoteles' : type === 'cars' ? 'Alquiler de coches' : 'Billetes de avión';
       case 'fr':
-        return type === 'hotels' ? 'Hôtels' : type === 'cars' ? 'Location de voitures' : 'Vols';
+        return type === 'hotels' ? 'Hôtels' : type === 'cars' ? 'Location de voitures' : 'Billets d\'avion';
       default:
         return type === 'hotels' ? 'Hotels' : type === 'cars' ? 'Rental Cars' : 'Flights';
     }
