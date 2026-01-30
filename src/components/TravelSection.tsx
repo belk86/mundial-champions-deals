@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,16 +10,41 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED travelLinks - All Booking.com for language stability (v2)
-  const travelLinks = {
-    ar: { hotels: 'https://www.booking.com/index.ar.html', cars: 'https://www.booking.com/cars/index.ar.html', flights: 'https://www.booking.com/flights/index.ar.html', btn: 'احجز الآن' },
-    es: { hotels: 'https://www.booking.com/index.es.html', cars: 'https://www.booking.com/cars/index.es.html', flights: 'https://www.booking.com/flights/index.es.html', btn: 'Reservar' },
-    fr: { hotels: 'https://www.booking.com/index.fr.html', cars: 'https://www.booking.com/cars/index.fr.html', flights: 'https://www.booking.com/flights/index.fr.html', btn: 'Réserver' },
-    en: { hotels: 'https://www.booking.com/', cars: 'https://www.booking.com/cars/', flights: 'https://www.booking.com/flights/', btn: 'Book Now' }
+  // HARDCODED travelLinks - Explicit URLs per language (v3 - fixed flights)
+  const getTravelLinks = () => {
+    switch (language) {
+      case 'ar':
+        return {
+          flights: 'https://www.booking.com/flights/index.ar.html',
+          cars: 'https://www.booking.com/cars/index.ar.html',
+          hotels: 'https://www.booking.com/index.ar.html',
+          btn: 'احجز الآن'
+        };
+      case 'es':
+        return {
+          flights: 'https://www.booking.com/flights/index.es.html',
+          cars: 'https://www.booking.com/cars/index.es.html',
+          hotels: 'https://www.booking.com/index.es.html',
+          btn: 'Reservar'
+        };
+      case 'fr':
+        return {
+          flights: 'https://www.booking.com/flights/index.fr.html',
+          cars: 'https://www.booking.com/cars/index.fr.html',
+          hotels: 'https://www.booking.com/index.fr.html',
+          btn: 'Réserver'
+        };
+      default:
+        return {
+          flights: 'https://www.booking.com/flights/',
+          cars: 'https://www.booking.com/cars/',
+          hotels: 'https://www.booking.com/',
+          btn: 'Book Now'
+        };
+    }
   };
 
-  // Get current language links (fallback to 'en')
-  const currentLinks = travelLinks[language] || travelLinks.en;
+  const currentLinks = getTravelLinks();
 
   // HARDCODED titles
   const getTitle = (type: 'hotels' | 'cars' | 'flights'): string => {
@@ -105,7 +131,7 @@ const TravelSection = () => {
   ];
 
   return (
-    <section id="travel" className="py-16 md:py-24 moroccan-pattern relative">
+    <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
       {/* Purple gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-muted/10 to-transparent" />
       
