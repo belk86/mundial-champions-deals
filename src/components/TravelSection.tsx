@@ -9,12 +9,12 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED travelLinks object with verified URLs
+  // HARDCODED travelLinks - All Booking.com for language stability
   const travelLinks = {
-    ar: { hotels: 'https://www.booking.com/index.html?lang=ar', cars: 'https://www.rentalcars.com/ar/', flights: 'https://www.kayak.ae/flights?lang=ar', btn: 'احجز الآن' },
-    es: { hotels: 'https://www.booking.com/index.html?lang=es', cars: 'https://www.rentalcars.com/es/', flights: 'https://www.kayak.es/flights?lang=es', btn: 'Reservar ahora' },
-    fr: { hotels: 'https://www.booking.com/index.html?lang=fr', cars: 'https://www.rentalcars.com/fr/', flights: 'https://www.kayak.fr/flights?lang=fr', btn: 'Réserver' },
-    en: { hotels: 'https://www.booking.com/', cars: 'https://www.rentalcars.com/', flights: 'https://www.kayak.com/flights', btn: 'Book Now' }
+    ar: { hotels: 'https://www.booking.com/index.ar.html', cars: 'https://www.booking.com/cars/index.ar.html', flights: 'https://www.booking.com/flights/index.ar.html', btn: 'احجز الآن' },
+    es: { hotels: 'https://www.booking.com/index.es.html', cars: 'https://www.booking.com/cars/index.es.html', flights: 'https://www.booking.com/flights/index.es.html', btn: 'Reservar' },
+    fr: { hotels: 'https://www.booking.com/index.fr.html', cars: 'https://www.booking.com/cars/index.fr.html', flights: 'https://www.booking.com/flights/index.fr.html', btn: 'Réserver' },
+    en: { hotels: 'https://www.booking.com/', cars: 'https://www.booking.com/cars/', flights: 'https://www.booking.com/flights/', btn: 'Book Now' }
   };
 
   // Get current language links (fallback to 'en')
