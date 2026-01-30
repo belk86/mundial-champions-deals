@@ -9,11 +9,11 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED travelLinks object - no JSON files, instant language switching
+  // HARDCODED travelLinks object with verified URLs
   const travelLinks = {
-    ar: { hotels: 'https://www.booking.com/index.ar.html', cars: 'https://www.rentalcars.com/ar/', flights: 'https://www.kayak.ae/flights', btn: 'احجز الآن' },
-    es: { hotels: 'https://www.booking.com/index.es.html', cars: 'https://www.rentalcars.com/es/', flights: 'https://www.es.kayak.com/vuelos', btn: 'Reservar ahora' },
-    fr: { hotels: 'https://www.booking.com/index.fr.html', cars: 'https://www.rentalcars.com/fr/', flights: 'https://www.fr.kayak.com/vols', btn: 'Réserver' },
+    ar: { hotels: 'https://www.booking.com/index.html?lang=ar', cars: 'https://www.rentalcars.com/ar/', flights: 'https://www.kayak.ae/flights?lang=ar', btn: 'احجز الآن' },
+    es: { hotels: 'https://www.booking.com/index.html?lang=es', cars: 'https://www.rentalcars.com/es/', flights: 'https://www.kayak.es/flights?lang=es', btn: 'Reservar ahora' },
+    fr: { hotels: 'https://www.booking.com/index.html?lang=fr', cars: 'https://www.rentalcars.com/fr/', flights: 'https://www.kayak.fr/flights?lang=fr', btn: 'Réserver' },
     en: { hotels: 'https://www.booking.com/', cars: 'https://www.rentalcars.com/', flights: 'https://www.kayak.com/flights', btn: 'Book Now' }
   };
 
