@@ -9,61 +9,16 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED switch/case for Hotels link
-  const getHotelsLink = (): string => {
-    switch (language) {
-      case 'ar':
-        return 'https://www.booking.com/index.ar.html';
-      case 'es':
-        return 'https://www.booking.com/index.es.html';
-      case 'fr':
-        return 'https://www.booking.com/index.fr.html';
-      default:
-        return 'https://www.booking.com/searchresults.html?ss=World+Cup+2026';
-    }
+  // HARDCODED travelLinks object - no JSON files, instant language switching
+  const travelLinks = {
+    ar: { hotels: 'https://www.booking.com/index.ar.html', cars: 'https://www.rentalcars.com/ar/', flights: 'https://www.kayak.ae/flights', btn: 'احجز الآن' },
+    es: { hotels: 'https://www.booking.com/index.es.html', cars: 'https://www.rentalcars.com/es/', flights: 'https://www.es.kayak.com/vuelos', btn: 'Reservar ahora' },
+    fr: { hotels: 'https://www.booking.com/index.fr.html', cars: 'https://www.rentalcars.com/fr/', flights: 'https://www.fr.kayak.com/vols', btn: 'Réserver' },
+    en: { hotels: 'https://www.booking.com/', cars: 'https://www.rentalcars.com/', flights: 'https://www.kayak.com/flights', btn: 'Book Now' }
   };
 
-  // HARDCODED switch/case for Cars link
-  const getCarsLink = (): string => {
-    switch (language) {
-      case 'ar':
-        return 'https://www.rentalcars.com/ar/';
-      case 'es':
-        return 'https://www.rentalcars.com/es/';
-      case 'fr':
-        return 'https://www.rentalcars.com/fr/';
-      default:
-        return 'https://www.rentalcars.com';
-    }
-  };
-
-  // HARDCODED switch/case for Flights link
-  const getFlightsLink = (): string => {
-    switch (language) {
-      case 'ar':
-        return 'https://www.kayak.ae/flights';
-      case 'es':
-        return 'https://www.es.kayak.com/vuelos';
-      case 'fr':
-        return 'https://www.fr.kayak.com/vols';
-      default:
-        return 'https://www.kayak.com/flights';
-    }
-  };
-
-  // HARDCODED switch/case for button labels (same for all 3 cards)
-  const getButtonLabel = (): string => {
-    switch (language) {
-      case 'ar':
-        return 'احجز الآن';
-      case 'es':
-        return 'Reservar ahora';
-      case 'fr':
-        return 'Réserver';
-      default:
-        return 'Book Now';
-    }
-  };
+  // Get current language links (fallback to 'en')
+  const currentLinks = travelLinks[language] || travelLinks.en;
 
   // HARDCODED titles
   const getTitle = (type: 'hotels' | 'cars' | 'flights'): string => {
@@ -196,22 +151,11 @@ const TravelSection = () => {
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
                     onClick={() => {
-                      let url = '';
-                      switch (option.type) {
-                        case 'hotels':
-                          url = getHotelsLink();
-                          break;
-                        case 'cars':
-                          url = getCarsLink();
-                          break;
-                        case 'flights':
-                          url = getFlightsLink();
-                          break;
-                      }
+                      const url = currentLinks[option.type];
                       window.open(url, '_blank');
                     }}
                   >
-                    {getButtonLabel()}
+                    {currentLinks.btn}
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
