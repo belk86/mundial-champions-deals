@@ -9,72 +9,104 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // Get language-specific URLs for travel services
-  const getLink = (type: 'hotels' | 'cars' | 'flights') => {
-    const links = {
-      hotels: {
-        en: 'https://www.booking.com/searchresults.html?ss=World+Cup+2026',
-        ar: 'https://www.booking.com/index.ar.html',
-        es: 'https://www.booking.com/index.es.html',
-        fr: 'https://www.booking.com/index.fr.html',
-      },
-      cars: {
-        en: 'https://www.rentalcars.com',
-        ar: 'https://www.rentalcars.com/ar/',
-        es: 'https://www.rentalcars.com/es/',
-        fr: 'https://www.rentalcars.com/fr/',
-      },
-      flights: {
-        en: 'https://www.kayak.com/flights',
-        ar: 'https://www.kayak.ae/flights',
-        es: 'https://www.es.kayak.com/vuelos',
-        fr: 'https://www.fr.kayak.com/vols',
-      },
-    };
-    return links[type][language] || links[type].en;
+  // HARDCODED switch/case for Hotels link
+  const getHotelsLink = (): string => {
+    switch (language) {
+      case 'ar':
+        return 'https://www.booking.com/index.ar.html';
+      case 'es':
+        return 'https://www.booking.com/index.es.html';
+      case 'fr':
+        return 'https://www.booking.com/index.fr.html';
+      default:
+        return 'https://www.booking.com/searchresults.html?ss=World+Cup+2026';
+    }
   };
 
-  // Direct translations for Travel section
-  const getTitle = (type: 'hotels' | 'cars' | 'flights') => {
-    const titles = {
-      hotels: { en: 'Hotels', ar: 'فنادق', es: 'Hoteles', fr: 'Hôtels' },
-      cars: { en: 'Rental Cars', ar: 'تأجير سيارات', es: 'Alquiler de coches', fr: 'Location de voitures' },
-      flights: { en: 'Flights', ar: 'طيران', es: 'Vuelos', fr: 'Vols' },
-    };
-    return titles[type][language] || titles[type].en;
+  // HARDCODED switch/case for Cars link
+  const getCarsLink = (): string => {
+    switch (language) {
+      case 'ar':
+        return 'https://www.rentalcars.com/ar/';
+      case 'es':
+        return 'https://www.rentalcars.com/es/';
+      case 'fr':
+        return 'https://www.rentalcars.com/fr/';
+      default:
+        return 'https://www.rentalcars.com';
+    }
   };
 
-  const getDesc = (type: 'hotels' | 'cars' | 'flights') => {
-    const descs = {
-      hotels: {
-        en: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
-        ar: 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.',
-        es: 'Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.',
-        fr: 'Réservez des hôtels premium près des stades. Meilleurs tarifs garantis.',
-      },
-      cars: {
-        en: 'Explore host cities in style. Rent a car and drive between match venues across North America.',
-        ar: 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.',
-        es: 'Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.',
-        fr: 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.',
-      },
-      flights: {
-        en: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
-        ar: 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.',
-        es: 'Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.',
-        fr: 'Trouvez les meilleures offres de vols vers New York, Los Angeles, Miami, Toronto, Mexico.',
-      },
-    };
-    return descs[type][language] || descs[type].en;
+  // HARDCODED switch/case for Flights link
+  const getFlightsLink = (): string => {
+    switch (language) {
+      case 'ar':
+        return 'https://www.kayak.ae/flights';
+      case 'es':
+        return 'https://www.es.kayak.com/vuelos';
+      case 'fr':
+        return 'https://www.fr.kayak.com/vols';
+      default:
+        return 'https://www.kayak.com/flights';
+    }
   };
 
-  const getButton = (type: 'hotels' | 'cars' | 'flights') => {
-    const buttons = {
-      hotels: { en: 'Find Hotels', ar: 'ابحث عن فنادق', es: 'Buscar Hoteles', fr: 'Trouver Hôtels' },
-      cars: { en: 'Rent a Car', ar: 'استأجر سيارة', es: 'Alquilar Auto', fr: 'Louer Voiture' },
-      flights: { en: 'Search Flights', ar: 'ابحث عن رحلات', es: 'Buscar Vuelos', fr: 'Rechercher Vols' },
-    };
-    return buttons[type][language] || buttons[type].en;
+  // HARDCODED switch/case for button labels (same for all 3 cards)
+  const getButtonLabel = (): string => {
+    switch (language) {
+      case 'ar':
+        return 'احجز الآن';
+      case 'es':
+        return 'Reservar ahora';
+      case 'fr':
+        return 'Réserver';
+      default:
+        return 'Book Now';
+    }
+  };
+
+  // HARDCODED titles
+  const getTitle = (type: 'hotels' | 'cars' | 'flights'): string => {
+    switch (language) {
+      case 'ar':
+        return type === 'hotels' ? 'فنادق' : type === 'cars' ? 'تأجير سيارات' : 'طيران';
+      case 'es':
+        return type === 'hotels' ? 'Hoteles' : type === 'cars' ? 'Alquiler de coches' : 'Vuelos';
+      case 'fr':
+        return type === 'hotels' ? 'Hôtels' : type === 'cars' ? 'Location de voitures' : 'Vols';
+      default:
+        return type === 'hotels' ? 'Hotels' : type === 'cars' ? 'Rental Cars' : 'Flights';
+    }
+  };
+
+  // HARDCODED descriptions
+  const getDesc = (type: 'hotels' | 'cars' | 'flights'): string => {
+    switch (language) {
+      case 'ar':
+        return type === 'hotels' 
+          ? 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.'
+          : type === 'cars'
+          ? 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.'
+          : 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.';
+      case 'es':
+        return type === 'hotels'
+          ? 'Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.'
+          : type === 'cars'
+          ? 'Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.'
+          : 'Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.';
+      case 'fr':
+        return type === 'hotels'
+          ? 'Réservez des hôtels premium près des stades. Meilleurs tarifs garantis.'
+          : type === 'cars'
+          ? 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.'
+          : 'Trouvez les meilleures offres de vols vers New York, Los Angeles, Miami, Toronto, Mexico.';
+      default:
+        return type === 'hotels'
+          ? 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.'
+          : type === 'cars'
+          ? 'Explore host cities in style. Rent a car and drive between match venues across North America.'
+          : 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.';
+    }
   };
 
   const travelOptions = [
@@ -163,9 +195,23 @@ const TravelSection = () => {
                   <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                    onClick={() => window.open(getLink(option.type), '_blank')}
+                    onClick={() => {
+                      let url = '';
+                      switch (option.type) {
+                        case 'hotels':
+                          url = getHotelsLink();
+                          break;
+                        case 'cars':
+                          url = getCarsLink();
+                          break;
+                        case 'flights':
+                          url = getFlightsLink();
+                          break;
+                      }
+                      window.open(url, '_blank');
+                    }}
                   >
-                    {getButton(option.type)}
+                    {getButtonLabel()}
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
