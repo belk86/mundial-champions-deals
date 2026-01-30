@@ -9,7 +9,7 @@ const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  // HARDCODED travelLinks - All Booking.com for language stability
+  // HARDCODED travelLinks - All Booking.com for language stability (v2)
   const travelLinks = {
     ar: { hotels: 'https://www.booking.com/index.ar.html', cars: 'https://www.booking.com/cars/index.ar.html', flights: 'https://www.booking.com/flights/index.ar.html', btn: 'احجز الآن' },
     es: { hotels: 'https://www.booking.com/index.es.html', cars: 'https://www.booking.com/cars/index.es.html', flights: 'https://www.booking.com/flights/index.es.html', btn: 'Reservar' },
