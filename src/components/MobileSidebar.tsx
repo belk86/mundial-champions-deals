@@ -15,21 +15,26 @@ const MobileSidebar = () => {
     { key: 'nav.schedule', href: '#schedule-section', icon: Calendar },
   ];
 
-  const handleNavClick = (href: string) => {
+  // Handle navigation with improved scroll behavior
+  const scrollToSection = (href: string) => {
     setIsOpen(false);
     
-    if (href === '#home') {
-      // Scroll to top for Home
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // Scroll to specific section
-      const id = href.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+    // Small delay to allow sidebar to close first
+    setTimeout(() => {
+      if (href === '#home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const id = href.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 80; // Account for fixed header
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+        }
       }
-    }
+    }, 100);
   };
+
 
   return (
     <>
@@ -39,7 +44,7 @@ const MobileSidebar = () => {
         size="icon"
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 md:hidden w-14 h-14 rounded-full bg-primary hover:bg-purple-dark shadow-xl"
-        style={{ zIndex: 99999 }}
+        style={{ zIndex: 99999, pointerEvents: 'auto' }}
       >
         <Menu className="w-6 h-6" />
       </Button>
@@ -83,12 +88,13 @@ const MobileSidebar = () => {
               </div>
 
               {/* Navigation Items */}
-              <nav className="p-4 space-y-2">
+              <nav className="p-4 space-y-2" style={{ pointerEvents: 'auto' }}>
                 {navItems.map((item) => (
                   <button
                     key={item.key}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => scrollToSection(item.href)}
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors text-left"
+                    style={{ pointerEvents: 'auto' }}
                   >
                     <item.icon className="w-5 h-5 text-primary" />
                     <span className="font-medium">{t(item.key)}</span>
