@@ -123,15 +123,26 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </div>
       )}
 
-      {/* Trust Badge with "Hot in Tangier" style */}
-      {product.trust_badge && badgeConfig && BadgeIcon && (
+      {/* Viral TikTok Badge for hot products */}
+      {product.trust_badge === 'hot' && (
+        <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10 max-w-[140px]`}>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
+            <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
+              🔥 <span>{language === 'ar' ? 'فيروسي على تيك توك' : language === 'es' ? 'Viral en TikTok' : 'Viral on TikTok'}</span>
+            </p>
+            <p className="text-[9px] text-muted-foreground">
+              📍 {language === 'ar' ? 'الأكثر مبيعاً في' : language === 'es' ? 'Más vendido en' : 'Top Seller in'} <span className="text-primary font-bold">{language === 'ar' ? 'طنجة' : language === 'es' ? 'Tánger' : 'Tangier'}</span>
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Other Trust Badges */}
+      {product.trust_badge && product.trust_badge !== 'hot' && badgeConfig && BadgeIcon && (
         <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10`}>
           <Badge className={`${badgeConfig.colorClass} border font-medium text-xs`}>
             <BadgeIcon className="w-3 h-3 mr-1" />
-            {product.trust_badge === 'hot' 
-              ? (language === 'ar' ? '🔥 ساخن في طنجة' : language === 'es' ? '🔥 Popular en Tánger' : '🔥 Hot in Tangier')
-              : t(`products.badges.${product.trust_badge}`)
-            }
+            {t(`products.badges.${product.trust_badge}`)}
           </Badge>
         </div>
       )}
