@@ -141,7 +141,7 @@ const FanEdgeFooter = () => {
           {/* Amazon Disclaimer */}
           <div className="mt-6 pt-4 border-t border-border/50">
             <p className="text-xs text-muted-foreground/50 text-center max-w-3xl mx-auto leading-relaxed">
-              <strong>Amazon Affiliate Disclaimer:</strong> FanEdge is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. 
+              <strong>Amazon Affiliate Disclaimer:</strong> FanEdge is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases.
             </p>
           </div>
         </div>
