@@ -21,12 +21,17 @@ const FanEdgeNavbar = () => {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const id = href.replace('#', '');
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMenuOpen(false);
+    setIsLangOpen(false);
+    
+    // Small delay to allow menu animation to complete
+    setTimeout(() => {
+      const id = href.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const languages = [
@@ -43,7 +48,8 @@ const FanEdgeNavbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-primary/10"
+      className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-b border-primary/10"
+      style={{ zIndex: 99999 }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -137,14 +143,16 @@ const FanEdgeNavbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden border-t border-border"
+              style={{ zIndex: 99999 }}
             >
-              <div className="py-4 space-y-2">
+              <div className="py-4 space-y-2" style={{ position: 'relative', zIndex: 99999 }}>
                 {navItems.map((item) => (
                   <a
                     key={item.key}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
                     className="block py-2 px-4 text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-lg transition-colors cursor-pointer"
+                    style={{ position: 'relative', zIndex: 99999 }}
                   >
                     {t(item.key)}
                   </a>

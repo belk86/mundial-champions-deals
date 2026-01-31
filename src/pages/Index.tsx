@@ -6,11 +6,10 @@ import ScheduleSection from '@/components/ScheduleSection';
 import FanEdgeFooter from '@/components/FanEdgeFooter';
 import ScrollToTop from '@/components/ScrollToTop';
 import TikaAdvisor from '@/components/TikaAdvisor';
-import MobileSidebar from '@/components/MobileSidebar';
 
 const Index = () => {
   return (
-    <div id="home" className="min-h-screen bg-background moroccan-pattern text-foreground">
+    <div className="min-h-screen bg-background moroccan-pattern text-foreground">
       <FanEdgeNavbar />
       <FanEdgeHero />
       <FanEdgeProductGrid />
@@ -19,7 +18,6 @@ const Index = () => {
       <FanEdgeFooter />
       <ScrollToTop />
       <TikaAdvisor />
-      <MobileSidebar />
     </div>
   );
 };

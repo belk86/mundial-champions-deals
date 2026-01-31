@@ -1,52 +1,151 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plane, Hotel, Car, MapPin, ExternalLink, Search, X, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import FlightsDestinationsUI from './FlightsDestinationsUI';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const [isFlightsOpen, setIsFlightsOpen] = useState(false);
+  const [showFlightsSearch, setShowFlightsSearch] = useState(false);
+  const [fromCity, setFromCity] = useState('');
+  const [toCity, setToCity] = useState('');
+
+  // World Cup 2026 destination cities
+  const worldCupDestinations = [
+    { value: 'new-york', labelEn: 'New York, USA', labelAr: 'نيويورك، الولايات المتحدة', labelEs: 'Nueva York, EE.UU.', labelFr: 'New York, États-Unis' },
+    { value: 'los-angeles', labelEn: 'Los Angeles, USA', labelAr: 'لوس أنجلوس، الولايات المتحدة', labelEs: 'Los Ángeles, EE.UU.', labelFr: 'Los Angeles, États-Unis' },
+    { value: 'miami', labelEn: 'Miami, USA', labelAr: 'ميامي، الولايات المتحدة', labelEs: 'Miami, EE.UU.', labelFr: 'Miami, États-Unis' },
+    { value: 'toronto', labelEn: 'Toronto, Canada', labelAr: 'تورونتو، كندا', labelEs: 'Toronto, Canadá', labelFr: 'Toronto, Canada' },
+    { value: 'mexico-city', labelEn: 'Mexico City, Mexico', labelAr: 'مكسيكو سيتي، المكسيك', labelEs: 'Ciudad de México, México', labelFr: 'Mexico, Mexique' },
+    { value: 'dallas', labelEn: 'Dallas, USA', labelAr: 'دالاس، الولايات المتحدة', labelEs: 'Dallas, EE.UU.', labelFr: 'Dallas, États-Unis' },
+    { value: 'atlanta', labelEn: 'Atlanta, USA', labelAr: 'أتلانتا، الولايات المتحدة', labelEs: 'Atlanta, EE.UU.', labelFr: 'Atlanta, États-Unis' },
+  ];
+
+  // Origin cities
+  const originCities = [
+    { value: 'casablanca', labelEn: 'Casablanca, Morocco', labelAr: 'الدار البيضاء، المغرب', labelEs: 'Casablanca, Marruecos', labelFr: 'Casablanca, Maroc' },
+    { value: 'tangier', labelEn: 'Tangier, Morocco', labelAr: 'طنجة، المغرب', labelEs: 'Tánger, Marruecos', labelFr: 'Tanger, Maroc' },
+    { value: 'marrakech', labelEn: 'Marrakech, Morocco', labelAr: 'مراكش، المغرب', labelEs: 'Marrakech, Marruecos', labelFr: 'Marrakech, Maroc' },
+    { value: 'paris', labelEn: 'Paris, France', labelAr: 'باريس، فرنسا', labelEs: 'París, Francia', labelFr: 'Paris, France' },
+    { value: 'london', labelEn: 'London, UK', labelAr: 'لندن، المملكة المتحدة', labelEs: 'Londres, Reino Unido', labelFr: 'Londres, Royaume-Uni' },
+    { value: 'madrid', labelEn: 'Madrid, Spain', labelAr: 'مدريد، إسبانيا', labelEs: 'Madrid, España', labelFr: 'Madrid, Espagne' },
+    { value: 'dubai', labelEn: 'Dubai, UAE', labelAr: 'دبي، الإمارات', labelEs: 'Dubái, EAU', labelFr: 'Dubaï, EAU' },
+  ];
+
+  const getCityLabel = (city: typeof worldCupDestinations[0]) => {
+    switch (language) {
+      case 'ar': return city.labelAr;
+      case 'es': return city.labelEs;
+      case 'fr': return city.labelFr;
+      default: return city.labelEn;
+    }
+  };
+
+  // Flights UI translations
+  const flightsUI = {
+    ar: {
+      searchFlights: 'بحث عن رحلات',
+      from: 'الذهاب من',
+      to: 'الوجهة إلى',
+      selectOrigin: 'اختر مدينة المغادرة',
+      selectDestination: 'اختر الوجهة',
+      search: 'بحث',
+      worldCup2026: 'رحلات كأس العالم 2026',
+      findBestDeals: 'اعثر على أفضل العروض لمباريات كأس العالم',
+      close: 'إغلاق',
+    },
+    es: {
+      searchFlights: 'Buscar vuelos',
+      from: 'Salida desde',
+      to: 'Destino a',
+      selectOrigin: 'Seleccionar ciudad de origen',
+      selectDestination: 'Seleccionar destino',
+      search: 'Buscar',
+      worldCup2026: 'Vuelos Copa del Mundo 2026',
+      findBestDeals: 'Encuentra las mejores ofertas para los partidos del Mundial',
+      close: 'Cerrar',
+    },
+    fr: {
+      searchFlights: 'Rechercher des vols',
+      from: 'Départ de',
+      to: 'Destination',
+      selectOrigin: 'Sélectionner la ville de départ',
+      selectDestination: 'Sélectionner la destination',
+      search: 'Rechercher',
+      worldCup2026: 'Vols Coupe du Monde 2026',
+      findBestDeals: 'Trouvez les meilleures offres pour les matchs de la Coupe du Monde',
+      close: 'Fermer',
+    },
+    en: {
+      searchFlights: 'Search Flights',
+      from: 'From',
+      to: 'To',
+      selectOrigin: 'Select departure city',
+      selectDestination: 'Select destination',
+      search: 'Search',
+      worldCup2026: 'World Cup 2026 Flights',
+      findBestDeals: 'Find the best deals for World Cup matches',
+      close: 'Close',
+    },
+  };
+
+  const ui = flightsUI[language] || flightsUI.en;
+
+  const handleFlightsSearch = () => {
+    if (!fromCity || !toCity) return;
+    
+    const fromCityData = originCities.find(c => c.value === fromCity);
+    const toCityData = worldCupDestinations.find(c => c.value === toCity);
+    
+    if (fromCityData && toCityData) {
+      const searchUrl = `https://www.booking.com/flights/index.html?type=ONEWAY&adults=1&cabinClass=ECONOMY&from=${encodeURIComponent(fromCityData.labelEn.split(',')[0])}&to=${encodeURIComponent(toCityData.labelEn.split(',')[0])}&label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE`;
+      window.open(searchUrl, '_blank');
+    }
+  };
+
+  // HARDCODED travelLinks - v5: Static universal link for Flights
+  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
   
-  // Hotels and Cars links - UNCHANGED
   const getTravelLinks = () => {
     switch (language) {
       case 'ar':
         return {
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.ar.html',
           hotels: 'https://www.booking.com/index.ar.html',
-          hotelBtn: 'ابحث عن فنادق',
-          carBtn: 'استأجر سيارة',
-          flightBtn: 'اختر وجهتك',
+          btn: 'احجز الآن'
         };
       case 'es':
         return {
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.es.html',
           hotels: 'https://www.booking.com/index.es.html',
-          hotelBtn: 'Buscar Hoteles',
-          carBtn: 'Alquilar Auto',
-          flightBtn: 'Elige tu destino',
+          btn: 'Reservar'
         };
       case 'fr':
         return {
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.fr.html',
           hotels: 'https://www.booking.com/index.fr.html',
-          hotelBtn: 'Trouver Hôtels',
-          carBtn: 'Louer Voiture',
-          flightBtn: 'Choisir destination',
+          btn: 'Réserver'
         };
       default:
         return {
+          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/',
           hotels: 'https://www.booking.com/',
-          hotelBtn: 'Find Hotels',
-          carBtn: 'Rent a Car',
-          flightBtn: 'Choose Destination',
+          btn: 'Book Now'
         };
     }
   };
@@ -97,7 +196,27 @@ const TravelSection = () => {
     }
   };
 
-  // Host cities for the bottom section
+  const travelOptions = [
+    {
+      icon: Hotel,
+      type: 'hotels' as const,
+      color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      iconColor: 'text-blue-400',
+    },
+    {
+      icon: Car,
+      type: 'cars' as const,
+      color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      iconColor: 'text-emerald-400',
+    },
+    {
+      icon: Plane,
+      type: 'flights' as const,
+      color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
+      iconColor: 'text-orange-400',
+    },
+  ];
+
   const cities = [
     { name: 'New York/NJ', stadium: 'MetLife Stadium', country: 'USA' },
     { name: 'Los Angeles', stadium: 'SoFi Stadium', country: 'USA' },
@@ -144,86 +263,166 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        {/* Travel Options Grid - Hotels, Cars, Flights */}
+        {/* Flights Search Modal */}
+        <AnimatePresence>
+          {showFlightsSearch && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowFlightsSearch(false)}
+            >
+              <motion.div
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="bg-card border border-border rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+                dir={language === 'ar' ? 'rtl' : 'ltr'}
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center">
+                      <Plane className="w-6 h-6 text-orange-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">{ui.worldCup2026}</h3>
+                      <p className="text-sm text-muted-foreground">{ui.findBestDeals}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowFlightsSearch(false)}
+                    className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors"
+                  >
+                    <X className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                </div>
+
+                {/* Search Form */}
+                <div className="space-y-4">
+                  {/* From */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      {ui.from}
+                    </label>
+                    <Select value={fromCity} onValueChange={setFromCity}>
+                      <SelectTrigger className="w-full bg-secondary border-border">
+                        <SelectValue placeholder={ui.selectOrigin} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {originCities.map((city) => (
+                          <SelectItem key={city.value} value={city.value}>
+                            {getCityLabel(city)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="flex justify-center">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                      <ArrowRight className={`w-5 h-5 text-primary ${language === 'ar' ? 'rotate-180' : ''}`} />
+                    </div>
+                  </div>
+
+                  {/* To */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      {ui.to}
+                    </label>
+                    <Select value={toCity} onValueChange={setToCity}>
+                      <SelectTrigger className="w-full bg-secondary border-border">
+                        <SelectValue placeholder={ui.selectDestination} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {worldCupDestinations.map((city) => (
+                          <SelectItem key={city.value} value={city.value}>
+                            {getCityLabel(city)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Search Button */}
+                  <Button
+                    onClick={handleFlightsSearch}
+                    disabled={!fromCity || !toCity}
+                    className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm h-12 text-base"
+                  >
+                    <Search className="w-5 h-5 me-2" />
+                    {ui.search}
+                  </Button>
+                </div>
+
+                {/* Quick destinations */}
+                <div className="mt-6 pt-6 border-t border-border">
+                  <p className="text-xs text-muted-foreground mb-3 text-center">
+                    🏆 {language === 'ar' ? 'وجهات كأس العالم 2026' : language === 'es' ? 'Destinos Copa del Mundo 2026' : language === 'fr' ? 'Destinations Coupe du Monde 2026' : 'World Cup 2026 Destinations'}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {['new-york', 'toronto', 'mexico-city'].map((cityValue) => {
+                      const city = worldCupDestinations.find(c => c.value === cityValue);
+                      if (!city) return null;
+                      return (
+                        <button
+                          key={cityValue}
+                          onClick={() => setToCity(cityValue)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            toCity === cityValue 
+                              ? 'bg-primary text-primary-foreground' 
+                              : 'bg-secondary text-muted-foreground hover:bg-secondary/80'
+                          }`}
+                        >
+                          {getCityLabel(city).split(',')[0]}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Travel Options Grid - Translated */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {/* Hotels Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0 }}
-          >
-            <Card className="bg-card border-border h-full card-hover-purple">
-              <CardContent className="p-6 flex flex-col h-full">
-                <div className="w-14 h-14 rounded-xl bg-blue-500/20 text-blue-300 border-blue-500/40 border flex items-center justify-center mb-4">
-                  <Hotel className="w-7 h-7 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('hotels')}</h3>
-                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('hotels')}</p>
-                <Button
-                  className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                  onClick={() => window.open(currentLinks.hotels, '_blank')}
-                >
-                  {currentLinks.hotelBtn}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Cars Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Card className="bg-card border-border h-full card-hover-purple">
-              <CardContent className="p-6 flex flex-col h-full">
-                <div className="w-14 h-14 rounded-xl bg-emerald-500/20 text-emerald-300 border-emerald-500/40 border flex items-center justify-center mb-4">
-                  <Car className="w-7 h-7 text-emerald-400" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('cars')}</h3>
-                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('cars')}</p>
-                <Button
-                  className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                  onClick={() => window.open(currentLinks.cars, '_blank')}
-                >
-                  {currentLinks.carBtn}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Flights Card - Opens Internal UI */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card className="bg-card border-border h-full card-hover-purple">
-              <CardContent className="p-6 flex flex-col h-full">
-                <div className="w-14 h-14 rounded-xl bg-orange-500/20 text-orange-300 border-orange-500/40 border flex items-center justify-center mb-4">
-                  <Plane className="w-7 h-7 text-orange-400" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('flights')}</h3>
-                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('flights')}</p>
-                <Button
-                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold"
-                  onClick={() => setIsFlightsOpen(true)}
-                >
-                  {currentLinks.flightBtn}
-                  <Plane className="w-4 h-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {travelOptions.map((option, index) => (
+            <motion.div
+              key={option.type}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="bg-card border-border h-full card-hover-purple">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className={`w-14 h-14 rounded-xl ${option.color} border flex items-center justify-center mb-4`}>
+                    <option.icon className={`w-7 h-7 ${option.iconColor}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{getTitle(option.type)}</h3>
+                  <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
+                  <Button
+                    className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
+                    onClick={() => {
+                      if (option.type === 'flights') {
+                        setShowFlightsSearch(true);
+                      } else {
+                        const url = currentLinks[option.type];
+                        window.open(url, '_blank');
+                      }
+                    }}
+                  >
+                    {option.type === 'flights' ? ui.searchFlights : currentLinks.btn}
+                    {option.type === 'flights' ? <Search className="w-4 h-4 ms-2" /> : <ExternalLink className="w-4 h-4 ms-2" />}
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
-
-        {/* Flights Destinations Modal */}
-        <FlightsDestinationsUI isOpen={isFlightsOpen} onClose={() => setIsFlightsOpen(false)} />
 
         {/* Host Cities - Horizontal Scroll on Mobile */}
         <motion.div

@@ -65,7 +65,7 @@ const ScheduleSection = () => {
   ];
 
   return (
-    <section id="schedule-section" className="py-16 md:py-24 bg-secondary/20 moroccan-pattern scroll-mt-24">
+    <section className="py-16 md:py-24 bg-secondary/20 moroccan-pattern">
       <div className="container px-4">
         {/* Section Header - Translated */}
         <motion.div
@@ -88,8 +88,12 @@ const ScheduleSection = () => {
           </p>
         </motion.div>
 
-        {/* Schedule Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Schedule Grid - 6 Match Tables */}
+        <div 
+          id="schedule-section" 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          style={{ scrollMarginTop: '80px' }}
+        >
           {matches.map((match, index) => (
             <motion.div
               key={index}

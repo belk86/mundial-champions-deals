@@ -26,19 +26,7 @@ export const translations = {
         subtitle: "Curated selection of viral TikTok products and top sellers for World Cup 2026 fans",
         buyOnAmazon: "Buy on Amazon",
         viralTikTok: "Viral on TikTok",
-        topSeller: "Top Seller in Tangier",
-        categories: "Categories",
-        filter: {
-          all: "All Products",
-        },
-        whyTrending: "Why Trending",
-        getDeal: "Get This Deal",
-        badges: {
-          verified: "Verified",
-          hot: "Hot in Tangier",
-          trending: "Trending",
-          limited: "Limited",
-        },
+        topSeller: "Top Seller",
       },
       // Travel
       travel: {
@@ -68,7 +56,7 @@ export const translations = {
         semiFinal: "Semi Final",
         final: "Final",
       },
-      // Countdown / Daily Deal
+      // Countdown
       countdown: {
         limitedOffer: "Limited World Cup Offer",
         endsIn: "Ends in:",
@@ -76,9 +64,6 @@ export const translations = {
         hours: "Hours",
         mins: "Mins",
         secs: "Secs",
-      },
-      dailyDeal: {
-        endsIn: "Offer ends in",
       },
       // Common
       common: {
@@ -122,19 +107,7 @@ export const translations = {
         subtitle: "مجموعة مختارة من المنتجات الرائجة على تيك توك والأكثر مبيعاً لمشجعي كأس العالم 2026",
         buyOnAmazon: "اشتري من أمازون",
         viralTikTok: "رائج على تيك توك",
-        topSeller: "الأكثر مبيعاً في طنجة",
-        categories: "الفئات",
-        filter: {
-          all: "جميع المنتجات",
-        },
-        whyTrending: "لماذا رائج",
-        getDeal: "احصل على العرض",
-        badges: {
-          verified: "موثوق",
-          hot: "ساخن في طنجة",
-          trending: "رائج",
-          limited: "محدود",
-        },
+        topSeller: "الأكثر مبيعاً",
       },
       // Travel
       travel: {
@@ -164,7 +137,7 @@ export const translations = {
         semiFinal: "نصف النهائي",
         final: "النهائي",
       },
-      // Countdown / Daily Deal
+      // Countdown
       countdown: {
         limitedOffer: "عرض كأس العالم المحدود",
         endsIn: "ينتهي في:",
@@ -172,9 +145,6 @@ export const translations = {
         hours: "ساعات",
         mins: "دقائق",
         secs: "ثواني",
-      },
-      dailyDeal: {
-        endsIn: "العرض ينتهي في",
       },
       // Common
       common: {
@@ -218,19 +188,7 @@ export const translations = {
         subtitle: "Selección de productos virales de TikTok y más vendidos para fans del Mundial 2026",
         buyOnAmazon: "Comprar en Amazon",
         viralTikTok: "Viral en TikTok",
-        topSeller: "Más Vendido en Tánger",
-        categories: "Categorías",
-        filter: {
-          all: "Todos los Productos",
-        },
-        whyTrending: "Por qué es tendencia",
-        getDeal: "Obtener Oferta",
-        badges: {
-          verified: "Verificado",
-          hot: "Popular en Tánger",
-          trending: "Tendencia",
-          limited: "Limitado",
-        },
+        topSeller: "Más Vendido",
       },
       // Travel
       travel: {
@@ -260,7 +218,7 @@ export const translations = {
         semiFinal: "Semifinal",
         final: "Final",
       },
-      // Countdown / Daily Deal
+      // Countdown
       countdown: {
         limitedOffer: "Oferta Mundial Limitada",
         endsIn: "Termina en:",
@@ -268,9 +226,6 @@ export const translations = {
         hours: "Horas",
         mins: "Mins",
         secs: "Segs",
-      },
-      dailyDeal: {
-        endsIn: "La oferta termina en",
       },
       // Common
       common: {
@@ -314,19 +269,7 @@ export const translations = {
         subtitle: "Sélection de produits viraux TikTok et meilleures ventes pour fans de la Coupe du Monde 2026",
         buyOnAmazon: "Acheter sur Amazon",
         viralTikTok: "Viral sur TikTok",
-        topSeller: "Meilleure Vente à Tanger",
-        categories: "Catégories",
-        filter: {
-          all: "Tous les Produits",
-        },
-        whyTrending: "Pourquoi tendance",
-        getDeal: "Obtenir l'Offre",
-        badges: {
-          verified: "Vérifié",
-          hot: "Populaire à Tanger",
-          trending: "Tendance",
-          limited: "Limité",
-        },
+        topSeller: "Meilleure Vente",
       },
       // Travel
       travel: {
@@ -356,7 +299,7 @@ export const translations = {
         semiFinal: "Demi-Finale",
         final: "Finale",
       },
-      // Countdown / Daily Deal
+      // Countdown
       countdown: {
         limitedOffer: "Offre Mondiale Limitée",
         endsIn: "Se termine dans:",
@@ -364,9 +307,6 @@ export const translations = {
         hours: "Heures",
         mins: "Mins",
         secs: "Secs",
-      },
-      dailyDeal: {
-        endsIn: "L'offre se termine dans",
       },
       // Common
       common: {
