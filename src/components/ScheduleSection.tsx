@@ -65,8 +65,9 @@ const ScheduleSection = () => {
   ];
 
   return (
-    <section id="schedule-section" className="py-16 md:py-24 bg-secondary/20 moroccan-pattern">
-      <div className="container px-4">
+    <div id="schedule-section" style={{ scrollMarginTop: '80px' }}>
+      <section className="py-16 md:py-24 bg-secondary/20 moroccan-pattern">
+        <div className="container px-4">
         {/* Section Header - Translated */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -143,6 +144,7 @@ const ScheduleSection = () => {
         </motion.p>
       </div>
     </section>
+    </div>
   );
 };
 
