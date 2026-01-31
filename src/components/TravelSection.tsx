@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -5,43 +6,47 @@ import i18n from '@/i18n';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import FlightsDestinationsUI from './FlightsDestinationsUI';
 
 const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
-
-  // HARDCODED travelLinks - v5: Static universal link for Flights
-  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
+  const [isFlightsOpen, setIsFlightsOpen] = useState(false);
   
+  // Hotels and Cars links - UNCHANGED
   const getTravelLinks = () => {
     switch (language) {
       case 'ar':
         return {
-          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.ar.html',
           hotels: 'https://www.booking.com/index.ar.html',
-          btn: 'احجز الآن'
+          hotelBtn: 'ابحث عن فنادق',
+          carBtn: 'استأجر سيارة',
+          flightBtn: 'اختر وجهتك',
         };
       case 'es':
         return {
-          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.es.html',
           hotels: 'https://www.booking.com/index.es.html',
-          btn: 'Reservar'
+          hotelBtn: 'Buscar Hoteles',
+          carBtn: 'Alquilar Auto',
+          flightBtn: 'Elige tu destino',
         };
       case 'fr':
         return {
-          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/index.fr.html',
           hotels: 'https://www.booking.com/index.fr.html',
-          btn: 'Réserver'
+          hotelBtn: 'Trouver Hôtels',
+          carBtn: 'Louer Voiture',
+          flightBtn: 'Choisir destination',
         };
       default:
         return {
-          flights: STATIC_FLIGHTS_URL,
           cars: 'https://www.booking.com/cars/',
           hotels: 'https://www.booking.com/',
-          btn: 'Book Now'
+          hotelBtn: 'Find Hotels',
+          carBtn: 'Rent a Car',
+          flightBtn: 'Choose Destination',
         };
     }
   };
@@ -92,27 +97,7 @@ const TravelSection = () => {
     }
   };
 
-  const travelOptions = [
-    {
-      icon: Hotel,
-      type: 'hotels' as const,
-      color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
-      iconColor: 'text-blue-400',
-    },
-    {
-      icon: Car,
-      type: 'cars' as const,
-      color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-      iconColor: 'text-emerald-400',
-    },
-    {
-      icon: Plane,
-      type: 'flights' as const,
-      color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
-      iconColor: 'text-orange-400',
-    },
-  ];
-
+  // Host cities for the bottom section
   const cities = [
     { name: 'New York/NJ', stadium: 'MetLife Stadium', country: 'USA' },
     { name: 'Los Angeles', stadium: 'SoFi Stadium', country: 'USA' },
@@ -159,38 +144,86 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        {/* Travel Options Grid - Translated */}
+        {/* Travel Options Grid - Hotels, Cars, Flights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {travelOptions.map((option, index) => (
-            <motion.div
-              key={option.type}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="bg-card border-border h-full card-hover-purple">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className={`w-14 h-14 rounded-xl ${option.color} border flex items-center justify-center mb-4`}>
-                    <option.icon className={`w-7 h-7 ${option.iconColor}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{getTitle(option.type)}</h3>
-                  <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
-                  <Button
-                    className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
-                    onClick={() => {
-                      const url = currentLinks[option.type];
-                      window.open(url, '_blank');
-                    }}
-                  >
-                    {currentLinks.btn}
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {/* Hotels Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0 }}
+          >
+            <Card className="bg-card border-border h-full card-hover-purple">
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-xl bg-blue-500/20 text-blue-300 border-blue-500/40 border flex items-center justify-center mb-4">
+                  <Hotel className="w-7 h-7 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('hotels')}</h3>
+                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('hotels')}</p>
+                <Button
+                  className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
+                  onClick={() => window.open(currentLinks.hotels, '_blank')}
+                >
+                  {currentLinks.hotelBtn}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Cars Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Card className="bg-card border-border h-full card-hover-purple">
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-xl bg-emerald-500/20 text-emerald-300 border-emerald-500/40 border flex items-center justify-center mb-4">
+                  <Car className="w-7 h-7 text-emerald-400" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('cars')}</h3>
+                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('cars')}</p>
+                <Button
+                  className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
+                  onClick={() => window.open(currentLinks.cars, '_blank')}
+                >
+                  {currentLinks.carBtn}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Flights Card - Opens Internal UI */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Card className="bg-card border-border h-full card-hover-purple">
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-xl bg-orange-500/20 text-orange-300 border-orange-500/40 border flex items-center justify-center mb-4">
+                  <Plane className="w-7 h-7 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">{getTitle('flights')}</h3>
+                <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc('flights')}</p>
+                <Button
+                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold"
+                  onClick={() => setIsFlightsOpen(true)}
+                >
+                  {currentLinks.flightBtn}
+                  <Plane className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
+
+        {/* Flights Destinations Modal */}
+        <FlightsDestinationsUI isOpen={isFlightsOpen} onClose={() => setIsFlightsOpen(false)} />
 
         {/* Host Cities - Horizontal Scroll on Mobile */}
         <motion.div
