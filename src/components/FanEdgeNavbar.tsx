@@ -16,7 +16,7 @@ const FanEdgeNavbar = () => {
     { key: 'nav.home', href: '#home' },
     { key: 'nav.fansGear', href: '#products' },
     { key: 'nav.travelGuide', href: '#travel' },
-    { key: 'nav.schedule', href: '#schedule' },
+    { key: 'nav.schedule', href: '#schedule-section' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

@@ -170,7 +170,7 @@ const TikaAdvisor = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 w-[320px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed bottom-20 right-6 z-50 w-[320px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-amazon to-amazon-dark p-4 flex items-center justify-between">
@@ -190,7 +190,8 @@ const TikaAdvisor = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-black/70 hover:text-black transition-colors"
+                className="w-8 h-8 rounded-full bg-black/20 hover:bg-black/30 flex items-center justify-center text-black/70 hover:text-black transition-all"
+                aria-label="Close Tika"
               >
                 <X className="w-5 h-5" />
               </button>
