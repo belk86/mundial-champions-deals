@@ -24,11 +24,9 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 47, seconds: 33 });
 
-  // Limited time countdown for special products (like the ball)
-  const isLimitedTimeDeal = product.name.toLowerCase().includes('ball') || product.trust_badge === 'limited';
-
+  // Countdown timer for ALL products - World Cup offer
   useEffect(() => {
-    if (!isLimitedTimeDeal) return;
+    // Timer runs for all products
     
     const timer = setInterval(() => {
       setTimeLeft(prev => {
@@ -52,7 +50,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isLimitedTimeDeal]);
+  }, []);
 
   const discount = product.original_price
     ? Math.round(((product.original_price - product.price) / product.original_price) * 100)
@@ -123,19 +121,26 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </div>
       )}
 
-      {/* Viral TikTok Badge for hot products */}
-      {product.trust_badge === 'hot' && (
-        <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10 max-w-[140px]`}>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
-            <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
-              🔥 <span>{language === 'ar' ? 'فيروسي على تيك توك' : language === 'es' ? 'Viral en TikTok' : 'Viral on TikTok'}</span>
-            </p>
-            <p className="text-[9px] text-muted-foreground">
-              📍 {language === 'ar' ? 'الأكثر مبيعاً في' : language === 'es' ? 'Más vendido en' : 'Top Seller in'} <span className="text-primary font-bold">{language === 'ar' ? 'طنجة' : language === 'es' ? 'Tánger' : 'Tangier'}</span>
-            </p>
-          </div>
+      {/* Viral TikTok Badge for ALL products */}
+      <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10 max-w-[140px]`}>
+        <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
+          <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
+            🔥 <span>{language === 'ar' ? 'فيروسي على تيك توك' 
+              : language === 'es' ? 'Viral en TikTok' 
+              : language === 'fr' ? 'Viral sur TikTok'
+              : 'Viral on TikTok'}</span>
+          </p>
+          <p className="text-[9px] text-muted-foreground">
+            📍 {language === 'ar' ? 'الأكثر مبيعاً في' 
+              : language === 'es' ? 'Más vendido en' 
+              : language === 'fr' ? 'Meilleur vendeur à'
+              : 'Top Seller in'} <span className="text-primary font-bold">{language === 'ar' ? 'طنجة' 
+              : language === 'es' ? 'Tánger' 
+              : language === 'fr' ? 'Tanger'
+              : 'Tangier'}</span>
+          </p>
         </div>
-      )}
+      </div>
 
       {/* Other Trust Badges */}
       {product.trust_badge && product.trust_badge !== 'hot' && badgeConfig && BadgeIcon && (
@@ -209,23 +214,21 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           )}
         </div>
 
-        {/* Limited World Cup Offer Countdown - Glassmorphism Style */}
-        {isLimitedTimeDeal && (
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border-l-4 border-gold shadow-lg">
-            <p className="text-[11px] font-bold text-foreground flex items-center gap-1 mb-1">
-              🏆 {language === 'ar' ? 'عرض كأس العالم المحدود - ينتهي في:' 
-                : language === 'es' ? 'Oferta limitada de la Copa del Mundo - Finaliza en:' 
-                : language === 'fr' ? 'Offre limitée Coupe du Monde - Se termine dans:' 
-                : 'Limited World Cup Offer - Ends in:'}
-            </p>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-gold" />
-              <span className="text-base font-bold text-gold tabular-nums">
-                {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
-              </span>
-            </div>
+        {/* Limited World Cup Offer Countdown - Glassmorphism Style - ALL products */}
+        <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border-l-4 border-gold shadow-lg">
+          <p className="text-[11px] font-bold text-foreground flex items-center gap-1 mb-1">
+            🏆 {language === 'ar' ? 'عرض كأس العالم المحدود - ينتهي في:' 
+              : language === 'es' ? 'Oferta limitada de la Copa del Mundo - Finaliza en:' 
+              : language === 'fr' ? 'Offre limitée Coupe du Monde - Se termine dans:' 
+              : 'Limited World Cup Offer - Ends in:'}
+          </p>
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-gold" />
+            <span className="text-base font-bold text-gold tabular-nums">
+              {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+            </span>
           </div>
-        )}
+        </div>
 
         {/* CTA Button - Amazon Orange */}
         <Button
