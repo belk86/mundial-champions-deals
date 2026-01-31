@@ -209,16 +209,21 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           )}
         </div>
 
-        {/* Limited Time Countdown */}
+        {/* Limited World Cup Offer Countdown - Glassmorphism Style */}
         {isLimitedTimeDeal && (
-          <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
-            <Clock className="w-4 h-4 text-red-400" />
-            <span className="text-xs font-medium text-red-400">
-              {t('dailyDeal.endsIn')}:
-            </span>
-            <span className="text-sm font-bold text-red-300">
-              {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
-            </span>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border-l-4 border-gold shadow-lg">
+            <p className="text-[11px] font-bold text-foreground flex items-center gap-1 mb-1">
+              🏆 {language === 'ar' ? 'عرض كأس العالم المحدود - ينتهي في:' 
+                : language === 'es' ? 'Oferta limitada de la Copa del Mundo - Finaliza en:' 
+                : language === 'fr' ? 'Offre limitée Coupe du Monde - Se termine dans:' 
+                : 'Limited World Cup Offer - Ends in:'}
+            </p>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-gold" />
+              <span className="text-base font-bold text-gold tabular-nums">
+                {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+              </span>
+            </div>
           </div>
         )}
 
