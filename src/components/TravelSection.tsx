@@ -14,12 +14,99 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+// ========== TRAVEL_CONTENT: Single source of truth for all 4 languages ==========
+const TRAVEL_CONTENT = {
+  en: {
+    hotelTitle: 'Hotels',
+    hotelDesc: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
+    carTitle: 'Rental Cars',
+    carDesc: 'Explore host cities in style. Rent a car and drive between match venues across North America.',
+    flightTitle: 'Flights',
+    flightDesc: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
+    bookNow: 'Book Now',
+    hostCitiesTitle: 'Host Cities - USA, Canada & Mexico',
+  },
+  ar: {
+    hotelTitle: 'فنادق',
+    hotelDesc: 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.',
+    carTitle: 'تأجير سيارات',
+    carDesc: 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.',
+    flightTitle: 'تذاكر الطيران',
+    flightDesc: 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.',
+    bookNow: 'احجز الآن',
+    hostCitiesTitle: 'المدن المستضيفة - أمريكا وكندا والمكسيك',
+  },
+  es: {
+    hotelTitle: 'Hoteles',
+    hotelDesc: 'Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.',
+    carTitle: 'Alquiler de coches',
+    carDesc: 'Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.',
+    flightTitle: 'Vuelos',
+    flightDesc: 'Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.',
+    bookNow: 'Reservar',
+    hostCitiesTitle: 'Ciudades Sede - USA, Canadá y México',
+  },
+  fr: {
+    hotelTitle: 'Hôtels',
+    hotelDesc: 'Réservez des hôtels premium près des stades. Meilleurs tarifs garantis.',
+    carTitle: 'Location de voitures',
+    carDesc: 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.',
+    flightTitle: 'Vols',
+    flightDesc: 'Trouvez les meilleures offres de vols vers New York, Los Angeles, Miami, Toronto, Mexico.',
+    bookNow: 'Réserver',
+    hostCitiesTitle: 'Villes Hôtes - USA, Canada et Mexique',
+  },
+};
+
+// ========== HOST_CITIES: Localized city names for all 4 languages ==========
+const HOST_CITIES = [
+  { nameEn: 'New York/NJ', nameAr: 'نيويورك/نيوجيرسي', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ', stadium: 'MetLife Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Los Angeles', nameAr: 'لوس أنجلوس', nameEs: 'Los Ángeles', nameFr: 'Los Angeles', stadium: 'SoFi Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Miami', nameAr: 'ميامي', nameEs: 'Miami', nameFr: 'Miami', stadium: 'Hard Rock Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Dallas', nameAr: 'دالاس', nameEs: 'Dallas', nameFr: 'Dallas', stadium: 'AT&T Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Atlanta', nameAr: 'أتلانتا', nameEs: 'Atlanta', nameFr: 'Atlanta', stadium: 'Mercedes-Benz Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Seattle', nameAr: 'سياتل', nameEs: 'Seattle', nameFr: 'Seattle', stadium: 'Lumen Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'San Francisco', nameAr: 'سان فرانسيسكو', nameEs: 'San Francisco', nameFr: 'San Francisco', stadium: "Levi's Stadium", countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Houston', nameAr: 'هيوستن', nameEs: 'Houston', nameFr: 'Houston', stadium: 'NRG Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Philadelphia', nameAr: 'فيلادلفيا', nameEs: 'Filadelfia', nameFr: 'Philadelphie', stadium: 'Lincoln Financial Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Kansas City', nameAr: 'كانساس سيتي', nameEs: 'Kansas City', nameFr: 'Kansas City', stadium: 'Arrowhead Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Boston', nameAr: 'بوسطن', nameEs: 'Boston', nameFr: 'Boston', stadium: 'Gillette Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Toronto', nameAr: 'تورونتو', nameEs: 'Toronto', nameFr: 'Toronto', stadium: 'BMO Field', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Vancouver', nameAr: 'فانكوفر', nameEs: 'Vancouver', nameFr: 'Vancouver', stadium: 'BC Place', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Mexico City', nameAr: 'مكسيكو سيتي', nameEs: 'Ciudad de México', nameFr: 'Mexico', stadium: 'Estadio Azteca', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Guadalajara', nameAr: 'غوادالاخارا', nameEs: 'Guadalajara', nameFr: 'Guadalajara', stadium: 'Estadio Akron', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Monterrey', nameAr: 'مونتيري', nameEs: 'Monterrey', nameFr: 'Monterrey', stadium: 'Estadio BBVA', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
+];
+
 const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
   const [showFlightsSearch, setShowFlightsSearch] = useState(false);
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
+
+  // Get current language content - falls back to English
+  const content = TRAVEL_CONTENT[language] || TRAVEL_CONTENT.en;
+
+  // Helper to get localized city name
+  const getCityName = (city: typeof HOST_CITIES[0]) => {
+    switch (language) {
+      case 'ar': return city.nameAr;
+      case 'es': return city.nameEs;
+      case 'fr': return city.nameFr;
+      default: return city.nameEn;
+    }
+  };
+
+  // Helper to get localized country name
+  const getCountryName = (city: typeof HOST_CITIES[0]) => {
+    switch (language) {
+      case 'ar': return city.countryAr;
+      case 'es': return city.countryEs;
+      case 'fr': return city.countryFr;
+      default: return city.countryEn;
+    }
+  };
 
   // World Cup 2026 destination cities
   const worldCupDestinations = [
@@ -114,212 +201,54 @@ const TravelSection = () => {
     }
   };
 
-  // HARDCODED travelLinks - v5: Static universal link for Flights
+  // Localized Booking links
   const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
   
-  const getTravelLinks = () => {
+  const getBookingLinks = () => {
     switch (language) {
       case 'ar':
-        return {
-          flights: STATIC_FLIGHTS_URL,
-          cars: 'https://www.booking.com/cars/index.ar.html',
-          hotels: 'https://www.booking.com/index.ar.html',
-          btn: 'احجز الآن'
-        };
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.ar.html', hotels: 'https://www.booking.com/index.ar.html' };
       case 'es':
-        return {
-          flights: STATIC_FLIGHTS_URL,
-          cars: 'https://www.booking.com/cars/index.es.html',
-          hotels: 'https://www.booking.com/index.es.html',
-          btn: 'Reservar'
-        };
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.es.html', hotels: 'https://www.booking.com/index.es.html' };
       case 'fr':
-        return {
-          flights: STATIC_FLIGHTS_URL,
-          cars: 'https://www.booking.com/cars/index.fr.html',
-          hotels: 'https://www.booking.com/index.fr.html',
-          btn: 'Réserver'
-        };
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.fr.html', hotels: 'https://www.booking.com/index.fr.html' };
       default:
-        return {
-          flights: STATIC_FLIGHTS_URL,
-          cars: 'https://www.booking.com/cars/',
-          hotels: 'https://www.booking.com/',
-          btn: 'Book Now'
-        };
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/', hotels: 'https://www.booking.com/' };
     }
   };
 
-  const currentLinks = getTravelLinks();
-
-  // HARDCODED titles (v4 - updated flight labels)
-  const getTitle = (type: 'hotels' | 'cars' | 'flights'): string => {
-    switch (language) {
-      case 'ar':
-        return type === 'hotels' ? 'فنادق' : type === 'cars' ? 'تأجير سيارات' : 'تذاكر الطيران';
-      case 'es':
-        return type === 'hotels' ? 'Hoteles' : type === 'cars' ? 'Alquiler de coches' : 'Billetes de avión';
-      case 'fr':
-        return type === 'hotels' ? 'Hôtels' : type === 'cars' ? 'Location de voitures' : 'Billets d\'avion';
-      default:
-        return type === 'hotels' ? 'Hotels' : type === 'cars' ? 'Rental Cars' : 'Flights';
-    }
-  };
-
-  // HARDCODED descriptions
-  const getDesc = (type: 'hotels' | 'cars' | 'flights'): string => {
-    switch (language) {
-      case 'ar':
-        return type === 'hotels' 
-          ? 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.'
-          : type === 'cars'
-          ? 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.'
-          : 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.';
-      case 'es':
-        return type === 'hotels'
-          ? 'Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.'
-          : type === 'cars'
-          ? 'Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.'
-          : 'Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.';
-      case 'fr':
-        return type === 'hotels'
-          ? 'Réservez des hôtels premium près des stades. Meilleurs tarifs garantis.'
-          : type === 'cars'
-          ? 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.'
-          : 'Trouvez les meilleures offres de vols vers New York, Los Angeles, Miami, Toronto, Mexico.';
-      default:
-        return type === 'hotels'
-          ? 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.'
-          : type === 'cars'
-          ? 'Explore host cities in style. Rent a car and drive between match venues across North America.'
-          : 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.';
-    }
-  };
+  const currentLinks = getBookingLinks();
 
   const travelOptions = [
     {
       icon: Hotel,
       type: 'hotels' as const,
+      title: content.hotelTitle,
+      desc: content.hotelDesc,
+      link: currentLinks.hotels,
       color: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
       iconColor: 'text-blue-400',
     },
     {
       icon: Car,
       type: 'cars' as const,
+      title: content.carTitle,
+      desc: content.carDesc,
+      link: currentLinks.cars,
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
     },
     {
       icon: Plane,
       type: 'flights' as const,
+      title: content.flightTitle,
+      desc: content.flightDesc,
+      link: currentLinks.flights,
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
     },
   ];
 
-  // Host Cities with full 4-language support
-  const cities = [
-    { 
-      nameEn: 'New York/NJ', nameAr: 'نيويورك/نيوجيرسي', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ',
-      stadium: 'MetLife Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Los Angeles', nameAr: 'لوس أنجلوس', nameEs: 'Los Ángeles', nameFr: 'Los Angeles',
-      stadium: 'SoFi Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Miami', nameAr: 'ميامي', nameEs: 'Miami', nameFr: 'Miami',
-      stadium: 'Hard Rock Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Dallas', nameAr: 'دالاس', nameEs: 'Dallas', nameFr: 'Dallas',
-      stadium: 'AT&T Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Atlanta', nameAr: 'أتلانتا', nameEs: 'Atlanta', nameFr: 'Atlanta',
-      stadium: 'Mercedes-Benz Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Seattle', nameAr: 'سياتل', nameEs: 'Seattle', nameFr: 'Seattle',
-      stadium: 'Lumen Field',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'San Francisco', nameAr: 'سان فرانسيسكو', nameEs: 'San Francisco', nameFr: 'San Francisco',
-      stadium: "Levi's Stadium",
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Houston', nameAr: 'هيوستن', nameEs: 'Houston', nameFr: 'Houston',
-      stadium: 'NRG Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Philadelphia', nameAr: 'فيلادلفيا', nameEs: 'Filadelfia', nameFr: 'Philadelphie',
-      stadium: 'Lincoln Financial Field',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Kansas City', nameAr: 'كانساس سيتي', nameEs: 'Kansas City', nameFr: 'Kansas City',
-      stadium: 'Arrowhead Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Boston', nameAr: 'بوسطن', nameEs: 'Boston', nameFr: 'Boston',
-      stadium: 'Gillette Stadium',
-      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
-    },
-    { 
-      nameEn: 'Toronto', nameAr: 'تورونتو', nameEs: 'Toronto', nameFr: 'Toronto',
-      stadium: 'BMO Field',
-      countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada'
-    },
-    { 
-      nameEn: 'Vancouver', nameAr: 'فانكوفر', nameEs: 'Vancouver', nameFr: 'Vancouver',
-      stadium: 'BC Place',
-      countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada'
-    },
-    { 
-      nameEn: 'Mexico City', nameAr: 'مكسيكو سيتي', nameEs: 'Ciudad de México', nameFr: 'Mexico',
-      stadium: 'Estadio Azteca',
-      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
-    },
-    { 
-      nameEn: 'Guadalajara', nameAr: 'غوادالاخارا', nameEs: 'Guadalajara', nameFr: 'Guadalajara',
-      stadium: 'Estadio Akron',
-      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
-    },
-    { 
-      nameEn: 'Monterrey', nameAr: 'مونتيري', nameEs: 'Monterrey', nameFr: 'Monterrey',
-      stadium: 'Estadio BBVA',
-      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
-    },
-  ];
-
-  // Helper to get localized city name
-  const getCityName = (city: typeof cities[0]) => {
-    switch (language) {
-      case 'ar': return city.nameAr;
-      case 'es': return city.nameEs;
-      case 'fr': return city.nameFr;
-      default: return city.nameEn;
-    }
-  };
-
-  // Helper to get localized country name
-  const getCountryName = (city: typeof cities[0]) => {
-    switch (language) {
-      case 'ar': return city.countryAr;
-      case 'es': return city.countryEs;
-      case 'fr': return city.countryFr;
-      default: return city.countryEn;
-    }
-  };
 
   return (
     <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
@@ -487,8 +416,8 @@ const TravelSection = () => {
                   <div className={`w-14 h-14 rounded-xl ${option.color} border flex items-center justify-center mb-4`}>
                     <option.icon className={`w-7 h-7 ${option.iconColor}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{getTitle(option.type)}</h3>
-                  <p className="text-muted-foreground text-sm flex-grow mb-4">{getDesc(option.type)}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{option.title}</h3>
+                  <p className="text-muted-foreground text-sm flex-grow mb-4">{option.desc}</p>
                   <Button
                     className="w-full bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm"
                     onClick={() => {
@@ -500,7 +429,7 @@ const TravelSection = () => {
                       }
                     }}
                   >
-                    {option.type === 'flights' ? ui.searchFlights : currentLinks.btn}
+                    {option.type === 'flights' ? ui.searchFlights : content.bookNow}
                     {option.type === 'flights' ? <Search className="w-4 h-4 ms-2" /> : <ExternalLink className="w-4 h-4 ms-2" />}
                   </Button>
                 </CardContent>
@@ -518,10 +447,10 @@ const TravelSection = () => {
         >
           <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary" />
-            {t('travel.hostCities')}
+            {content.hostCitiesTitle}
           </h3>
           <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
-            {cities.map((city, index) => {
+            {HOST_CITIES.map((city, index) => {
               const bookingBaseUrl = {
                 en: 'https://www.booking.com/searchresults.html',
                 ar: 'https://www.booking.com/searchresults.ar.html',
