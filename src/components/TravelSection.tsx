@@ -217,24 +217,109 @@ const TravelSection = () => {
     },
   ];
 
+  // Host Cities with full 4-language support
   const cities = [
-    { name: 'New York/NJ', stadium: 'MetLife Stadium', country: 'USA' },
-    { name: 'Los Angeles', stadium: 'SoFi Stadium', country: 'USA' },
-    { name: 'Miami', stadium: 'Hard Rock Stadium', country: 'USA' },
-    { name: 'Dallas', stadium: 'AT&T Stadium', country: 'USA' },
-    { name: 'Atlanta', stadium: 'Mercedes-Benz Stadium', country: 'USA' },
-    { name: 'Seattle', stadium: 'Lumen Field', country: 'USA' },
-    { name: 'San Francisco', stadium: "Levi's Stadium", country: 'USA' },
-    { name: 'Houston', stadium: 'NRG Stadium', country: 'USA' },
-    { name: 'Philadelphia', stadium: 'Lincoln Financial Field', country: 'USA' },
-    { name: 'Kansas City', stadium: 'Arrowhead Stadium', country: 'USA' },
-    { name: 'Boston', stadium: 'Gillette Stadium', country: 'USA' },
-    { name: 'Toronto', stadium: 'BMO Field', country: 'Canada' },
-    { name: 'Vancouver', stadium: 'BC Place', country: 'Canada' },
-    { name: 'Mexico City', stadium: 'Estadio Azteca', country: 'Mexico' },
-    { name: 'Guadalajara', stadium: 'Estadio Akron', country: 'Mexico' },
-    { name: 'Monterrey', stadium: 'Estadio BBVA', country: 'Mexico' },
+    { 
+      nameEn: 'New York/NJ', nameAr: 'نيويورك/نيوجيرسي', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ',
+      stadium: 'MetLife Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Los Angeles', nameAr: 'لوس أنجلوس', nameEs: 'Los Ángeles', nameFr: 'Los Angeles',
+      stadium: 'SoFi Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Miami', nameAr: 'ميامي', nameEs: 'Miami', nameFr: 'Miami',
+      stadium: 'Hard Rock Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Dallas', nameAr: 'دالاس', nameEs: 'Dallas', nameFr: 'Dallas',
+      stadium: 'AT&T Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Atlanta', nameAr: 'أتلانتا', nameEs: 'Atlanta', nameFr: 'Atlanta',
+      stadium: 'Mercedes-Benz Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Seattle', nameAr: 'سياتل', nameEs: 'Seattle', nameFr: 'Seattle',
+      stadium: 'Lumen Field',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'San Francisco', nameAr: 'سان فرانسيسكو', nameEs: 'San Francisco', nameFr: 'San Francisco',
+      stadium: "Levi's Stadium",
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Houston', nameAr: 'هيوستن', nameEs: 'Houston', nameFr: 'Houston',
+      stadium: 'NRG Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Philadelphia', nameAr: 'فيلادلفيا', nameEs: 'Filadelfia', nameFr: 'Philadelphie',
+      stadium: 'Lincoln Financial Field',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Kansas City', nameAr: 'كانساس سيتي', nameEs: 'Kansas City', nameFr: 'Kansas City',
+      stadium: 'Arrowhead Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Boston', nameAr: 'بوسطن', nameEs: 'Boston', nameFr: 'Boston',
+      stadium: 'Gillette Stadium',
+      countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis'
+    },
+    { 
+      nameEn: 'Toronto', nameAr: 'تورونتو', nameEs: 'Toronto', nameFr: 'Toronto',
+      stadium: 'BMO Field',
+      countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada'
+    },
+    { 
+      nameEn: 'Vancouver', nameAr: 'فانكوفر', nameEs: 'Vancouver', nameFr: 'Vancouver',
+      stadium: 'BC Place',
+      countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada'
+    },
+    { 
+      nameEn: 'Mexico City', nameAr: 'مكسيكو سيتي', nameEs: 'Ciudad de México', nameFr: 'Mexico',
+      stadium: 'Estadio Azteca',
+      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
+    },
+    { 
+      nameEn: 'Guadalajara', nameAr: 'غوادالاخارا', nameEs: 'Guadalajara', nameFr: 'Guadalajara',
+      stadium: 'Estadio Akron',
+      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
+    },
+    { 
+      nameEn: 'Monterrey', nameAr: 'مونتيري', nameEs: 'Monterrey', nameFr: 'Monterrey',
+      stadium: 'Estadio BBVA',
+      countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique'
+    },
   ];
+
+  // Helper to get localized city name
+  const getCityName = (city: typeof cities[0]) => {
+    switch (language) {
+      case 'ar': return city.nameAr;
+      case 'es': return city.nameEs;
+      case 'fr': return city.nameFr;
+      default: return city.nameEn;
+    }
+  };
+
+  // Helper to get localized country name
+  const getCountryName = (city: typeof cities[0]) => {
+    switch (language) {
+      case 'ar': return city.countryAr;
+      case 'es': return city.countryEs;
+      case 'fr': return city.countryFr;
+      default: return city.countryEn;
+    }
+  };
 
   return (
     <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
@@ -447,8 +532,8 @@ const TravelSection = () => {
               
               return (
               <motion.a
-                key={city.name}
-                href={`${baseUrl}?ss=${encodeURIComponent(city.name)}`}
+                key={city.nameEn}
+                href={`${baseUrl}?ss=${encodeURIComponent(city.nameEn)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -457,9 +542,9 @@ const TravelSection = () => {
                 transition={{ delay: index * 0.03 }}
                 className="flex-shrink-0 w-[140px] md:w-auto bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer snap-start"
               >
-                <h4 className="font-semibold text-foreground text-sm mb-1">{city.name}</h4>
+                <h4 className="font-semibold text-foreground text-sm mb-1">{getCityName(city)}</h4>
                 <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
-                <span className="text-[10px] text-primary font-medium">{city.country}</span>
+                <span className="text-[10px] text-primary font-medium">{getCountryName(city)}</span>
               </motion.a>
             )})}
           </div>
