@@ -14,8 +14,20 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+// ========== Type definition for supported languages ==========
+type Language = 'en' | 'ar' | 'es' | 'fr';
+
 // ========== TRAVEL_CONTENT: Single source of truth for all 4 languages ==========
-const TRAVEL_CONTENT = {
+const TRAVEL_CONTENT: Record<Language, {
+  hotelTitle: string;
+  hotelDesc: string;
+  carTitle: string;
+  carDesc: string;
+  flightTitle: string;
+  flightDesc: string;
+  bookNow: string;
+  hostCitiesTitle: string;
+}> = {
   en: {
     hotelTitle: 'Hotels',
     hotelDesc: 'Book premium hotels near World Cup stadiums across USA, Canada & Mexico. Best rates guaranteed.',
@@ -86,7 +98,8 @@ const TravelSection = () => {
   const [toCity, setToCity] = useState('');
 
   // Get current language content - falls back to English
-  const content = TRAVEL_CONTENT[language] || TRAVEL_CONTENT.en;
+  const langKey = language as Language;
+  const content = TRAVEL_CONTENT[langKey] || TRAVEL_CONTENT.en;
 
   // Helper to get localized city name
   const getCityName = (city: typeof HOST_CITIES[0]) => {
@@ -140,7 +153,17 @@ const TravelSection = () => {
   };
 
   // Flights UI translations
-  const flightsUI = {
+  const flightsUI: Record<Language, {
+    searchFlights: string;
+    from: string;
+    to: string;
+    selectOrigin: string;
+    selectDestination: string;
+    search: string;
+    worldCup2026: string;
+    findBestDeals: string;
+    close: string;
+  }> = {
     ar: {
       searchFlights: 'بحث عن رحلات',
       from: 'الذهاب من',
@@ -187,7 +210,7 @@ const TravelSection = () => {
     },
   };
 
-  const ui = flightsUI[language] || flightsUI.en;
+  const ui = flightsUI[langKey] || flightsUI.en;
 
   const handleFlightsSearch = () => {
     if (!fromCity || !toCity) return;
