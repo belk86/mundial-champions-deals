@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 // ========== Type definition for supported languages ==========
-type Language = 'en' | 'ar' | 'es' | 'fr';
+type Language = 'en' | 'es' | 'fr';
 
-// ========== TRAVEL_CONTENT: Single source of truth for all 4 languages ==========
+// ========== TRAVEL_CONTENT: Single source of truth for all 3 languages ==========
 const TRAVEL_CONTENT: Record<Language, {
   sectionTitle: string;
   sectionSubtitle: string;
@@ -27,15 +27,6 @@ const TRAVEL_CONTENT: Record<Language, {
     bookNow: 'Book Now',
     hostCitiesTitle: 'Host Cities - USA, Canada & Mexico',
     explore: 'Explore',
-  },
-  ar: {
-    sectionTitle: 'خطط رحلة كأس العالم',
-    sectionSubtitle: 'احجز إقامتك وتأجير السيارات والرحلات إلى أمريكا وكندا والمكسيك لكأس العالم 2026',
-    travelServicesTitle: 'خدمات السفر',
-    travelServicesDesc: 'احجز الفنادق وتأجير السيارات والرحلات الجوية لمغامرة كأس العالم 2026. أفضل الأسعار في أمريكا وكندا والمكسيك.',
-    bookNow: 'احجز الآن',
-    hostCitiesTitle: 'المدن المستضيفة - أمريكا وكندا والمكسيك',
-    explore: 'استكشف',
   },
   es: {
     sectionTitle: 'Planifica tu Viaje al Mundial',
@@ -57,24 +48,24 @@ const TRAVEL_CONTENT: Record<Language, {
   },
 };
 
-// ========== HOST_CITIES: Localized city names for all 4 languages ==========
+// ========== HOST_CITIES: Localized city names for all 3 languages ==========
 const HOST_CITIES = [
-  { nameEn: 'New York/NJ', nameAr: 'نيويورك/نيوجيرسي', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ', stadium: 'MetLife Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Los Angeles', nameAr: 'لوس أنجلوس', nameEs: 'Los Ángeles', nameFr: 'Los Angeles', stadium: 'SoFi Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Miami', nameAr: 'ميامي', nameEs: 'Miami', nameFr: 'Miami', stadium: 'Hard Rock Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Dallas', nameAr: 'دالاس', nameEs: 'Dallas', nameFr: 'Dallas', stadium: 'AT&T Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Atlanta', nameAr: 'أتلانتا', nameEs: 'Atlanta', nameFr: 'Atlanta', stadium: 'Mercedes-Benz Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Seattle', nameAr: 'سياتل', nameEs: 'Seattle', nameFr: 'Seattle', stadium: 'Lumen Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'San Francisco', nameAr: 'سان فرانسيسكو', nameEs: 'San Francisco', nameFr: 'San Francisco', stadium: "Levi's Stadium", countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Houston', nameAr: 'هيوستن', nameEs: 'Houston', nameFr: 'Houston', stadium: 'NRG Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Philadelphia', nameAr: 'فيلادلفيا', nameEs: 'Filadelfia', nameFr: 'Philadelphie', stadium: 'Lincoln Financial Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Kansas City', nameAr: 'كانساس سيتي', nameEs: 'Kansas City', nameFr: 'Kansas City', stadium: 'Arrowhead Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Boston', nameAr: 'بوسطن', nameEs: 'Boston', nameFr: 'Boston', stadium: 'Gillette Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Toronto', nameAr: 'تورونتو', nameEs: 'Toronto', nameFr: 'Toronto', stadium: 'BMO Field', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
-  { nameEn: 'Vancouver', nameAr: 'فانكوفر', nameEs: 'Vancouver', nameFr: 'Vancouver', stadium: 'BC Place', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
-  { nameEn: 'Mexico City', nameAr: 'مكسيكو سيتي', nameEs: 'Ciudad de México', nameFr: 'Mexico', stadium: 'Estadio Azteca', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
-  { nameEn: 'Guadalajara', nameAr: 'غوادالاخارا', nameEs: 'Guadalajara', nameFr: 'Guadalajara', stadium: 'Estadio Akron', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
-  { nameEn: 'Monterrey', nameAr: 'مونتيري', nameEs: 'Monterrey', nameFr: 'Monterrey', stadium: 'Estadio BBVA', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'New York/NJ', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ', stadium: 'MetLife Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Los Angeles', nameEs: 'Los Ángeles', nameFr: 'Los Angeles', stadium: 'SoFi Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Miami', nameEs: 'Miami', nameFr: 'Miami', stadium: 'Hard Rock Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Dallas', nameEs: 'Dallas', nameFr: 'Dallas', stadium: 'AT&T Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Atlanta', nameEs: 'Atlanta', nameFr: 'Atlanta', stadium: 'Mercedes-Benz Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Seattle', nameEs: 'Seattle', nameFr: 'Seattle', stadium: 'Lumen Field', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'San Francisco', nameEs: 'San Francisco', nameFr: 'San Francisco', stadium: "Levi's Stadium", countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Houston', nameEs: 'Houston', nameFr: 'Houston', stadium: 'NRG Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Philadelphia', nameEs: 'Filadelfia', nameFr: 'Philadelphie', stadium: 'Lincoln Financial Field', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Kansas City', nameEs: 'Kansas City', nameFr: 'Kansas City', stadium: 'Arrowhead Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Boston', nameEs: 'Boston', nameFr: 'Boston', stadium: 'Gillette Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Toronto', nameEs: 'Toronto', nameFr: 'Toronto', stadium: 'BMO Field', countryEn: 'Canada', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Vancouver', nameEs: 'Vancouver', nameFr: 'Vancouver', stadium: 'BC Place', countryEn: 'Canada', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Mexico City', nameEs: 'Ciudad de México', nameFr: 'Mexico', stadium: 'Estadio Azteca', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Guadalajara', nameEs: 'Guadalajara', nameFr: 'Guadalajara', stadium: 'Estadio Akron', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Monterrey', nameEs: 'Monterrey', nameFr: 'Monterrey', stadium: 'Estadio BBVA', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
 ];
 
 const TravelSection = () => {
@@ -88,7 +79,6 @@ const TravelSection = () => {
   // Helper to get localized city name
   const getCityName = (city: typeof HOST_CITIES[0]) => {
     switch (language) {
-      case 'ar': return city.nameAr;
       case 'es': return city.nameEs;
       case 'fr': return city.nameFr;
       default: return city.nameEn;
@@ -98,7 +88,6 @@ const TravelSection = () => {
   // Helper to get localized country name
   const getCountryName = (city: typeof HOST_CITIES[0]) => {
     switch (language) {
-      case 'ar': return city.countryAr;
       case 'es': return city.countryEs;
       case 'fr': return city.countryFr;
       default: return city.countryEn;
