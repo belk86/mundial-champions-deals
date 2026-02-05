@@ -57,10 +57,10 @@ const DailySecretDeal = () => {
 
   const getDisplayName = () => {
     switch (language) {
-      case 'ar':
-        return secretDeal.nameAr;
       case 'es':
         return secretDeal.nameEs;
+      case 'fr':
+        return secretDeal.name; // French falls back to English
       default:
         return secretDeal.name;
     }

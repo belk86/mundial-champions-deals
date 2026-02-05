@@ -1,12 +1,31 @@
-import { Mail, MapPin, User } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import FanEdgeLogo from './FanEdgeLogo';
+import { toast } from 'sonner';
 
 const FanEdgeFooter = () => {
+  const { t } = useTranslation();
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+    setIsSubmitted(true);
+    toast.success('Successfully subscribed! Welcome to FanEdge.');
+    setEmail('');
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
+
   const quickLinks = [
     { label: 'Home', href: '#home' },
-    { label: 'Fans Gear', href: '#products' },
+    { label: 'Fan Gear', href: '#products' },
     { label: 'Travel Guide', href: '#travel' },
-    { label: 'Schedule', href: '#schedule' },
+    { label: 'Match Schedule', href: '#schedule' },
   ];
 
   const legalLinks = [
@@ -16,32 +35,32 @@ const FanEdgeFooter = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-t border-border moroccan-pattern">
       <div className="container px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div className="space-y-4">
             <FanEdgeLogo size="sm" />
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Your premium destination for World Cup 2026 gear and travel. Shop viral products and plan your trip to Morocco.
+              {t('footer.tagline')}
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary/60" />
-                <a href="mailto:support@fanedge.com" className="hover:text-primary transition-colors">
-                  support@fanedge.com
+                <a href="mailto:medbelk@fanedge.com" className="hover:text-primary transition-colors">
+                  medbelk@fanedge.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary/60" />
-                <span>Tangier, Morocco</span>
+                <span>USA, Canada & Mexico</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.label}>
@@ -58,7 +77,7 @@ const FanEdgeFooter = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Legal</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.label}>
@@ -73,22 +92,38 @@ const FanEdgeFooter = () => {
             </ul>
           </div>
 
-          {/* Newsletter Placeholder */}
+          {/* Newsletter Section */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Stay Updated</h4>
             <p className="text-muted-foreground text-sm mb-4">
               Get exclusive deals and World Cup 2026 updates.
             </p>
-            <div className="flex gap-2">
+            <form onSubmit={handleSubscribe} className="flex gap-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
-                className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon transition-all"
               />
-              <button className="px-4 py-2 bg-primary hover:bg-purple-dark text-primary-foreground rounded-lg font-medium text-sm transition-colors">
-                Join
+              <button 
+                type="submit"
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 ${
+                  isSubmitted 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-amazon hover:bg-amazon-dark text-black'
+                }`}
+              >
+                {isSubmitted ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Success!
+                  </>
+                ) : (
+                  'Join Now'
+                )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
@@ -96,17 +131,17 @@ const FanEdgeFooter = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">
-              © 2026 FanEdge. All rights reserved.
+              {t('footer.copyright')}
             </p>
             <p className="text-xs text-muted-foreground/60 text-center max-w-lg">
-              We may earn a commission from qualifying purchases through our affiliate links.
+              {t('footer.affiliate')}
             </p>
           </div>
           
           {/* Amazon Disclaimer */}
           <div className="mt-6 pt-4 border-t border-border/50">
             <p className="text-xs text-muted-foreground/50 text-center max-w-3xl mx-auto leading-relaxed">
-              <strong>Amazon Affiliate Disclaimer:</strong> FanEdge is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases.
+              <strong>Amazon Affiliate Disclaimer:</strong> FanEdge is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. 
             </p>
           </div>
         </div>

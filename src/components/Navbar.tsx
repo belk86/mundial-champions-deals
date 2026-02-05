@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import mLogo from '@/assets/m-logo.png';
+
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -31,8 +31,8 @@ const Navbar = () => {
 
   const languages = [
     { code: 'en' as const, label: 'English', displayCode: 'EN' },
-    { code: 'ar' as const, label: 'العربية', displayCode: 'AR' },
     { code: 'es' as const, label: 'Español', displayCode: 'ES' },
+    { code: 'fr' as const, label: 'Français', displayCode: 'FR' },
   ];
 
   const currentLang = languages.find(l => l.code === language);
@@ -46,15 +46,21 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Unified Gold M with FanZone 26 tagline */}
-          <a href="#home" className="flex items-center gap-2 md:gap-3">
-            <img 
-              src={mLogo} 
-              alt="FanZone 26" 
-              className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg object-cover glow-gold-sm flex-shrink-0"
-            />
-            <span className="text-sm sm:text-base font-semibold text-gold whitespace-nowrap">
-              FanZone 26
+          {/* Logo - FanEdge text in Amazon Orange with neon glow */}
+          <a href="#home" className="flex items-center">
+            <span 
+              className="text-xl sm:text-2xl md:text-3xl font-extrabold whitespace-nowrap"
+              style={{
+                color: '#FF9900',
+                textShadow: `
+                  0 0 8px rgba(255, 153, 0, 0.6),
+                  0 0 16px rgba(255, 153, 0, 0.4),
+                  0 0 32px rgba(255, 153, 0, 0.3),
+                  0 0 48px rgba(255, 153, 0, 0.2)
+                `,
+              }}
+            >
+              FanEdge
             </span>
           </a>
 
@@ -101,7 +107,7 @@ const Navbar = () => {
                         onClick={() => { setLanguage(lang.code); setIsLangOpen(false); }}
                         className={`w-full px-4 py-2 text-left hover:bg-secondary transition-colors flex items-center justify-between ${language === lang.code ? 'text-primary bg-secondary/50' : 'text-foreground'}`}
                       >
-                        <span className={lang.code === 'ar' ? 'font-arabic' : 'font-english'}>
+                        <span className="font-english">
                           {lang.label}
                         </span>
                         <span className="text-xs text-muted-foreground">{lang.displayCode}</span>

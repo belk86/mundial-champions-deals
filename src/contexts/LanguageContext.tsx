@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
-type Language = 'en' | 'ar' | 'es';
+type Language = 'en' | 'es' | 'fr';
 
 interface LanguageContextType {
   language: Language;
@@ -12,33 +12,29 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const { i18n } = useTranslation();
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>(() => {
+    // Initialize with saved preference or default to English
+    const saved = localStorage.getItem('mundialGear-lang') as Language | null;
+    if (saved && ['en', 'es', 'fr'].includes(saved)) {
+      return saved;
+    }
+    return 'en';
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     i18n.changeLanguage(lang);
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = 'ltr';
     document.documentElement.lang = lang;
-    
-    // Update font class
-    if (lang === 'ar') {
-      document.body.classList.add('font-arabic');
-      document.body.classList.remove('font-english');
-    } else {
-      document.body.classList.add('font-english');
-      document.body.classList.remove('font-arabic');
-    }
+    document.body.classList.add('font-english');
   };
 
+  // Apply language settings on mount
   useEffect(() => {
-    // Initialize with saved preference or default
-    const saved = localStorage.getItem('mundialGear-lang') as Language | null;
-    if (saved && (saved === 'en' || saved === 'ar' || saved === 'es')) {
-      setLanguage(saved);
-    }
+    setLanguage(language);
   }, []);
 
+  // Persist language preference
   useEffect(() => {
     localStorage.setItem('mundialGear-lang', language);
   }, [language]);
@@ -47,7 +43,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     <LanguageContext.Provider value={{ 
       language, 
       setLanguage, 
-      isRTL: language === 'ar' 
+      isRTL: false 
     }}>
       {children}
     </LanguageContext.Provider>
