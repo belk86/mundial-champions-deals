@@ -207,15 +207,12 @@ const TravelSection = () => {
   // Travelpayouts affiliate links with Marker ID: 495595
   const MARKER_ID = '495595';
 
-  const getBookingLinks = () => {
-    return { 
-      flights: `https://www.aviasales.com/?marker=${MARKER_ID}&locale=${langKey}`, 
-      cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}&lang=${langKey}`, 
-      hotels: `https://search.hotellook.com/?marker=${MARKER_ID}&language=${langKey}` 
-    };
+  // Hard-coded affiliate URLs with dynamic language - Marker 495595 confirmed
+  const currentLinks = {
+    hotels: `https://search.hotellook.com/?marker=${MARKER_ID}&language=${langKey}`,
+    cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}&lang=${langKey}`,
+    flights: `https://www.aviasales.com/?marker=${MARKER_ID}&locale=${langKey}`,
   };
-
-  const currentLinks = getBookingLinks();
 
   const travelOptions = [
     {
@@ -249,7 +246,7 @@ const TravelSection = () => {
 
 
   return (
-    <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
+    <section key={`travel-${langKey}`} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
       {/* Purple gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-muted/10 to-transparent" />
       
