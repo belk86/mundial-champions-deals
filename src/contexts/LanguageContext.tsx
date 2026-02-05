@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import i18n from '@/i18n';
 
-type Language = 'en' | 'es' | 'fr';
+type Language = 'en' | 'ar' | 'es' | 'fr';
 
 interface LanguageContextType {
   language: Language;
@@ -13,9 +13,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    // Initialize with saved preference or default to English
+    // Initialize with saved preference or default
     const saved = localStorage.getItem('mundialGear-lang') as Language | null;
-    if (saved && ['en', 'es', 'fr'].includes(saved)) {
+    if (saved && ['en', 'ar', 'es', 'fr'].includes(saved)) {
       return saved;
     }
     return 'en';
@@ -24,9 +24,17 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     i18n.changeLanguage(lang);
-    document.documentElement.dir = 'ltr';
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
-    document.body.classList.add('font-english');
+    
+    // Update font class
+    if (lang === 'ar') {
+      document.body.classList.add('font-arabic');
+      document.body.classList.remove('font-english');
+    } else {
+      document.body.classList.add('font-english');
+      document.body.classList.remove('font-arabic');
+    }
   };
 
   // Apply language settings on mount
@@ -43,7 +51,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     <LanguageContext.Provider value={{ 
       language, 
       setLanguage, 
-      isRTL: false 
+      isRTL: language === 'ar' 
     }}>
       {children}
     </LanguageContext.Provider>
