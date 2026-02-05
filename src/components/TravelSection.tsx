@@ -60,24 +60,24 @@ const TRAVEL_CONTENT: Record<Language, {
   },
 };
 
-// ========== HOST_CITIES: Localized city names for all 4 languages ==========
+// ========== HOST_CITIES: Localized city names (EN, ES, FR only) ==========
 const HOST_CITIES = [
-  { nameEn: 'New York/NJ', nameAr: 'نيويورك/نيوجيرسي', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ', stadium: 'MetLife Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Los Angeles', nameAr: 'لوس أنجلوس', nameEs: 'Los Ángeles', nameFr: 'Los Angeles', stadium: 'SoFi Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Miami', nameAr: 'ميامي', nameEs: 'Miami', nameFr: 'Miami', stadium: 'Hard Rock Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Dallas', nameAr: 'دالاس', nameEs: 'Dallas', nameFr: 'Dallas', stadium: 'AT&T Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Atlanta', nameAr: 'أتلانتا', nameEs: 'Atlanta', nameFr: 'Atlanta', stadium: 'Mercedes-Benz Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Seattle', nameAr: 'سياتل', nameEs: 'Seattle', nameFr: 'Seattle', stadium: 'Lumen Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'San Francisco', nameAr: 'سان فرانسيسكو', nameEs: 'San Francisco', nameFr: 'San Francisco', stadium: "Levi's Stadium", countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Houston', nameAr: 'هيوستن', nameEs: 'Houston', nameFr: 'Houston', stadium: 'NRG Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Philadelphia', nameAr: 'فيلادلفيا', nameEs: 'Filadelfia', nameFr: 'Philadelphie', stadium: 'Lincoln Financial Field', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Kansas City', nameAr: 'كانساس سيتي', nameEs: 'Kansas City', nameFr: 'Kansas City', stadium: 'Arrowhead Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Boston', nameAr: 'بوسطن', nameEs: 'Boston', nameFr: 'Boston', stadium: 'Gillette Stadium', countryEn: 'USA', countryAr: 'الولايات المتحدة', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
-  { nameEn: 'Toronto', nameAr: 'تورونتو', nameEs: 'Toronto', nameFr: 'Toronto', stadium: 'BMO Field', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
-  { nameEn: 'Vancouver', nameAr: 'فانكوفر', nameEs: 'Vancouver', nameFr: 'Vancouver', stadium: 'BC Place', countryEn: 'Canada', countryAr: 'كندا', countryEs: 'Canadá', countryFr: 'Canada' },
-  { nameEn: 'Mexico City', nameAr: 'مكسيكو سيتي', nameEs: 'Ciudad de México', nameFr: 'Mexico', stadium: 'Estadio Azteca', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
-  { nameEn: 'Guadalajara', nameAr: 'غوادالاخارا', nameEs: 'Guadalajara', nameFr: 'Guadalajara', stadium: 'Estadio Akron', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
-  { nameEn: 'Monterrey', nameAr: 'مونتيري', nameEs: 'Monterrey', nameFr: 'Monterrey', stadium: 'Estadio BBVA', countryEn: 'Mexico', countryAr: 'المكسيك', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'New York/NJ', nameEs: 'Nueva York/NJ', nameFr: 'New York/NJ', stadium: 'MetLife Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Los Angeles', nameEs: 'Los Ángeles', nameFr: 'Los Angeles', stadium: 'SoFi Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Miami', nameEs: 'Miami', nameFr: 'Miami', stadium: 'Hard Rock Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Dallas', nameEs: 'Dallas', nameFr: 'Dallas', stadium: 'AT&T Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Atlanta', nameEs: 'Atlanta', nameFr: 'Atlanta', stadium: 'Mercedes-Benz Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Seattle', nameEs: 'Seattle', nameFr: 'Seattle', stadium: 'Lumen Field', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'San Francisco', nameEs: 'San Francisco', nameFr: 'San Francisco', stadium: "Levi's Stadium", countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Houston', nameEs: 'Houston', nameFr: 'Houston', stadium: 'NRG Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Philadelphia', nameEs: 'Filadelfia', nameFr: 'Philadelphie', stadium: 'Lincoln Financial Field', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Kansas City', nameEs: 'Kansas City', nameFr: 'Kansas City', stadium: 'Arrowhead Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Boston', nameEs: 'Boston', nameFr: 'Boston', stadium: 'Gillette Stadium', countryEn: 'USA', countryEs: 'EE.UU.', countryFr: 'États-Unis' },
+  { nameEn: 'Toronto', nameEs: 'Toronto', nameFr: 'Toronto', stadium: 'BMO Field', countryEn: 'Canada', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Vancouver', nameEs: 'Vancouver', nameFr: 'Vancouver', stadium: 'BC Place', countryEn: 'Canada', countryEs: 'Canadá', countryFr: 'Canada' },
+  { nameEn: 'Mexico City', nameEs: 'Ciudad de México', nameFr: 'Mexico', stadium: 'Estadio Azteca', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Guadalajara', nameEs: 'Guadalajara', nameFr: 'Guadalajara', stadium: 'Estadio Akron', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
+  { nameEn: 'Monterrey', nameEs: 'Monterrey', nameFr: 'Monterrey', stadium: 'Estadio BBVA', countryEn: 'Mexico', countryEs: 'México', countryFr: 'Mexique' },
 ];
 
 const TravelSection = () => {
@@ -109,26 +109,26 @@ const TravelSection = () => {
     }
   };
 
-  // World Cup 2026 destination cities
+  // World Cup 2026 destination cities (EN, ES, FR only)
   const worldCupDestinations = [
-    { value: 'new-york', labelEn: 'New York, USA', labelAr: 'نيويورك، الولايات المتحدة', labelEs: 'Nueva York, EE.UU.', labelFr: 'New York, États-Unis' },
-    { value: 'los-angeles', labelEn: 'Los Angeles, USA', labelAr: 'لوس أنجلوس، الولايات المتحدة', labelEs: 'Los Ángeles, EE.UU.', labelFr: 'Los Angeles, États-Unis' },
-    { value: 'miami', labelEn: 'Miami, USA', labelAr: 'ميامي، الولايات المتحدة', labelEs: 'Miami, EE.UU.', labelFr: 'Miami, États-Unis' },
-    { value: 'toronto', labelEn: 'Toronto, Canada', labelAr: 'تورونتو، كندا', labelEs: 'Toronto, Canadá', labelFr: 'Toronto, Canada' },
-    { value: 'mexico-city', labelEn: 'Mexico City, Mexico', labelAr: 'مكسيكو سيتي، المكسيك', labelEs: 'Ciudad de México, México', labelFr: 'Mexico, Mexique' },
-    { value: 'dallas', labelEn: 'Dallas, USA', labelAr: 'دالاس، الولايات المتحدة', labelEs: 'Dallas, EE.UU.', labelFr: 'Dallas, États-Unis' },
-    { value: 'atlanta', labelEn: 'Atlanta, USA', labelAr: 'أتلانتا، الولايات المتحدة', labelEs: 'Atlanta, EE.UU.', labelFr: 'Atlanta, États-Unis' },
+    { value: 'new-york', labelEn: 'New York, USA', labelEs: 'Nueva York, EE.UU.', labelFr: 'New York, États-Unis' },
+    { value: 'los-angeles', labelEn: 'Los Angeles, USA', labelEs: 'Los Ángeles, EE.UU.', labelFr: 'Los Angeles, États-Unis' },
+    { value: 'miami', labelEn: 'Miami, USA', labelEs: 'Miami, EE.UU.', labelFr: 'Miami, États-Unis' },
+    { value: 'toronto', labelEn: 'Toronto, Canada', labelEs: 'Toronto, Canadá', labelFr: 'Toronto, Canada' },
+    { value: 'mexico-city', labelEn: 'Mexico City, Mexico', labelEs: 'Ciudad de México, México', labelFr: 'Mexico, Mexique' },
+    { value: 'dallas', labelEn: 'Dallas, USA', labelEs: 'Dallas, EE.UU.', labelFr: 'Dallas, États-Unis' },
+    { value: 'atlanta', labelEn: 'Atlanta, USA', labelEs: 'Atlanta, EE.UU.', labelFr: 'Atlanta, États-Unis' },
   ];
 
-  // Origin cities
+  // Origin cities (EN, ES, FR only)
   const originCities = [
-    { value: 'casablanca', labelEn: 'Casablanca, Morocco', labelAr: 'الدار البيضاء، المغرب', labelEs: 'Casablanca, Marruecos', labelFr: 'Casablanca, Maroc' },
-    { value: 'tangier', labelEn: 'Tangier, Morocco', labelAr: 'طنجة، المغرب', labelEs: 'Tánger, Marruecos', labelFr: 'Tanger, Maroc' },
-    { value: 'marrakech', labelEn: 'Marrakech, Morocco', labelAr: 'مراكش، المغرب', labelEs: 'Marrakech, Marruecos', labelFr: 'Marrakech, Maroc' },
-    { value: 'paris', labelEn: 'Paris, France', labelAr: 'باريس، فرنسا', labelEs: 'París, Francia', labelFr: 'Paris, France' },
-    { value: 'london', labelEn: 'London, UK', labelAr: 'لندن، المملكة المتحدة', labelEs: 'Londres, Reino Unido', labelFr: 'Londres, Royaume-Uni' },
-    { value: 'madrid', labelEn: 'Madrid, Spain', labelAr: 'مدريد، إسبانيا', labelEs: 'Madrid, España', labelFr: 'Madrid, Espagne' },
-    { value: 'dubai', labelEn: 'Dubai, UAE', labelAr: 'دبي، الإمارات', labelEs: 'Dubái, EAU', labelFr: 'Dubaï, EAU' },
+    { value: 'casablanca', labelEn: 'Casablanca, Morocco', labelEs: 'Casablanca, Marruecos', labelFr: 'Casablanca, Maroc' },
+    { value: 'tangier', labelEn: 'Tangier, Morocco', labelEs: 'Tánger, Marruecos', labelFr: 'Tanger, Maroc' },
+    { value: 'marrakech', labelEn: 'Marrakech, Morocco', labelEs: 'Marrakech, Marruecos', labelFr: 'Marrakech, Maroc' },
+    { value: 'paris', labelEn: 'Paris, France', labelEs: 'París, Francia', labelFr: 'Paris, France' },
+    { value: 'london', labelEn: 'London, UK', labelEs: 'Londres, Reino Unido', labelFr: 'Londres, Royaume-Uni' },
+    { value: 'madrid', labelEn: 'Madrid, Spain', labelEs: 'Madrid, España', labelFr: 'Madrid, Espagne' },
+    { value: 'dubai', labelEn: 'Dubai, UAE', labelEs: 'Dubái, EAU', labelFr: 'Dubaï, EAU' },
   ];
 
   const getCityLabel = (city: typeof worldCupDestinations[0]) => {
@@ -195,17 +195,16 @@ const TravelSection = () => {
     const toCityData = worldCupDestinations.find(c => c.value === toCity);
     
     if (fromCityData && toCityData) {
-      const searchUrl = `https://www.booking.com/flights/index.html?type=ONEWAY&adults=1&cabinClass=ECONOMY&from=${encodeURIComponent(fromCityData.labelEn.split(',')[0])}&to=${encodeURIComponent(toCityData.labelEn.split(',')[0])}&label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE`;
+      // Use Booking.com flights search
+      const searchUrl = `https://www.booking.com/flights/index.html?type=ONEWAY&adults=1&cabinClass=ECONOMY&from=${encodeURIComponent(fromCityData.labelEn.split(',')[0])}&to=${encodeURIComponent(toCityData.labelEn.split(',')[0])}&aid=304142&label=marker-495595`;
       window.open(searchUrl, '_blank');
     }
   };
 
-  // ========== DIRECT AFFILIATE LINKS WITH MARKER 495595 ==========
-  // Hotels: Direct Hotellook URL (no tp.media redirect)
+  // ========== DIRECT AFFILIATE LINKS - BOOKING.COM ONLY (NO HOTELLOOK) ==========
   const currentLinks = {
-    hotels: `https://search.hotellook.com/?marker=495595&language=${langKey}`,
+    hotels: `https://www.booking.com/searchresults.html?aid=304142&label=marker-495595&lang=${langKey}`,
     cars: `https://www.booking.com/cars/index.html?aid=304142&label=marker-495595&lang=${langKey}`,
-    flights: `https://www.aviasales.com/?marker=495595&lang=${langKey}`,
   };
 
   const travelOptions = [
@@ -232,12 +231,11 @@ const TravelSection = () => {
       type: 'flights' as const,
       title: content.flightTitle,
       desc: content.flightDesc,
-      link: currentLinks.flights,
+      link: '',
       color: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
       iconColor: 'text-orange-400',
     },
   ];
-
 
   return (
     <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
@@ -281,7 +279,6 @@ const TravelSection = () => {
                 animate={{ y: 0 }}
                 className="bg-card border border-border rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
-                dir="ltr"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
@@ -413,8 +410,7 @@ const TravelSection = () => {
                       if (option.type === 'flights') {
                         setShowFlightsSearch(true);
                       } else {
-                        const url = currentLinks[option.type];
-                        window.open(url, '_blank');
+                        window.open(option.link, '_blank');
                       }
                     }}
                   >
@@ -440,26 +436,27 @@ const TravelSection = () => {
           </h3>
           <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
             {HOST_CITIES.map((city, index) => {
-              // Direct Hotellook city search URL with Marker 495595
-              const citySearchUrl = `https://search.hotellook.com/?marker=495595&language=${langKey}&destination=${encodeURIComponent(city.nameEn)}`;
+              // Direct Booking.com hotel search URL with affiliate marker
+              const citySearchUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city.nameEn)}&aid=304142&label=marker-495595&lang=${langKey}`;
               
               return (
-              <motion.a
-                key={city.nameEn}
-                href={citySearchUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.03 }}
-                className="flex-shrink-0 w-[140px] md:w-auto bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer snap-start"
-              >
-                <h4 className="font-semibold text-foreground text-sm mb-1">{getCityName(city)}</h4>
-                <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
-                <span className="text-[10px] text-primary font-medium">{getCountryName(city)}</span>
-              </motion.a>
-            )})}
+                <motion.a
+                  key={city.nameEn}
+                  href={citySearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.03 }}
+                  className="flex-shrink-0 w-[140px] md:w-auto bg-card rounded-lg p-3 border border-border text-center hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer snap-start"
+                >
+                  <h4 className="font-semibold text-foreground text-sm mb-1">{getCityName(city)}</h4>
+                  <p className="text-xs text-muted-foreground line-clamp-1">{city.stadium}</p>
+                  <span className="text-[10px] text-primary font-medium">{getCountryName(city)}</span>
+                </motion.a>
+              );
+            })}
           </div>
         </motion.div>
       </div>
