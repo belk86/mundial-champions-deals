@@ -1,3 +1,4 @@
+// Clean, minimal product data - 14 Amazon affiliate links only
 export interface Product {
   id: string;
   name: string;
