@@ -199,20 +199,28 @@ const TravelSection = () => {
     const toCityData = worldCupDestinations.find(c => c.value === toCity);
     
     if (fromCityData && toCityData) {
-      const searchUrl = `https://www.aviasales.com/search/${encodeURIComponent(fromCityData.labelEn.split(',')[0])}${encodeURIComponent(toCityData.labelEn.split(',')[0])}1?marker=${MARKER_ID}&locale=${langKey}`;
-      window.open(searchUrl, '_blank', 'noopener,noreferrer');
+      const searchUrl = `https://www.booking.com/flights/index.html?type=ONEWAY&adults=1&cabinClass=ECONOMY&from=${encodeURIComponent(fromCityData.labelEn.split(',')[0])}&to=${encodeURIComponent(toCityData.labelEn.split(',')[0])}&label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE`;
+      window.open(searchUrl, '_blank');
     }
   };
 
-  // Travelpayouts affiliate links with Marker ID: 495595
-  const MARKER_ID = '495595';
-
-  // Hard-coded affiliate URLs with dynamic language - Marker 495595 confirmed
-  const currentLinks = {
-    hotels: `https://search.hotellook.com/?marker=${MARKER_ID}&language=${langKey}`,
-    cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}&lang=${langKey}`,
-    flights: `https://www.aviasales.com/?marker=${MARKER_ID}&locale=${langKey}`,
+  // Localized Booking links
+  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
+  
+  const getBookingLinks = () => {
+    switch (language) {
+      case 'ar':
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.ar.html', hotels: 'https://www.booking.com/index.ar.html' };
+      case 'es':
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.es.html', hotels: 'https://www.booking.com/index.es.html' };
+      case 'fr':
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.fr.html', hotels: 'https://www.booking.com/index.fr.html' };
+      default:
+        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/', hotels: 'https://www.booking.com/' };
+    }
   };
+
+  const currentLinks = getBookingLinks();
 
   const travelOptions = [
     {
@@ -246,7 +254,7 @@ const TravelSection = () => {
 
 
   return (
-    <section key={`travel-${langKey}`} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
+    <section key={i18n.language} id="travel" className="py-16 md:py-24 moroccan-pattern relative">
       {/* Purple gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-muted/10 to-transparent" />
       
@@ -419,7 +427,8 @@ const TravelSection = () => {
                       if (option.type === 'flights') {
                         setShowFlightsSearch(true);
                       } else {
-                      window.open(currentLinks[option.type], '_blank', 'noopener,noreferrer');
+                        const url = currentLinks[option.type];
+                        window.open(url, '_blank');
                       }
                     }}
                   >
