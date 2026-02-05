@@ -199,24 +199,41 @@ const TravelSection = () => {
     const toCityData = worldCupDestinations.find(c => c.value === toCity);
     
     if (fromCityData && toCityData) {
-      const searchUrl = `https://www.booking.com/flights/index.html?type=ONEWAY&adults=1&cabinClass=ECONOMY&from=${encodeURIComponent(fromCityData.labelEn.split(',')[0])}&to=${encodeURIComponent(toCityData.labelEn.split(',')[0])}&label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE`;
+      const searchUrl = `https://www.aviasales.com/search/${encodeURIComponent(fromCityData.labelEn.split(',')[0])}${encodeURIComponent(toCityData.labelEn.split(',')[0])}1?marker=${MARKER_ID}`;
       window.open(searchUrl, '_blank');
     }
   };
 
   // Localized Booking links
-  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
-  
+  // Travelpayouts affiliate links with Marker ID: 495595
+  const MARKER_ID = '495595';
+
   const getBookingLinks = () => {
     switch (language) {
       case 'ar':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.ar.html', hotels: 'https://www.booking.com/index.ar.html' };
+        return { 
+          flights: `https://www.aviasales.com/?marker=${MARKER_ID}`, 
+          cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}`, 
+          hotels: `https://www.hotellook.com/?marker=${MARKER_ID}` 
+        };
       case 'es':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.es.html', hotels: 'https://www.booking.com/index.es.html' };
+        return { 
+          flights: `https://www.aviasales.com/?marker=${MARKER_ID}`, 
+          cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}`, 
+          hotels: `https://www.hotellook.com/?marker=${MARKER_ID}` 
+        };
       case 'fr':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.fr.html', hotels: 'https://www.booking.com/index.fr.html' };
+        return { 
+          flights: `https://www.aviasales.com/?marker=${MARKER_ID}`, 
+          cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}`, 
+          hotels: `https://www.hotellook.com/?marker=${MARKER_ID}` 
+        };
       default:
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/', hotels: 'https://www.booking.com/' };
+        return { 
+          flights: `https://www.aviasales.com/?marker=${MARKER_ID}`, 
+          cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}`, 
+          hotels: `https://www.hotellook.com/?marker=${MARKER_ID}` 
+        };
     }
   };
 
