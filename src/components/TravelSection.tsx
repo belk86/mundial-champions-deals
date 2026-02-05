@@ -207,22 +207,11 @@ const TravelSection = () => {
   // Travelpayouts affiliate links with Marker ID: 495595
   const MARKER_ID = '495595';
 
-  // Language code mapping for Travelpayouts
-  const getLangCode = (): string => {
-    switch (langKey) {
-      case 'ar': return 'ar';
-      case 'es': return 'es';
-      case 'fr': return 'fr';
-      default: return 'en';
-    }
-  };
-
   const getBookingLinks = () => {
-    const lang = getLangCode();
     return { 
-      flights: `https://www.aviasales.com/?marker=${MARKER_ID}&locale=${lang}`, 
-      cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}&lang=${lang}`, 
-      hotels: `https://search.hotellook.com/?marker=${MARKER_ID}&language=${lang}` 
+      flights: `https://www.aviasales.com/?marker=${MARKER_ID}&locale=${langKey}`, 
+      cars: `https://www.economybookings.com/?a_aid=${MARKER_ID}&lang=${langKey}`, 
+      hotels: `https://search.hotellook.com/?marker=${MARKER_ID}&language=${langKey}` 
     };
   };
 
