@@ -224,32 +224,12 @@ const TravelSection = () => {
     }
   };
 
-  // ========== AFFILIATE LINKS WITH MARKER 495595 ==========
-  // Hotels: Hotellook with language parameter
-  const getHotellookUrl = () => {
-    return `https://tp.media/r?marker=495595&trs=243422&p=121&u=https%3A%2F%2Fwww.hotellook.com%2Fsearch%3Flanguage%3D${langKey}`;
-  };
-
-  // Cars: EconomyBookings with Marker 495595
-  const getCarsUrl = () => {
-    const langMap: Record<Language, string> = {
-      en: 'en',
-      ar: 'ar',
-      es: 'es',
-      fr: 'fr',
-    };
-    return `https://tp.media/r?marker=495595&trs=243422&p=99&u=https%3A%2F%2Fwww.economybookings.com%2F${langMap[langKey] || 'en'}`;
-  };
-
-  // Flights: Aviasales with Marker 495595
-  const getFlightsUrl = () => {
-    return `https://tp.media/r?marker=495595&trs=243422&p=4114&u=https%3A%2F%2Fwww.aviasales.com%2F${langKey}`;
-  };
-
+  // ========== DIRECT AFFILIATE LINKS WITH MARKER 495595 ==========
+  // Hotels: Direct Hotellook URL (no tp.media redirect)
   const currentLinks = {
-    hotels: getHotellookUrl(),
-    cars: getCarsUrl(),
-    flights: getFlightsUrl(),
+    hotels: `https://search.hotellook.com/?marker=495595&language=${langKey}`,
+    cars: `https://www.booking.com/cars/index.html?aid=304142&label=marker-495595&lang=${langKey}`,
+    flights: `https://www.aviasales.com/?marker=495595&lang=${langKey}`,
   };
 
   const travelOptions = [
@@ -484,8 +464,8 @@ const TravelSection = () => {
           </h3>
           <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
             {HOST_CITIES.map((city, index) => {
-              // Hotellook city search URL with Marker 495595
-              const citySearchUrl = `https://tp.media/r?marker=495595&trs=243422&p=121&u=https%3A%2F%2Fwww.hotellook.com%2Fsearch%3Flanguage%3D${langKey}%26destination%3D${encodeURIComponent(city.nameEn)}`;
+              // Direct Hotellook city search URL with Marker 495595
+              const citySearchUrl = `https://search.hotellook.com/?marker=495595&language=${langKey}&destination=${encodeURIComponent(city.nameEn)}`;
               
               return (
               <motion.a
