@@ -23,8 +23,6 @@ const CategorySidebar = ({ selectedCategory, onCategoryChange }: CategorySidebar
 
   const getCategoryName = (cat: typeof categories extends (infer T)[] ? T : never) => {
     switch (language) {
-      case 'ar':
-        return cat.name_ar;
       case 'es':
         return cat.name_es;
       default:

@@ -36,7 +36,6 @@ const FanEdgeNavbar = () => {
 
   const languages = [
     { code: 'en' as const, label: 'English', displayCode: 'EN' },
-    { code: 'ar' as const, label: 'العربية', displayCode: 'AR' },
     { code: 'es' as const, label: 'Español', displayCode: 'ES' },
     { code: 'fr' as const, label: 'Français', displayCode: 'FR' },
   ];
@@ -112,7 +111,7 @@ const FanEdgeNavbar = () => {
                         className={`w-full px-4 py-2 hover:bg-secondary transition-colors flex items-center justify-between ${language === lang.code ? 'text-primary bg-secondary/50' : 'text-foreground'}`}
                         style={{ textAlign: 'start' }}
                       >
-                        <span className={lang.code === 'ar' ? 'font-arabic' : 'font-english'}>
+                        <span className="font-english">
                           {lang.label}
                         </span>
                         <span className="text-xs text-muted-foreground">{lang.displayCode}</span>

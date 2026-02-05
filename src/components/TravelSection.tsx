@@ -14,10 +14,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-// ========== Type definition for supported languages ==========
-type Language = 'en' | 'ar' | 'es' | 'fr';
+// ========== Type definition for supported languages (EN, FR, ES only) ==========
+type Language = 'en' | 'es' | 'fr';
 
-// ========== TRAVEL_CONTENT: Single source of truth for all 4 languages ==========
+// ========== TRAVEL_CONTENT: Single source of truth for 3 languages ==========
 const TRAVEL_CONTENT: Record<Language, {
   hotelTitle: string;
   hotelDesc: string;
@@ -37,16 +37,6 @@ const TRAVEL_CONTENT: Record<Language, {
     flightDesc: 'Find the best flight deals to New York, Los Angeles, Miami, Toronto, Mexico City & more.',
     bookNow: 'Book Now',
     hostCitiesTitle: 'Host Cities - USA, Canada & Mexico',
-  },
-  ar: {
-    hotelTitle: 'فنادق',
-    hotelDesc: 'احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.',
-    carTitle: 'تأجير سيارات',
-    carDesc: 'استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.',
-    flightTitle: 'تذاكر الطيران',
-    flightDesc: 'اعثر على أفضل عروض الطيران إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.',
-    bookNow: 'احجز الآن',
-    hostCitiesTitle: 'المدن المستضيفة - أمريكا وكندا والمكسيك',
   },
   es: {
     hotelTitle: 'Hoteles',
@@ -101,20 +91,18 @@ const TravelSection = () => {
   const langKey = language as Language;
   const content = TRAVEL_CONTENT[langKey] || TRAVEL_CONTENT.en;
 
-  // Helper to get localized city name
+  // Helper to get localized city name (EN, ES, FR only)
   const getCityName = (city: typeof HOST_CITIES[0]) => {
     switch (language) {
-      case 'ar': return city.nameAr;
       case 'es': return city.nameEs;
       case 'fr': return city.nameFr;
       default: return city.nameEn;
     }
   };
 
-  // Helper to get localized country name
+  // Helper to get localized country name (EN, ES, FR only)
   const getCountryName = (city: typeof HOST_CITIES[0]) => {
     switch (language) {
-      case 'ar': return city.countryAr;
       case 'es': return city.countryEs;
       case 'fr': return city.countryFr;
       default: return city.countryEn;
@@ -145,14 +133,13 @@ const TravelSection = () => {
 
   const getCityLabel = (city: typeof worldCupDestinations[0]) => {
     switch (language) {
-      case 'ar': return city.labelAr;
       case 'es': return city.labelEs;
       case 'fr': return city.labelFr;
       default: return city.labelEn;
     }
   };
 
-  // Flights UI translations
+  // Flights UI translations (EN, ES, FR only)
   const flightsUI: Record<Language, {
     searchFlights: string;
     from: string;
@@ -164,16 +151,16 @@ const TravelSection = () => {
     findBestDeals: string;
     close: string;
   }> = {
-    ar: {
-      searchFlights: 'بحث عن رحلات',
-      from: 'الذهاب من',
-      to: 'الوجهة إلى',
-      selectOrigin: 'اختر مدينة المغادرة',
-      selectDestination: 'اختر الوجهة',
-      search: 'بحث',
-      worldCup2026: 'رحلات كأس العالم 2026',
-      findBestDeals: 'اعثر على أفضل العروض لمباريات كأس العالم',
-      close: 'إغلاق',
+    en: {
+      searchFlights: 'Search Flights',
+      from: 'From',
+      to: 'To',
+      selectOrigin: 'Select departure city',
+      selectDestination: 'Select destination',
+      search: 'Search',
+      worldCup2026: 'World Cup 2026 Flights',
+      findBestDeals: 'Find the best deals for World Cup matches',
+      close: 'Close',
     },
     es: {
       searchFlights: 'Buscar vuelos',
@@ -196,17 +183,6 @@ const TravelSection = () => {
       worldCup2026: 'Vols Coupe du Monde 2026',
       findBestDeals: 'Trouvez les meilleures offres pour les matchs de la Coupe du Monde',
       close: 'Fermer',
-    },
-    en: {
-      searchFlights: 'Search Flights',
-      from: 'From',
-      to: 'To',
-      selectOrigin: 'Select departure city',
-      selectDestination: 'Select destination',
-      search: 'Search',
-      worldCup2026: 'World Cup 2026 Flights',
-      findBestDeals: 'Find the best deals for World Cup matches',
-      close: 'Close',
     },
   };
 
@@ -305,7 +281,7 @@ const TravelSection = () => {
                 animate={{ y: 0 }}
                 className="bg-card border border-border rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
-                dir={language === 'ar' ? 'rtl' : 'ltr'}
+                dir="ltr"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
@@ -350,7 +326,7 @@ const TravelSection = () => {
                   {/* Arrow */}
                   <div className="flex justify-center">
                     <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                      <ArrowRight className={`w-5 h-5 text-primary ${language === 'ar' ? 'rotate-180' : ''}`} />
+                      <ArrowRight className="w-5 h-5 text-primary" />
                     </div>
                   </div>
 
@@ -387,7 +363,7 @@ const TravelSection = () => {
                 {/* Quick destinations */}
                 <div className="mt-6 pt-6 border-t border-border">
                   <p className="text-xs text-muted-foreground mb-3 text-center">
-                    🏆 {language === 'ar' ? 'وجهات كأس العالم 2026' : language === 'es' ? 'Destinos Copa del Mundo 2026' : language === 'fr' ? 'Destinations Coupe du Monde 2026' : 'World Cup 2026 Destinations'}
+                    🏆 {language === 'es' ? 'Destinos Copa del Mundo 2026' : language === 'fr' ? 'Destinations Coupe du Monde 2026' : 'World Cup 2026 Destinations'}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {['new-york', 'toronto', 'mexico-city'].map((cityValue) => {
