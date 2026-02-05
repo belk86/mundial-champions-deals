@@ -220,8 +220,9 @@ const TravelSection = () => {
     {
       icon: Car,
       type: 'cars' as const,
-      title: content.carTitle,
-      desc: content.carDesc,
+      // ALWAYS French for Cars section
+      title: 'Location de voitures',
+      desc: 'Explorez les villes hôtes avec style. Louez une voiture entre les sites.',
       link: currentLinks.cars,
       color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       iconColor: 'text-emerald-400',
