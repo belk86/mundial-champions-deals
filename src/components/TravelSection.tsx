@@ -224,23 +224,33 @@ const TravelSection = () => {
     }
   };
 
-  // Localized Booking links
-  const STATIC_FLIGHTS_URL = 'https://www.booking.com/flights/index.html?label=gen173nr-1FEghmZWF0dXJlcyiCAjoohpYBSOC_AYgBAZgBCbgBB8gBDNgBAegBAfgBAogCAagCA7gC_8vXvAbAAgHSAiRlODg3ZTMwNC1iZGE2LTQ0MzEtYmYyMC04ZGYwZDUzYjYwZTLYAgXgAgE';
-  
-  const getBookingLinks = () => {
-    switch (language) {
-      case 'ar':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.ar.html', hotels: 'https://www.booking.com/index.ar.html' };
-      case 'es':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.es.html', hotels: 'https://www.booking.com/index.es.html' };
-      case 'fr':
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/index.fr.html', hotels: 'https://www.booking.com/index.fr.html' };
-      default:
-        return { flights: STATIC_FLIGHTS_URL, cars: 'https://www.booking.com/cars/', hotels: 'https://www.booking.com/' };
-    }
+  // ========== AFFILIATE LINKS WITH MARKER 495595 ==========
+  // Hotels: Hotellook with language parameter
+  const getHotellookUrl = () => {
+    return `https://tp.media/r?marker=495595&trs=243422&p=121&u=https%3A%2F%2Fwww.hotellook.com%2Fsearch%3Flanguage%3D${langKey}`;
   };
 
-  const currentLinks = getBookingLinks();
+  // Cars: EconomyBookings with Marker 495595
+  const getCarsUrl = () => {
+    const langMap: Record<Language, string> = {
+      en: 'en',
+      ar: 'ar',
+      es: 'es',
+      fr: 'fr',
+    };
+    return `https://tp.media/r?marker=495595&trs=243422&p=99&u=https%3A%2F%2Fwww.economybookings.com%2F${langMap[langKey] || 'en'}`;
+  };
+
+  // Flights: Aviasales with Marker 495595
+  const getFlightsUrl = () => {
+    return `https://tp.media/r?marker=495595&trs=243422&p=4114&u=https%3A%2F%2Fwww.aviasales.com%2F${langKey}`;
+  };
+
+  const currentLinks = {
+    hotels: getHotellookUrl(),
+    cars: getCarsUrl(),
+    flights: getFlightsUrl(),
+  };
 
   const travelOptions = [
     {
@@ -474,18 +484,13 @@ const TravelSection = () => {
           </h3>
           <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
             {HOST_CITIES.map((city, index) => {
-              const bookingBaseUrl = {
-                en: 'https://www.booking.com/searchresults.html',
-                ar: 'https://www.booking.com/searchresults.ar.html',
-                es: 'https://www.booking.com/searchresults.es.html',
-                fr: 'https://www.booking.com/searchresults.fr.html',
-              };
-              const baseUrl = bookingBaseUrl[language] || bookingBaseUrl.en;
+              // Hotellook city search URL with Marker 495595
+              const citySearchUrl = `https://tp.media/r?marker=495595&trs=243422&p=121&u=https%3A%2F%2Fwww.hotellook.com%2Fsearch%3Flanguage%3D${langKey}%26destination%3D${encodeURIComponent(city.nameEn)}`;
               
               return (
               <motion.a
                 key={city.nameEn}
-                href={`${baseUrl}?ss=${encodeURIComponent(city.nameEn)}`}
+                href={citySearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
