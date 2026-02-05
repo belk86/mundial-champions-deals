@@ -24,9 +24,11 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 47, seconds: 33 });
 
-  // Countdown timer for ALL products - World Cup offer
+  // Limited time countdown for special products (like the ball)
+  const isLimitedTimeDeal = product.name.toLowerCase().includes('ball') || product.trust_badge === 'limited';
+
   useEffect(() => {
-    // Timer runs for all products
+    if (!isLimitedTimeDeal) return;
     
     const timer = setInterval(() => {
       setTimeLeft(prev => {
@@ -50,7 +52,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isLimitedTimeDeal]);
 
   const discount = product.original_price
     ? Math.round(((product.original_price - product.price) / product.original_price) * 100)
@@ -58,10 +60,10 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 
   const getDisplayName = () => {
     switch (language) {
+      case 'ar':
+        return product.name_ar;
       case 'es':
         return product.name_es;
-      case 'fr':
-        return product.name; // French falls back to English
       default:
         return product.name;
     }
@@ -69,22 +71,22 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 
   const getTrendSignal = () => {
     switch (language) {
+      case 'ar':
+        return product.trend_signal_ar || product.trend_signal;
       case 'es':
         return product.trend_signal_es || product.trend_signal;
-      case 'fr':
-        return product.trend_signal; // French falls back to English
       default:
         return product.trend_signal;
     }
   };
 
-  const handleGetDeal = () => {
-    // Open Amazon search with affiliate tracking tag - use full product name for accuracy
-    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}&tag=mundialgear26-20`;
-    window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
+  const handleGetDeal = async () => {
+    // Track click before opening link
+    await trackProductClick(product.id);
     
-    // Track click in background (fire and forget)
-    trackProductClick(product.id).catch(() => {});
+    if (product.affiliate_url && product.affiliate_url !== '#') {
+      window.open(product.affiliate_url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const badgeConfig = product.trust_badge ? trustBadgeConfig[product.trust_badge] : null;
@@ -121,30 +123,15 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </div>
       )}
 
-      {/* Viral TikTok Badge for ALL products */}
-      <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10 max-w-[140px]`}>
-        <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
-          <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
-            🔥 <span>{language === 'es' ? 'Viral en TikTok' 
-              : language === 'fr' ? 'Viral sur TikTok'
-              : 'Viral on TikTok'}</span>
-          </p>
-          <p className="text-[9px] text-muted-foreground">
-            📍 {language === 'es' ? 'Más vendido en' 
-              : language === 'fr' ? 'Meilleur vendeur à'
-              : 'Top Seller in'} <span className="text-primary font-bold">{language === 'es' ? 'Tánger' 
-              : language === 'fr' ? 'Tanger'
-              : 'Tangier'}</span>
-          </p>
-        </div>
-      </div>
-
-      {/* Other Trust Badges */}
-      {product.trust_badge && product.trust_badge !== 'hot' && badgeConfig && BadgeIcon && (
+      {/* Trust Badge with "Hot in Tangier" style */}
+      {product.trust_badge && badgeConfig && BadgeIcon && (
         <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10`}>
           <Badge className={`${badgeConfig.colorClass} border font-medium text-xs`}>
             <BadgeIcon className="w-3 h-3 mr-1" />
-            {t(`products.badges.${product.trust_badge}`)}
+            {product.trust_badge === 'hot' 
+              ? (language === 'ar' ? '🔥 ساخن في طنجة' : language === 'es' ? '🔥 Popular en Tánger' : '🔥 Hot in Tangier')
+              : t(`products.badges.${product.trust_badge}`)
+            }
           </Badge>
         </div>
       )}
@@ -211,24 +198,22 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           )}
         </div>
 
-        {/* Limited World Cup Offer Countdown - Glassmorphism Style - ALL products */}
-        <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border-l-4 border-gold shadow-lg">
-          <p className="text-[11px] font-bold text-foreground flex items-center gap-1 mb-1">
-            🏆 {language === 'es' ? 'Oferta limitada de la Copa del Mundo - Finaliza en:' 
-              : language === 'fr' ? 'Offre limitée Coupe du Monde - Se termine dans:' 
-              : 'Limited World Cup Offer - Ends in:'}
-          </p>
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-gold" />
-            <span className="text-base font-bold text-gold tabular-nums">
+        {/* Limited Time Countdown */}
+        {isLimitedTimeDeal && (
+          <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
+            <Clock className="w-4 h-4 text-red-400" />
+            <span className="text-xs font-medium text-red-400">
+              {t('dailyDeal.endsIn')}:
+            </span>
+            <span className="text-sm font-bold text-red-300">
               {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
             </span>
           </div>
-        </div>
+        )}
 
-        {/* CTA Button - Amazon Orange */}
+        {/* CTA Button with pulse effect */}
         <Button
-          className="w-full bg-amazon hover:bg-amazon-dark text-black font-bold group/btn transition-all duration-300"
+          className="w-full bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-primary-foreground font-semibold group/btn transition-all duration-300 pulse-button"
           onClick={handleGetDeal}
         >
           {t('products.getDeal')}

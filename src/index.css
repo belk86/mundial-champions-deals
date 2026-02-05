@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&display=swap');
 
-/* FanEdge - Futuristic Blue/Purple Neon & Deep Charcoal Design System */
+/* FanEdge - Premium Purple Neon & Deep Charcoal Design System */
 
 @layer base {
   :root {
@@ -18,8 +18,8 @@
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
 
-    /* Neon Blue/Purple Gradient as Primary */
-    --primary: 220 100% 60%;
+    /* Vivid Purple Neon as Primary */
+    --primary: 270 100% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 15%;
@@ -28,7 +28,7 @@
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 280 100% 65%;
+    --accent: 270 100% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
@@ -36,16 +36,15 @@
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 220 100% 60%;
+    --ring: 270 100% 60%;
 
     --radius: 0.75rem;
 
-    /* Neon Blue/Purple Palette */
-    --neon-blue: 220 100% 60%;
-    --neon-blue-light: 210 100% 70%;
-    --neon-purple: 280 100% 65%;
-    --neon-purple-light: 280 100% 75%;
-    --neon-cyan: 185 100% 55%;
+    /* Purple Neon Palette */
+    --purple-neon: 270 100% 60%;
+    --purple-neon-light: 270 100% 70%;
+    --purple-neon-dark: 270 80% 45%;
+    --purple-muted: 270 40% 25%;
     
     /* Amazon Orange for Buy Buttons */
     --amazon: 32 100% 50%;
@@ -54,12 +53,12 @@
     /* Sidebar */
     --sidebar-background: 0 0% 8%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 220 100% 60%;
+    --sidebar-primary: 270 100% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 220 100% 60%;
+    --sidebar-ring: 270 100% 60%;
   }
 
   .dark {
@@ -69,29 +68,25 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
-    --primary: 220 100% 60%;
+    --primary: 270 100% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 95%;
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 60%;
-    --accent: 280 100% 65%;
+    --accent: 270 100% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 95%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 220 100% 60%;
+    --ring: 270 100% 60%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
   }
 
   body {
@@ -115,31 +110,31 @@
     font-family: 'Cairo', sans-serif;
   }
 
-  /* Neon Blue/Purple Gradient Text */
+  /* Purple Neon Gradient Text */
   .text-gradient-purple {
-    background: linear-gradient(135deg, hsl(220, 100%, 65%) 0%, hsl(280, 100%, 65%) 50%, hsl(185, 100%, 55%) 100%);
+    background: linear-gradient(135deg, hsl(270, 100%, 70%) 0%, hsl(270, 100%, 60%) 50%, hsl(280, 100%, 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Neon Blue/Purple Glow Effects */
+  /* Purple Neon Glow Effects */
   .glow-purple {
-    box-shadow: 0 0 20px hsl(220, 100%, 60%, 0.4),
-                0 0 40px hsl(280, 100%, 65%, 0.25),
-                0 0 60px hsl(220, 100%, 60%, 0.15);
+    box-shadow: 0 0 20px hsl(270, 100%, 60%, 0.4),
+                0 0 40px hsl(270, 100%, 60%, 0.25),
+                0 0 60px hsl(270, 100%, 60%, 0.15);
   }
 
   .glow-purple-sm {
-    box-shadow: 0 0 10px hsl(220, 100%, 60%, 0.3),
-                0 0 20px hsl(280, 100%, 65%, 0.15);
+    box-shadow: 0 0 10px hsl(270, 100%, 60%, 0.3),
+                0 0 20px hsl(270, 100%, 60%, 0.15);
   }
 
   .glow-purple-intense {
-    box-shadow: 0 0 25px hsl(220, 100%, 60%, 0.6),
-                0 0 50px hsl(280, 100%, 65%, 0.4),
-                0 0 75px hsl(220, 100%, 60%, 0.25),
-                0 0 100px hsl(280, 100%, 65%, 0.1);
+    box-shadow: 0 0 25px hsl(270, 100%, 60%, 0.6),
+                0 0 50px hsl(270, 100%, 60%, 0.4),
+                0 0 75px hsl(270, 100%, 60%, 0.25),
+                0 0 100px hsl(270, 100%, 60%, 0.1);
   }
 
   /* Amazon Orange Glow */
@@ -148,67 +143,41 @@
                 0 0 30px hsl(32, 100%, 50%, 0.2);
   }
 
-  /* Card Hover Effect with Neon Blue/Purple Glow */
+  /* Card Hover Effect with Purple Glow */
   .card-hover-purple {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover-purple:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 0 25px hsl(220, 100%, 60%, 0.35),
-                0 0 50px hsl(280, 100%, 65%, 0.2),
+    box-shadow: 0 0 25px hsl(270, 100%, 60%, 0.35),
+                0 0 50px hsl(270, 100%, 60%, 0.2),
                 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: hsl(220, 100%, 60%, 0.5);
+    border-color: hsl(270, 100%, 60%, 0.5);
   }
 
-  /* Card Hover Effect with Amazon Orange Glow */
-  .card-hover-amazon {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .card-hover-amazon:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 0 25px rgba(255, 153, 0, 0.4),
-                0 0 50px rgba(255, 153, 0, 0.25),
-                0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 153, 0, 0.5);
-  }
-
-  /* Moroccan Pattern Background - With Blue/Cyan Tones */
+  /* Moroccan Pattern Background */
   .moroccan-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234D9FFF' fill-opacity='0.03'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C40FF' fill-opacity='0.03'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   .moroccan-pattern-dense {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234D9FFF' fill-opacity='0.04'%3E%3Cpath d='M20 0l20 20-20 20L0 20 20 0zm0 8L8 20l12 12 12-12-12-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  .moroccan-pattern-hero {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234D9FFF' fill-opacity='0.08'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  /* RTL-safe flexbox */
-  [dir="rtl"] .flex {
-    flex-direction: row;
-  }
-  
-  [dir="rtl"] .flex-row-reverse {
-    flex-direction: row;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C40FF' fill-opacity='0.05'%3E%3Cpath d='M20 0l20 20-20 20L0 20 20 0zm0 8L8 20l12 12 12-12-12-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   /* Dark Gradient Overlay */
   .bg-dark-gradient {
     background: 
-      radial-gradient(ellipse at top center, hsl(220, 50%, 12%, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at top center, hsl(270, 50%, 12%, 0.4) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, hsl(0, 0%, 3%, 0.8) 0%, transparent 60%),
       linear-gradient(180deg, hsl(0, 0%, 5%) 0%, hsl(0, 0%, 7%) 30%, hsl(0, 0%, 8%) 70%, hsl(0, 0%, 5%) 100%);
   }
 
-  /* Border Gradient Blue/Purple */
+  /* Border Gradient Purple */
   .border-gradient-purple {
     border: 1px solid transparent;
     background: linear-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 10%)) padding-box,
-                linear-gradient(135deg, hsl(220, 100%, 60%) 0%, hsl(280, 100%, 65%) 100%) border-box;
+                linear-gradient(135deg, hsl(270, 100%, 60%) 0%, hsl(280, 80%, 45%) 100%) border-box;
   }
 
   /* Pulse Button Effect */
@@ -222,12 +191,12 @@
 
   @keyframes pulse-glow-purple {
     0%, 100% {
-      box-shadow: 0 0 10px hsl(220, 100%, 60%, 0.5),
-                  0 0 20px hsl(280, 100%, 65%, 0.3);
+      box-shadow: 0 0 10px hsl(270, 100%, 60%, 0.5),
+                  0 0 20px hsl(270, 100%, 60%, 0.3);
     }
     50% {
-      box-shadow: 0 0 20px hsl(220, 100%, 60%, 0.7),
-                  0 0 40px hsl(280, 100%, 65%, 0.4);
+      box-shadow: 0 0 20px hsl(270, 100%, 60%, 0.7),
+                  0 0 40px hsl(270, 100%, 60%, 0.4);
     }
   }
 
@@ -253,19 +222,19 @@
 
   /* Countdown Timer */
   .countdown-glow-purple {
-    box-shadow: 0 0 30px hsl(220, 100%, 60%, 0.4),
-                inset 0 0 20px hsl(280, 100%, 65%, 0.1);
+    box-shadow: 0 0 30px hsl(270, 100%, 60%, 0.4),
+                inset 0 0 20px hsl(270, 100%, 60%, 0.1);
   }
 
   /* Shimmer Animation */
   .shimmer-purple {
     background: linear-gradient(
       110deg,
-      hsl(220, 100%, 60%) 0%,
-      hsl(280, 100%, 65%) 40%,
-      hsl(220, 100%, 60%) 50%,
-      hsl(280, 100%, 65%) 60%,
-      hsl(220, 100%, 60%) 100%
+      hsl(270, 100%, 60%) 0%,
+      hsl(270, 100%, 75%) 40%,
+      hsl(270, 100%, 60%) 50%,
+      hsl(270, 100%, 75%) 60%,
+      hsl(270, 100%, 60%) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 3s ease-in-out infinite;
@@ -284,15 +253,5 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
-  }
-
-  /* Hide scrollbar for horizontal scroll sections */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
   }
 }

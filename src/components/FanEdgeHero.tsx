@@ -1,13 +1,9 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, ShoppingBag, Plane } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-
-import stadiumHero from '@/assets/stadium-hero.jpg';
+import FanEdgeLogo from './FanEdgeLogo';
 
 const FanEdgeHero = () => {
-  const { t } = useTranslation();
-
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -17,25 +13,13 @@ const FanEdgeHero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Stadium Background Image - Primary visual */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${stadiumHero})` }}
-      />
+    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 moroccan-pattern-dense">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-dark-gradient" />
       
-      {/* Dark Overlay - Very subtle to keep stadium visible */}
-      <div className="absolute inset-0 bg-background/60" />
-      
-      {/* Subtle Moroccan Pattern Overlay - 10% opacity */}
-      <div className="absolute inset-0 moroccan-pattern-hero opacity-20" />
-      
-      {/* Subtle bottom gradient for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-      
-      {/* Subtle Purple Orbs - Very muted */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      {/* Animated Purple Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-dark/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container px-4 relative z-10">
         <motion.div
@@ -44,31 +28,42 @@ const FanEdgeHero = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto"
         >
-          {/* Headline - Translated */}
+          {/* Logo */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex justify-center mb-8"
+          >
+            <FanEdgeLogo size="lg" />
+          </motion.div>
+
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-foreground">{t('hero.yourPremium')}</span>
+            <span className="text-foreground">Your Premium</span>
             <br />
-            <span className="text-gradient-purple">{t('hero.worldCup2026')}</span>
+            <span className="text-gradient-purple">World Cup 2026</span>
             <br />
-            <span className="text-foreground">{t('hero.destination')}</span>
+            <span className="text-foreground">Destination</span>
           </motion.h1>
 
-          {/* Subheadline - Translated */}
+          {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
-            {t('hero.subtitle')}
+            Shop viral TikTok products, top-seller gear, and book your match day stays in Morocco. 
+            Everything a true fan needs for the greatest show on earth.
           </motion.p>
 
-          {/* CTA Buttons - Translated */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,13 +73,10 @@ const FanEdgeHero = () => {
             <Button
               size="lg"
               onClick={scrollToProducts}
-              className="text-white font-bold text-lg px-8 py-6 glow-purple pulse-button-purple"
-              style={{
-                background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 100%)',
-              }}
+              className="bg-primary hover:bg-purple-dark text-primary-foreground font-bold text-lg px-8 py-6 glow-purple pulse-button-purple"
             >
               <ShoppingBag className="w-5 h-5 mr-2" />
-              {t('hero.shopGear')}
+              Shop Fans Gear
             </Button>
             <Button
               size="lg"
@@ -93,11 +85,11 @@ const FanEdgeHero = () => {
               className="border-primary text-primary hover:bg-primary/10 font-bold text-lg px-8 py-6"
             >
               <Plane className="w-5 h-5 mr-2" />
-              {t('hero.planTrip')}
+              Plan Your Trip
             </Button>
           </motion.div>
 
-          {/* Scroll Indicator - Translated */}
+          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -110,7 +102,7 @@ const FanEdgeHero = () => {
               className="flex flex-col items-center text-muted-foreground cursor-pointer"
               onClick={scrollToProducts}
             >
-              <span className="text-sm mb-2">{t('hero.scrollExplore')}</span>
+              <span className="text-sm mb-2">Scroll to explore</span>
               <ChevronDown className="w-6 h-6" />
             </motion.div>
           </motion.div>

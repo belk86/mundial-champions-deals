@@ -29,15 +29,14 @@ const TikaAdvisor = () => {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Initial greeting based on language
-      const greetings: Record<string, string> = {
-        ar: 'مرحباً! أنا تيكا، مستشارتك الذكية للتسوق. كيف يمكنني مساعدتك في العثور على أفضل منتجات كأس العالم 2026؟ ⚽',
-        es: '¡Hola! Soy Tika, tu asesora de compras inteligente. ¿Cómo puedo ayudarte a encontrar los mejores productos del Mundial 2026? ⚽',
-        fr: 'Bonjour! Je suis Tika, votre conseillère shopping IA. Comment puis-je vous aider à trouver les meilleurs produits de la Coupe du Monde 2026? ⚽',
-        en: "Hey there! I'm Tika, your AI shopping advisor. How can I help you find the perfect World Cup 2026 gear today? ⚽",
-      };
+      // Initial greeting
+      const greeting = language === 'ar' 
+        ? 'مرحباً! أنا تيكا، مستشارتك الذكية للتسوق. كيف يمكنني مساعدتك في العثور على أفضل منتجات كأس العالم 2026؟ ⚽'
+        : language === 'es'
+        ? '¡Hola! Soy Tika, tu asesora de compras inteligente. ¿Cómo puedo ayudarte a encontrar los mejores productos del Mundial 2026? ⚽'
+        : 'Hey there! I\'m Tika, your AI shopping advisor. How can I help you find the perfect World Cup 2026 gear today? ⚽';
       
-      setMessages([{ role: 'assistant', content: greetings[language] || greetings.en }]);
+      setMessages([{ role: 'assistant', content: greeting }]);
     }
   }, [isOpen, language]);
 
@@ -120,17 +119,15 @@ const TikaAdvisor = () => {
       }
     } catch (error) {
       console.error('Tika error:', error);
-      const errorMessages: Record<string, string> = {
-        ar: 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.',
-        es: 'Lo siento, ocurrió un error. Por favor, inténtalo de nuevo.',
-        fr: 'Désolé, une erreur s\'est produite. Veuillez réessayer.',
-        en: 'Sorry, something went wrong. Please try again.',
-      };
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content: errorMessages[language] || errorMessages.en,
+          content: language === 'ar'
+            ? 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.'
+            : language === 'es'
+            ? 'Lo siento, ocurrió un error. Por favor, inténtalo de nuevo.'
+            : 'Sorry, something went wrong. Please try again.',
         },
       ]);
     } finally {
@@ -146,60 +143,54 @@ const TikaAdvisor = () => {
   };
 
   return (
-    <div>
-      {/* Small Floating Amazon Orange Circle - Compact toggle */}
-      {!isOpen && (
-        <motion.button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-amazon shadow-lg flex items-center justify-center text-black glow-amazon"
-          style={{ zIndex: 40 }}
-          whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(255, 153, 0, 0.6), 0 0 50px rgba(255, 153, 0, 0.4)' }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-        >
-          <Sparkles className="w-5 h-5" />
-        </motion.button>
-      )}
+    <>
+      {/* Floating Button with Purple Pulse Glow - positioned higher on mobile */}
+      <motion.button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 shadow-lg flex items-center justify-center text-white transition-all animate-[pulse-purple_2s_ease-in-out_infinite]"
+        style={{
+          boxShadow: '0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(147, 51, 234, 0.2)',
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
+      </motion.button>
 
-      {/* Compact Chat Window - Only visible when open */}
+      {/* Chat Window - responsive positioning */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="fixed bottom-20 right-6 w-[320px] max-w-[calc(100vw-3rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
-            style={{ zIndex: 50 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-50 w-[340px] sm:w-[360px] max-w-[calc(100vw-2rem)] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-amazon to-amazon-dark p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-black/20 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-black" />
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-black">Tika</h3>
-                  <p className="text-black/70 text-xs">
-                    {language === 'es' ? 'Tu Asesora IA' : 
-                     language === 'fr' ? 'Conseillère IA' : 
-                     'AI Shopping Advisor'}
+                  <h3 className="font-bold text-white">Tika</h3>
+                  <p className="text-white/80 text-xs">
+                    {language === 'ar' ? 'مستشارتك الذكية' : language === 'es' ? 'Tu Asesora IA' : 'AI Shopping Advisor'}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 rounded-full bg-black/20 hover:bg-black/30 flex items-center justify-center text-black/70 hover:text-black transition-all"
-                aria-label="Close Tika"
+                className="text-white/80 hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Messages - Compact height */}
-            <div className="h-64 overflow-y-auto p-3 space-y-3 bg-background">
+            {/* Messages */}
+            <div className="h-80 overflow-y-auto p-4 space-y-4 bg-background">
               {messages.map((msg, i) => (
                 <div
                   key={i}
@@ -208,7 +199,7 @@ const TikaAdvisor = () => {
                   <div
                     className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
                       msg.role === 'user'
-                        ? 'bg-amazon text-black rounded-br-md'
+                        ? 'bg-purple-600 text-white rounded-br-md'
                         : 'bg-muted text-foreground rounded-bl-md'
                     }`}
                   >
@@ -230,18 +221,20 @@ const TikaAdvisor = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={
-                    language === 'es' ? 'Pregunta a Tika...' :
-                    language === 'fr' ? 'Demandez à Tika...' :
-                    'Ask Tika...'
+                    language === 'ar'
+                      ? 'اسأل تيكا...'
+                      : language === 'es'
+                      ? 'Pregunta a Tika...'
+                      : 'Ask Tika...'
                   }
-                  className="flex-1 bg-muted rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon"
+                  className="flex-1 bg-muted rounded-full px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
                   disabled={isLoading}
                 />
                 <Button
                   onClick={sendMessage}
                   disabled={isLoading || !input.trim()}
                   size="icon"
-                  className="rounded-full bg-amazon hover:bg-amazon-dark text-black"
+                  className="rounded-full bg-purple-600 hover:bg-purple-500"
                 >
                   {isLoading ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -254,7 +247,7 @@ const TikaAdvisor = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 

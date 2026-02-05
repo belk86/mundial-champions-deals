@@ -39,7 +39,7 @@ const Terms = () => {
             <section className="space-y-3">
               <h2 className="text-xl font-semibold text-foreground">1. Acceptance of Terms</h2>
               <p>
-                By accessing and using FanEdge, you accept and agree to be bound by these 
+                By accessing and using FanZone 26, you accept and agree to be bound by these 
                 Terms of Service. If you do not agree to these terms, please do not use our website.
               </p>
             </section>
@@ -47,7 +47,7 @@ const Terms = () => {
             <section className="space-y-3">
               <h2 className="text-xl font-semibold text-foreground">2. Nature of Our Service</h2>
               <p>
-                FanEdge is an affiliate marketing website that curates and promotes World Cup 2026 
+                FanZone 26 is an affiliate marketing website that curates and promotes World Cup 2026 
                 merchandise from third-party retailers including Amazon and AliExpress. We do not:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -102,7 +102,7 @@ const Terms = () => {
             <section className="space-y-3">
               <h2 className="text-xl font-semibold text-foreground">7. Limitation of Liability</h2>
               <p>
-                FanEdge and its owner, Med Belk, shall not be liable for any damages arising 
+                FanZone 26 and its owner, Med Belk, shall not be liable for any damages arising 
                 from your use of our website or purchases made through our affiliate links.
               </p>
             </section>
@@ -111,8 +111,8 @@ const Terms = () => {
               <h2 className="text-xl font-semibold text-foreground">8. Contact Information</h2>
               <p>
                 For questions about these terms, contact us at:{' '}
-                <a href="mailto:medbelk@fanedge.com" className="text-gold hover:underline">
-                  medbelk@fanedge.com
+                <a href="mailto:belkm757@gmail.com" className="text-gold hover:underline">
+                  belkm757@gmail.com
                 </a>
               </p>
               <p className="text-sm mt-2">

@@ -1,16 +1,13 @@
 import { motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import FanEdgeProductCard from './FanEdgeProductCard';
 import { products } from '@/data/products';
 
 const FanEdgeProductGrid = () => {
-  const { t } = useTranslation();
-
   return (
     <section id="products" className="py-16 md:py-24 moroccan-pattern">
       <div className="container px-4">
-        {/* Section Header - Translated */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,23 +17,21 @@ const FanEdgeProductGrid = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <ShoppingBag className="w-6 h-6 text-primary" />
             <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              {t('products.sectionLabel')}
+              Featured Products
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('products.title')}
+            Fans Gear Collection
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('products.subtitle')}
+            Curated selection of viral TikTok products and top sellers for World Cup 2026 fans
           </p>
         </motion.div>
 
-        {/* Product Grid - Horizontal Scroll on Mobile, Grid on Desktop */}
-        <div className="flex md:grid md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0">
+        {/* Product Grid - 15 Products */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {products.map((product, index) => (
-            <div key={product.id} className="flex-shrink-0 w-[160px] sm:w-[180px] md:w-auto snap-start">
-              <FanEdgeProductCard product={product} index={index} />
-            </div>
+            <FanEdgeProductCard key={product.id} product={product} index={index} />
           ))}
         </div>
       </div>

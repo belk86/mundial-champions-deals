@@ -39,7 +39,7 @@ const Privacy = () => {
             <section className="space-y-3">
               <h2 className="text-xl font-semibold text-foreground">1. Introduction</h2>
               <p>
-                FanEdge ("we," "our," or "us") operates as an affiliate marketing website 
+                FanZone 26 ("we," "our," or "us") operates as an affiliate marketing website 
                 promoting World Cup 2026 merchandise through Amazon Associates and AliExpress 
                 affiliate programs. This Privacy Policy explains how we collect, use, and 
                 protect your information.
@@ -59,7 +59,7 @@ const Privacy = () => {
             <section className="space-y-3">
               <h2 className="text-xl font-semibold text-foreground">3. Affiliate Disclosure</h2>
               <p>
-                FanEdge is a participant in the Amazon Services LLC Associates Program and 
+                FanZone 26 is a participant in the Amazon Services LLC Associates Program and 
                 AliExpress Affiliate Program. When you click on product links and make purchases, 
                 we may earn a commission at no additional cost to you. This helps support our 
                 website and allows us to continue curating the best World Cup 2026 deals.
@@ -97,8 +97,8 @@ const Privacy = () => {
               <h2 className="text-xl font-semibold text-foreground">7. Contact Us</h2>
               <p>
                 For any privacy-related questions, please contact us at:{' '}
-                <a href="mailto:medbelk@fanedge.com" className="text-gold hover:underline">
-                  medbelk@fanedge.com
+                <a href="mailto:belkm757@gmail.com" className="text-gold hover:underline">
+                  belkm757@gmail.com
                 </a>
               </p>
             </section>

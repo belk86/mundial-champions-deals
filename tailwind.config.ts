@@ -51,18 +51,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        neon: {
-          blue: "hsl(var(--neon-blue))",
-          blueLight: "hsl(var(--neon-blue-light))",
-          purple: "hsl(var(--neon-purple))",
-          purpleLight: "hsl(var(--neon-purple-light))",
-          cyan: "hsl(var(--neon-cyan))",
-        },
         purple: {
-          neon: "hsl(var(--neon-purple))",
-          light: "hsl(var(--neon-purple-light))",
-          dark: "hsl(280, 80%, 45%)",
-          muted: "hsl(280, 40%, 25%)",
+          neon: "hsl(var(--purple-neon))",
+          light: "hsl(var(--purple-neon-light))",
+          dark: "hsl(var(--purple-neon-dark))",
+          muted: "hsl(var(--purple-muted))",
         },
         amazon: {
           DEFAULT: "hsl(var(--amazon))",
