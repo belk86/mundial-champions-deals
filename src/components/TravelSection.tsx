@@ -146,9 +146,9 @@ const TravelSection = () => {
         >
           <Card className="bg-card border-border card-hover-purple overflow-hidden">
             <CardContent className="p-8 md:p-12">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                {/* Icons */}
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col lg:flex-row items-center gap-8">
+                {/* Icons - Always LTR order */}
+                <div className="flex items-center gap-4 shrink-0" dir="ltr">
                   <div className="w-16 h-16 rounded-xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center">
                     <Hotel className="w-8 h-8 text-blue-400" />
                   </div>
@@ -160,8 +160,8 @@ const TravelSection = () => {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex-grow text-center md:text-start">
+                {/* Content - RTL aware */}
+                <div className="flex-grow text-center lg:text-start">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                     {content.travelServicesTitle}
                   </h3>
@@ -170,14 +170,14 @@ const TravelSection = () => {
                   </p>
                 </div>
 
-                {/* CTA Button */}
+                {/* CTA Button - Fixed visibility for all languages */}
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm px-8 py-6 text-lg"
+                  className="bg-primary hover:bg-purple-dark text-primary-foreground font-semibold glow-purple-sm px-8 py-6 text-lg shrink-0 min-w-fit"
                   onClick={() => window.open(bookingUrl, '_blank')}
                 >
-                  {content.bookNow}
-                  <ExternalLink className="w-5 h-5 ms-2" />
+                  <span className="whitespace-nowrap">{content.bookNow}</span>
+                  <ExternalLink className="w-5 h-5 ms-2 shrink-0" />
                 </Button>
               </div>
             </CardContent>
