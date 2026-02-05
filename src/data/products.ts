@@ -9,10 +9,6 @@ export interface Product {
   affiliateUrl: string;
 }
 
-// Helper to generate Amazon search URLs as fallback
-const getAmazonSearchUrl = (productName: string) => 
-  `https://www.amazon.com/s?k=${encodeURIComponent(productName)}`;
-
 export const products: Product[] = [
   {
     id: '1',
@@ -22,7 +18,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Tech',
-    affiliateUrl: getAmazonSearchUrl('Native 1080P Projector 4K support'),
+    affiliateUrl: 'https://amzn.to/3B77C2n',
   },
   {
     id: '2',
@@ -32,7 +28,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Accessories',
-    affiliateUrl: getAmazonSearchUrl('Fiber Optic LED Hat Cap'),
+    affiliateUrl: 'https://amzn.to/4qOiuUq',
   },
   {
     id: '3',
@@ -42,7 +38,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Travel',
-    affiliateUrl: getAmazonSearchUrl('Power Bank Travel Case Organizer'),
+    affiliateUrl: 'https://amzn.to/4qKX1vq',
   },
   {
     id: '4',
@@ -52,7 +48,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1605792657660-596af9009e82?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Collectibles',
-    affiliateUrl: getAmazonSearchUrl('World Cup 2026 Commemorative Coin Set'),
+    affiliateUrl: 'https://amzn.to/3Z3O9VK',
   },
   {
     id: '5',
@@ -62,7 +58,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Accessories',
-    affiliateUrl: getAmazonSearchUrl('Noise Cancelling Earplugs Concert Sports'),
+    affiliateUrl: 'https://amzn.to/4k1n4fm',
   },
   {
     id: '6',
@@ -72,7 +68,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Fan Gear',
-    affiliateUrl: getAmazonSearchUrl('World Cup 2026 Host Cities Map Poster USA Canada Mexico'),
+    affiliateUrl: 'https://amzn.to/4ka6DxC',
   },
   {
     id: '7',
@@ -82,7 +78,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Accessories',
-    affiliateUrl: getAmazonSearchUrl('Soccer Ball Bottle Opener Football'),
+    affiliateUrl: 'https://amzn.to/3B9D9o7',
   },
   {
     id: '8',
@@ -92,7 +88,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Collectibles',
-    affiliateUrl: getAmazonSearchUrl('FIFA World Cup 2026 Mascot Toy Plush'),
+    affiliateUrl: 'https://amzn.to/3Z5M7K8',
   },
   {
     id: '9',
@@ -102,7 +98,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Fan Gear',
-    affiliateUrl: getAmazonSearchUrl('National Team Soccer Scarf Football Fan'),
+    affiliateUrl: 'https://amzn.to/49A8U0U',
   },
   {
     id: '10',
@@ -112,7 +108,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Fan Gear',
-    affiliateUrl: getAmazonSearchUrl('World Flags Desktop Set Countries'),
+    affiliateUrl: 'https://amzn.to/3B4H9mN',
   },
   {
     id: '11',
@@ -122,7 +118,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Fan Gear',
-    affiliateUrl: getAmazonSearchUrl('World Cup String Bunting Flags Banner'),
+    affiliateUrl: 'https://amzn.to/4k7B2mF',
   },
   {
     id: '12',
@@ -132,7 +128,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Accessories',
-    affiliateUrl: getAmazonSearchUrl('Portable Stadium Seat Cushion Sports'),
+    affiliateUrl: 'https://amzn.to/4k7B2mF',
   },
   {
     id: '13',
@@ -142,7 +138,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=400&h=400&fit=crop',
     tag: 'viral',
     category: 'Travel',
-    affiliateUrl: getAmazonSearchUrl('Travel Neck Pillow Memory Foam'),
+    affiliateUrl: 'https://amzn.to/4qKX1vq',
   },
   {
     id: '14',
@@ -152,6 +148,6 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&h=400&fit=crop',
     tag: 'top_seller',
     category: 'Accessories',
-    affiliateUrl: getAmazonSearchUrl('Sports Water Bottle BPA Free'),
+    affiliateUrl: 'https://amzn.to/3B77C2n',
   },
 ];

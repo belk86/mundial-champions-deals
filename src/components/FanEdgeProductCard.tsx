@@ -18,9 +18,8 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
     : null;
 
   const handleBuyClick = () => {
-    // Open Amazon search with affiliate tracking tag - use full product name for accuracy
-    const amazonSearchUrl = `https://www.amazon.com/s?k=${encodeURIComponent(product.name)}&tag=mundialgear26-20`;
-    window.open(amazonSearchUrl, '_blank', 'noopener,noreferrer');
+    // Open direct Amazon affiliate link in new tab
+    window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
