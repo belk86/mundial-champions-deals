@@ -199,8 +199,8 @@ const TravelSection = () => {
     const toCityData = worldCupDestinations.find(c => c.value === toCity);
     
     if (fromCityData && toCityData) {
-      const searchUrl = `https://www.aviasales.com/search/${encodeURIComponent(fromCityData.labelEn.split(',')[0])}${encodeURIComponent(toCityData.labelEn.split(',')[0])}1?marker=${MARKER_ID}`;
-      window.open(searchUrl, '_blank');
+      const searchUrl = `https://www.aviasales.com/search/${encodeURIComponent(fromCityData.labelEn.split(',')[0])}${encodeURIComponent(toCityData.labelEn.split(',')[0])}1?marker=${MARKER_ID}&locale=${langKey}`;
+      window.open(searchUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -422,8 +422,7 @@ const TravelSection = () => {
                       if (option.type === 'flights') {
                         setShowFlightsSearch(true);
                       } else {
-                        const url = currentLinks[option.type];
-                        window.open(url, '_blank');
+                      window.open(currentLinks[option.type], '_blank', 'noopener,noreferrer');
                       }
                     }}
                   >
