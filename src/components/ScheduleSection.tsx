@@ -1,106 +1,138 @@
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Trophy } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 type Language = 'en' | 'es' | 'fr';
 
-const SCHEDULE_CONTENT: Record<Language, {
-  title: string;
-  subtitle: string;
-  viewMatch: string;
-  stadium: string;
-}> = {
-  en: {
-    title: 'Key Match Venues',
-    subtitle: 'Experience the World Cup 2026 in iconic stadiums across North America.',
-    viewMatch: 'View Details',
-    stadium: 'Stadium'
-  },
-  es: {
-    title: 'Sedes Principales',
-    subtitle: 'Vive el Mundial 2026 en estadios icónicos de Norteamérica.',
-    viewMatch: 'Ver Detalles',
-    stadium: 'Estadio'
-  },
-  fr: {
-    title: 'Lieux des Matchs',
-    subtitle: 'Vivez la Coupe du Monde 2026 dans des stades emblématiques d\'Amérique du Nord.',
-    viewMatch: 'Voir Détails',
-    stadium: 'Stade'
-  }
-};
-
-const MATCH_VENUES = [
+const MATCHES = [
   {
-    id: 1,
-    city: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
-    stadium: 'MetLife Stadium',
-    date: 'July 19, 2026',
-    image: 'https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 2,
+    round: { en: 'Opening Match', es: 'Partido Inaugural', fr: "Match d'Ouverture" },
+    date: '11 June 2026',
     city: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
     stadium: 'Estadio Azteca',
-    date: 'June 11, 2026',
-    image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800',
+    teams: { en: 'TBD vs TBD', es: 'POR vs POR', fr: 'À déf. vs À déf.' },
   },
   {
-    id: 3,
-    city: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
-    stadium: 'SoFi Stadium',
-    date: 'June 12, 2026',
-    image: 'https://images.unsplash.com/photo-1619551731652-32b7086082ec?auto=format&fit=crop&q=80&w=800',
-  }
+    round: { en: 'Group Stage', es: 'Fase de Grupos', fr: 'Phase de Groupes' },
+    date: '12 June – 4 July 2026',
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
+    stadium: '—',
+    teams: { en: '48 Teams', es: '48 Equipos', fr: '48 Équipes' },
+  },
+  {
+    round: { en: 'Round of 32', es: 'Dieciseisavos', fr: '32èmes de Finale' },
+    date: '5 – 8 July 2026',
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
+    stadium: '—',
+    teams: { en: '32 Teams', es: '32 Equipos', fr: '32 Équipes' },
+  },
+  {
+    round: { en: 'Quarter Final', es: 'Cuartos de Final', fr: 'Quart de Finale' },
+    date: '11 – 12 July 2026',
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
+    stadium: '—',
+    teams: { en: '8 Teams', es: '8 Equipos', fr: '8 Équipes' },
+  },
+  {
+    round: { en: 'Semi Final', es: 'Semifinal', fr: 'Demi-Finale' },
+    date: '15 July 2026',
+    city: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
+    stadium: 'AT&T Stadium',
+    teams: { en: 'TBD vs TBD', es: 'POR vs POR', fr: 'À déf. vs À déf.' },
+  },
+  {
+    round: { en: 'Final', es: 'Final', fr: 'Finale' },
+    date: '19 July 2026',
+    city: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
+    stadium: 'MetLife Stadium',
+    teams: { en: 'TBD vs TBD', es: 'POR vs POR', fr: 'À déf. vs À déf.' },
+  },
 ];
 
+const TABLE_HEADERS: Record<Language, { round: string; date: string; city: string; stadium: string; teams: string }> = {
+  en: { round: 'Round', date: 'Date', city: 'City', stadium: 'Stadium', teams: 'Match' },
+  es: { round: 'Ronda', date: 'Fecha', city: 'Ciudad', stadium: 'Estadio', teams: 'Partido' },
+  fr: { round: 'Tour', date: 'Date', city: 'Ville', stadium: 'Stade', teams: 'Match' },
+};
+
 const ScheduleSection = () => {
+  const { t } = useTranslation();
   const { language } = useLanguage();
   const langKey = (language as Language) || 'en';
-  const content = SCHEDULE_CONTENT[langKey];
+  const headers = TABLE_HEADERS[langKey];
 
   return (
-    <section id="schedule" className="py-20 bg-secondary/30">
+    <section id="schedule" className="py-16 md:py-24 bg-secondary/30">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
-            {content.title}
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Trophy className="w-6 h-6 text-primary" />
+            <span className="text-sm font-semibold text-primary uppercase tracking-widest">
+              {t('schedule.sectionLabel')}
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            {t('schedule.title')}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {content.subtitle}
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            {t('schedule.subtitle')}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {MATCH_VENUES.map((venue) => (
-            <motion.div
-              key={venue.id}
-              whileHover={{ y: -10 }}
-              className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl"
-            >
-              <div className="h-48 relative">
-                <img src={venue.image} alt={venue.stadium} className="w-full h-full object-cover" />
-                <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full text-xs font-bold">
-                  2026
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-primary mb-2">
-                  <MapPin className="w-4 h-4" />
-                  <span className="font-bold">{venue.city[langKey]}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">{venue.stadium}</h3>
-                <div className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    {venue.date}
-                  </div>
-                  <Trophy className="w-4 h-4 text-yellow-500" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Text-Only Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-card rounded-2xl border border-border overflow-hidden"
+        >
+          <Table>
+            <TableHeader>
+              <TableRow className="border-border bg-secondary/50">
+                <TableHead className="text-primary font-bold">{headers.round}</TableHead>
+                <TableHead className="text-primary font-bold">
+                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{headers.date}</span>
+                </TableHead>
+                <TableHead className="text-primary font-bold hidden md:table-cell">
+                  <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4" />{headers.city}</span>
+                </TableHead>
+                <TableHead className="text-primary font-bold hidden lg:table-cell">{headers.stadium}</TableHead>
+                <TableHead className="text-primary font-bold">{headers.teams}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {MATCHES.map((match, i) => (
+                <TableRow key={i} className="border-border hover:bg-secondary/30 transition-colors">
+                  <TableCell className="font-semibold text-foreground">{match.round[langKey]}</TableCell>
+                  <TableCell className="text-muted-foreground">{match.date}</TableCell>
+                  <TableCell className="text-muted-foreground hidden md:table-cell">{match.city[langKey]}</TableCell>
+                  <TableCell className="text-muted-foreground hidden lg:table-cell">{match.stadium}</TableCell>
+                  <TableCell className="text-foreground font-medium">{match.teams[langKey]}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </motion.div>
+
+        {/* Disclaimer */}
+        <p className="text-xs text-muted-foreground text-center mt-6">
+          {t('schedule.disclaimer')}
+        </p>
       </div>
     </section>
   );
