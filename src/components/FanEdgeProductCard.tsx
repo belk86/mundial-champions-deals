@@ -12,13 +12,8 @@ interface ProductCardProps {
 
 const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
   const { t } = useTranslation();
-  
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : null;
 
   const handleBuyClick = () => {
-    // Open direct Amazon affiliate link in new tab
     window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -31,33 +26,28 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
       className="group relative bg-card rounded-xl overflow-hidden border border-border card-hover-amazon"
     >
       {/* Tag Badge - Translated */}
-      <div className="absolute top-3 left-3 z-10">
-        <Badge
-          className={`${
-            product.tag === 'viral'
-              ? 'bg-pink-500/20 text-pink-300 border-pink-500/40'
-              : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-          } border font-semibold text-xs`}
-        >
-          {product.tag === 'viral' ? (
-            <>
-              <Sparkles className="w-3 h-3 mr-1" />
-              {t('products.viralTikTok')}
-            </>
-          ) : (
-            <>
-              <TrendingUp className="w-3 h-3 mr-1" />
-              {t('products.topSeller')}
-            </>
-          )}
-        </Badge>
-      </div>
-
-      {/* Discount Badge */}
-      {discount && (
-        <div className="absolute top-3 right-3 z-10">
-          <Badge className="bg-amazon text-black font-bold">
-            -{discount}%
+      {product.tag && (
+        <div className="absolute top-3 left-3 z-10">
+          <Badge
+            className={`${
+              product.tag === 'viral'
+                ? 'bg-pink-500/20 text-pink-300 border-pink-500/40'
+                : product.tag === 'limited'
+                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+            } border font-semibold text-xs`}
+          >
+            {product.tag === 'viral' ? (
+              <>
+                <Sparkles className="w-3 h-3 mr-1" />
+                {t('products.viralTikTok')}
+              </>
+            ) : (
+              <>
+                <TrendingUp className="w-3 h-3 mr-1" />
+                {t('products.topSeller')}
+              </>
+            )}
           </Badge>
         </div>
       )}
@@ -70,36 +60,25 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
-        
-        {/* Orange glow overlay on hover */}
         <div className="absolute inset-0 bg-amazon/0 group-hover:bg-amazon/10 transition-all duration-500" />
       </div>
 
       {/* Content */}
       <div className="p-4 space-y-3">
-        {/* Category */}
         <span className="text-xs text-amazon font-medium uppercase tracking-wider">
           {product.category}
         </span>
 
-        {/* Title */}
         <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-amazon transition-colors text-sm leading-snug">
           {product.name}
         </h3>
 
-        {/* Price */}
         <div className="flex items-baseline gap-2 flex-wrap">
           <span className="text-xl font-bold text-foreground">
             ${product.price.toFixed(2)}
           </span>
-          {product.originalPrice && (
-            <span className="text-sm text-muted-foreground line-through">
-              ${product.originalPrice.toFixed(2)}
-            </span>
-          )}
         </div>
 
-        {/* CTA Button - Amazon Orange, Translated */}
         <Button
           className="w-full bg-amazon hover:bg-amazon-dark text-white font-semibold group/btn transition-all duration-300 pulse-button-amazon"
           onClick={handleBuyClick}
