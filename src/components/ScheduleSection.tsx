@@ -1,150 +1,106 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Trophy } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Calendar, MapPin, Trophy } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+type Language = 'en' | 'es' | 'fr';
+
+const SCHEDULE_CONTENT: Record<Language, {
+  title: string;
+  subtitle: string;
+  viewMatch: string;
+  stadium: string;
+}> = {
+  en: {
+    title: 'Key Match Venues',
+    subtitle: 'Experience the World Cup 2026 in iconic stadiums across North America.',
+    viewMatch: 'View Details',
+    stadium: 'Stadium'
+  },
+  es: {
+    title: 'Sedes Principales',
+    subtitle: 'Vive el Mundial 2026 en estadios icónicos de Norteamérica.',
+    viewMatch: 'Ver Detalles',
+    stadium: 'Estadio'
+  },
+  fr: {
+    title: 'Lieux des Matchs',
+    subtitle: 'Vivez la Coupe du Monde 2026 dans des stades emblématiques d\'Amérique du Nord.',
+    viewMatch: 'Voir Détails',
+    stadium: 'Stade'
+  }
+};
+
+const MATCH_VENUES = [
+  {
+    id: 1,
+    city: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
+    stadium: 'MetLife Stadium',
+    date: 'July 19, 2026',
+    image: 'https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 2,
+    city: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
+    stadium: 'Estadio Azteca',
+    date: 'June 11, 2026',
+    image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 3,
+    city: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
+    stadium: 'SoFi Stadium',
+    date: 'June 12, 2026',
+    image: 'https://images.unsplash.com/photo-1619551731652-32b7086082ec?auto=format&fit=crop&q=80&w=800',
+  }
+];
 
 const ScheduleSection = () => {
-  const { t } = useTranslation();
-
-  const matches = [
-    {
-      stageKey: 'schedule.openingMatch',
-      date: 'June 11, 2026',
-      time: '18:00 ET',
-      teams: 'Mexico vs TBD',
-      venue: 'Mexico City',
-      stadium: 'Estadio Azteca',
-      country: 'Mexico',
-    },
-    {
-      stageKey: 'schedule.groupStage',
-      date: 'June 12, 2026',
-      time: '20:00 ET',
-      teams: 'USA vs TBD',
-      venue: 'Los Angeles',
-      stadium: 'SoFi Stadium',
-      country: 'USA',
-    },
-    {
-      stageKey: 'schedule.groupStage',
-      date: 'June 13, 2026',
-      time: '19:00 ET',
-      teams: 'Canada vs TBD',
-      venue: 'Toronto',
-      stadium: 'BMO Field',
-      country: 'Canada',
-    },
-    {
-      stageKey: 'schedule.quarterFinal',
-      date: 'July 4, 2026',
-      time: '21:00 ET',
-      teams: 'TBD vs TBD',
-      venue: 'Dallas',
-      stadium: 'AT&T Stadium',
-      country: 'USA',
-    },
-    {
-      stageKey: 'schedule.semiFinal',
-      date: 'July 14, 2026',
-      time: '20:00 ET',
-      teams: 'TBD vs TBD',
-      venue: 'Miami',
-      stadium: 'Hard Rock Stadium',
-      country: 'USA',
-    },
-    {
-      stageKey: 'schedule.final',
-      date: 'July 19, 2026',
-      time: '16:00 ET',
-      teams: 'TBD vs TBD',
-      venue: 'New York/NJ',
-      stadium: 'MetLife Stadium',
-      country: 'USA',
-    },
-  ];
+  const { language } = useLanguage();
+  const langKey = (language as Language) || 'en';
+  const content = SCHEDULE_CONTENT[langKey];
 
   return (
-    <section className="py-16 md:py-24 bg-secondary/20 moroccan-pattern">
+    <section id="schedule" className="py-20 bg-secondary/30">
       <div className="container px-4">
-        {/* Section Header - Translated */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Trophy className="w-6 h-6 text-primary" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              {t('schedule.sectionLabel')}
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('schedule.title')}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
+            {content.title}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('schedule.subtitle')}
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            {content.subtitle}
           </p>
-        </motion.div>
+        </div>
 
-        {/* Schedule Grid - 6 Match Tables */}
-        <div 
-          id="schedule-section" 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-          style={{ scrollMarginTop: '80px' }}
-        >
-          {matches.map((match, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {MATCH_VENUES.map((venue) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              key={venue.id}
+              whileHover={{ y: -10 }}
+              className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl"
             >
-              <Card className="bg-card border-border overflow-hidden card-hover-purple h-full">
-                <CardContent className="p-0">
-                  {/* Header - Translated */}
-                  <div className="bg-primary/20 border-b border-primary/30 px-4 py-3 flex items-center justify-between">
-                    <Badge className="bg-primary/30 text-primary border-primary/50">
-                      {t(match.stageKey)}
-                    </Badge>
-                    <span className="text-xs text-muted-foreground font-medium">{match.country}</span>
+              <div className="h-48 relative">
+                <img src={venue.image} alt={venue.stadium} className="w-full h-full object-cover" />
+                <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full text-xs font-bold">
+                  2026
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-primary mb-2">
+                  <MapPin className="w-4 h-4" />
+                  <span className="font-bold">{venue.city[langKey]}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-4">{venue.stadium}</h3>
+                <div className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-4">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {venue.date}
                   </div>
-                  
-                  {/* Content */}
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold text-foreground mb-3">{match.teams}</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span>{match.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="w-4 h-4 text-primary" />
-                        <span>{match.time}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <span>{match.venue} - {match.stadium}</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Trophy className="w-4 h-4 text-yellow-500" />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Disclaimer - Translated */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-xs text-muted-foreground mt-8"
-        >
-          {t('schedule.disclaimer')}
-        </motion.p>
       </div>
     </section>
   );
