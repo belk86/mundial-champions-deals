@@ -5,38 +5,38 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-type Language = 'en' | 'es' | 'fr';
+type Language = 'en' | 'ar' | 'fr';
 
 const HOST_CITIES = [
   {
-    name: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
+    name: { en: 'New York/NJ', ar: 'نيويورك/نيوجيرسي', fr: 'New York/NJ' },
     stadium: 'MetLife Stadium',
-    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
+    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
+    name: { en: 'Los Angeles', ar: 'لوس أنجلوس', fr: 'Los Angeles' },
     stadium: 'SoFi Stadium',
-    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
+    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Miami', es: 'Miami', fr: 'Miami' },
+    name: { en: 'Miami', ar: 'ميامي', fr: 'Miami' },
     stadium: 'Hard Rock Stadium',
-    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
+    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
+    name: { en: 'Dallas', ar: 'دالاس', fr: 'Dallas' },
     stadium: 'AT&T Stadium',
-    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
+    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' },
+    name: { en: 'Toronto', ar: 'تورونتو', fr: 'Toronto' },
     stadium: 'BMO Field',
-    country: { en: 'Canada', es: 'Canadá', fr: 'Canada' },
+    country: { en: 'Canada', ar: 'كندا', fr: 'Canada' },
   },
   {
-    name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
+    name: { en: 'Mexico City', ar: 'مدينة مكسيكو', fr: 'Mexico' },
     stadium: 'Estadio Azteca',
-    country: { en: 'Mexico', es: 'México', fr: 'Mexique' },
+    country: { en: 'Mexico', ar: 'المكسيك', fr: 'Mexique' },
   },
 ];
 
@@ -45,8 +45,8 @@ const TravelSection = () => {
   const { language } = useLanguage();
   const langKey = (language as Language) || 'en';
 
-  const hotelsLink = `https://www.booking.com/searchresults.html?aid=304142&label=marker-495595&lang=${langKey}`;
-  const carsLink = `https://www.booking.com/cars/index.html?aid=304142&label=marker-495595&lang=${langKey}`;
+  const hotelsLink = `https://www.booking.com/searchresults.html?aid=8013322&lang=${langKey}`;
+  const carsLink = `https://www.booking.com/cars/index.html?aid=8013322&lang=${langKey}`;
 
   const travelCards = [
     {
@@ -143,7 +143,7 @@ const TravelSection = () => {
             {HOST_CITIES.map((city) => (
               <a
                 key={city.name.en}
-                href={`https://www.booking.com/searchresults.html?ss=${city.name.en}&aid=304142`}
+                href={`https://www.booking.com/searchresults.html?ss=${city.name.en}&aid=8013322`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"

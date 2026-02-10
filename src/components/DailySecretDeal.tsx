@@ -57,8 +57,8 @@ const DailySecretDeal = () => {
 
   const getDisplayName = () => {
     switch (language) {
-      case 'es':
-        return secretDeal.nameEs;
+      case 'ar':
+        return secretDeal.nameAr || secretDeal.name;
       default:
         return secretDeal.name;
     }

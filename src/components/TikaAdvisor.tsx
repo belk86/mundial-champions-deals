@@ -183,7 +183,7 @@ const TikaAdvisor = () => {
                 <div>
                   <h3 className="font-bold text-black">Tika</h3>
                   <p className="text-black/70 text-xs">
-                    {language === 'es' ? 'Tu Asesora IA' : 
+                    {language === 'ar' ? 'مستشارة ذكاء اصطناعي' : 
                      language === 'fr' ? 'Conseillère IA' : 
                      'AI Shopping Advisor'}
                   </p>
@@ -230,7 +230,7 @@ const TikaAdvisor = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={
-                    language === 'es' ? 'Pregunta a Tika...' :
+                    language === 'ar' ? 'اسأل تيكا...' :
                     language === 'fr' ? 'Demandez à Tika...' :
                     'Ask Tika...'
                   }
