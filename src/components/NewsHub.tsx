@@ -59,14 +59,12 @@ const NewsHub = () => {
 
   const getTitle = (card: NewsCard) => {
     if (lang === 'ar') return card.titleAr;
-    if (lang === 'es') return card.titleEs;
-    return card.title;
+    if (lang === 'fr') return card.title;
   };
 
   const getDescription = (card: NewsCard) => {
     if (lang === 'ar') return card.descriptionAr;
-    if (lang === 'es') return card.descriptionEs;
-    return card.description;
+    if (lang === 'fr') return card.description;
   };
 
   const handleCardClick = () => {

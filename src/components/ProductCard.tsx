@@ -58,8 +58,8 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 
   const getDisplayName = () => {
     switch (language) {
-      case 'es':
-        return product.name_es;
+      case 'ar':
+        return product.name_ar;
       default:
         return product.name;
     }
@@ -67,8 +67,8 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
 
   const getTrendSignal = () => {
     switch (language) {
-      case 'es':
-        return product.trend_signal_es || product.trend_signal;
+      case 'ar':
+        return product.trend_signal_ar || product.trend_signal;
       default:
         return product.trend_signal;
     }
@@ -121,14 +121,14 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       <div className={`absolute top-12 ${isRTL ? 'left-3' : 'right-3'} z-10 max-w-[140px]`}>
         <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
           <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
-            🔥 <span>{language === 'es' ? 'Viral en TikTok' 
+            🔥 <span>{language === 'ar' ? 'فيروسي على تيك توك' 
               : language === 'fr' ? 'Viral sur TikTok'
               : 'Viral on TikTok'}</span>
           </p>
           <p className="text-[9px] text-muted-foreground">
-            📍 {language === 'es' ? 'Más vendido en' 
+            📍 {language === 'ar' ? 'الأكثر مبيعاً في' 
               : language === 'fr' ? 'Meilleur vendeur à'
-              : 'Top Seller in'} <span className="text-primary font-bold">{language === 'es' ? 'Tánger' 
+              : 'Top Seller in'} <span className="text-primary font-bold">{language === 'ar' ? 'طنجة' 
               : language === 'fr' ? 'Tanger'
               : 'Tangier'}</span>
           </p>
@@ -210,7 +210,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         {/* Limited World Cup Offer Countdown - Glassmorphism Style - ALL products */}
         <div className="bg-white/10 backdrop-blur-md rounded-lg p-3 border-l-4 border-gold shadow-lg">
           <p className="text-[11px] font-bold text-foreground flex items-center gap-1 mb-1">
-            🏆 {language === 'es' ? 'Oferta limitada de la Copa del Mundo - Finaliza en:' 
+            🏆 {language === 'ar' ? 'عرض كأس العالم المحدود - ينتهي في:' 
               : language === 'fr' ? 'Offre limitée Coupe du Monde - Se termine dans:' 
               : 'Limited World Cup Offer - Ends in:'}
           </p>

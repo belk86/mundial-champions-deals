@@ -80,90 +80,81 @@ export const translations = {
       },
     },
   },
-  es: {
+  ar: {
     translation: {
-      // Navigation
       nav: {
-        home: "Inicio",
-        fansGear: "Equipamiento Fan",
-        travelGuide: "Guía de Viaje",
-        schedule: "Calendario Mundial",
-        joinNow: "Únete Ahora",
+        home: "الرئيسية",
+        fansGear: "معدات المشجعين",
+        travelGuide: "دليل السفر",
+        schedule: "جدول كأس العالم",
+        joinNow: "انضم الآن",
       },
-      // Hero
       hero: {
-        yourPremium: "Tu Destino",
-        worldCup2026: "Mundial 2026",
-        destination: "Premium",
-        subtitle: "Compra productos virales de TikTok, los más vendidos, y reserva tu estadía en USA, Canadá y México. Todo lo que un verdadero fan necesita.",
-        shopGear: "Comprar Equipamiento",
-        planTrip: "Planifica tu Viaje",
-        scrollExplore: "Desplázate para explorar",
+        yourPremium: "وجهتك المميزة",
+        worldCup2026: "كأس العالم 2026",
+        destination: "الفاخرة",
+        subtitle: "تسوّق المنتجات الرائجة على تيك توك والأكثر مبيعاً، واحجز إقامتك في أمريكا وكندا والمكسيك. كل ما يحتاجه المشجع الحقيقي.",
+        shopGear: "تسوّق المعدات",
+        planTrip: "خطط لرحلتك",
+        scrollExplore: "مرر للاستكشاف",
       },
-      // Products
       products: {
-        sectionLabel: "Productos Destacados",
-        title: "Colección de Equipamiento Fan",
-        subtitle: "Selección de productos virales de TikTok y más vendidos para fans del Mundial 2026",
-        buyOnAmazon: "Comprar en Amazon",
-        viralTikTok: "Viral en TikTok",
-        topSeller: "Más Vendido",
+        sectionLabel: "منتجات مميزة",
+        title: "مجموعة معدات المشجعين",
+        subtitle: "تشكيلة منتقاة من المنتجات الرائجة على تيك توك والأكثر مبيعاً لمشجعي كأس العالم 2026",
+        buyOnAmazon: "اشترِ من أمازون",
+        viralTikTok: "رائج على تيك توك",
+        topSeller: "الأكثر مبيعاً",
       },
-      // Travel
       travel: {
-        sectionLabel: "Guía de Viaje",
-        title: "Planifica tu Viaje al Mundial",
-        subtitle: "Reserva estadías, alquiler de autos y vuelos a USA, Canadá y México para el Mundial 2026",
-        matchDayStays: "Hoteles",
-        matchDayStaysDesc: "Reserva hoteles premium cerca de estadios del Mundial. Mejores tarifas garantizadas.",
-        findHotels: "Buscar Hoteles",
-        carRentals: "Alquiler de coches",
-        carRentalsDesc: "Explora ciudades sede con estilo. Alquila un auto y conduce entre sedes.",
-        rentCar: "Alquilar Auto",
-        flights: "Vuelos",
-        flightsDesc: "Encuentra las mejores ofertas de vuelos a Nueva York, Los Ángeles, Miami, Toronto, Ciudad de México.",
-        searchFlights: "Buscar Vuelos",
-        hostCities: "Ciudades Sede - USA, Canadá y México",
+        sectionLabel: "دليل السفر",
+        title: "خطط لرحلة كأس العالم",
+        subtitle: "احجز إقامتك وتأجير السيارات والرحلات الجوية إلى أمريكا وكندا والمكسيك لكأس العالم 2026",
+        matchDayStays: "فنادق",
+        matchDayStaysDesc: "احجز فنادق فاخرة بالقرب من ملاعب كأس العالم. أفضل الأسعار مضمونة.",
+        findHotels: "ابحث عن فنادق",
+        carRentals: "تأجير سيارات",
+        carRentalsDesc: "استكشف المدن المستضيفة بأناقة. استأجر سيارة وتنقل بين الملاعب.",
+        rentCar: "استأجر سيارة",
+        flights: "رحلات جوية",
+        flightsDesc: "اعثر على أفضل عروض الرحلات إلى نيويورك ولوس أنجلوس وميامي وتورونتو ومكسيكو سيتي.",
+        searchFlights: "ابحث عن رحلات",
+        hostCities: "المدن المستضيفة - أمريكا وكندا والمكسيك",
       },
-      // Schedule
       schedule: {
-        sectionLabel: "Calendario de Partidos",
-        title: "Calendario Mundial 2026",
-        subtitle: "Partidos clave en USA, Canadá y México. Calendario completo por anunciar.",
-        disclaimer: "* Calendario preliminar. Calendario oficial FIFA por confirmar.",
-        openingMatch: "Partido Inaugural",
-        groupStage: "Fase de Grupos",
-        quarterFinal: "Cuartos de Final",
-        semiFinal: "Semifinal",
-        final: "Final",
+        sectionLabel: "جدول المباريات",
+        title: "جدول كأس العالم 2026",
+        subtitle: "مباريات رئيسية في أمريكا وكندا والمكسيك. الجدول الكامل سيُعلن قريباً.",
+        disclaimer: "* جدول أولي. الجدول الرسمي لفيفا سيتم تأكيده.",
+        openingMatch: "مباراة الافتتاح",
+        groupStage: "دور المجموعات",
+        quarterFinal: "ربع النهائي",
+        semiFinal: "نصف النهائي",
+        final: "النهائي",
       },
-      // Countdown
       countdown: {
-        limitedOffer: "Oferta Mundial Limitada",
-        endsIn: "Termina en:",
-        days: "Días",
-        hours: "Horas",
-        mins: "Mins",
-        secs: "Segs",
+        limitedOffer: "عرض كأس العالم المحدود",
+        endsIn: "ينتهي في:",
+        days: "أيام",
+        hours: "ساعات",
+        mins: "دقائق",
+        secs: "ثوانٍ",
       },
-      // Common
       common: {
-        scrollTop: "Volver arriba",
-        loading: "Cargando...",
+        scrollTop: "العودة للأعلى",
+        loading: "جارٍ التحميل...",
       },
-      // Footer
       footer: {
-        tagline: "Tu destino premium para equipamiento fan del Mundial 2026, ofertas de viaje y calendarios.",
-        quickLinks: "Enlaces Rápidos",
-        support: "Soporte",
-        copyright: "© 2026 FanEdge. Todos los derechos reservados.",
-        affiliate: "Divulgación: Ganamos comisiones por compras calificadas.",
+        tagline: "وجهتك المميزة لمعدات مشجعي كأس العالم 2026 وعروض السفر والجداول.",
+        quickLinks: "روابط سريعة",
+        support: "الدعم",
+        copyright: "© 2026 FanEdge. جميع الحقوق محفوظة.",
+        affiliate: "إفصاح: نحصل على عمولات من المشتريات المؤهلة.",
       },
     },
   },
   fr: {
     translation: {
-      // Navigation
       nav: {
         home: "Accueil",
         fansGear: "Équipement Fan",
@@ -171,7 +162,6 @@ export const translations = {
         schedule: "Calendrier Mondial",
         joinNow: "Rejoindre",
       },
-      // Hero
       hero: {
         yourPremium: "Votre Destination",
         worldCup2026: "Coupe du Monde 2026",
@@ -181,7 +171,6 @@ export const translations = {
         planTrip: "Planifier Voyage",
         scrollExplore: "Défiler pour explorer",
       },
-      // Products
       products: {
         sectionLabel: "Produits Vedettes",
         title: "Collection Équipement Fan",
@@ -190,7 +179,6 @@ export const translations = {
         viralTikTok: "Viral sur TikTok",
         topSeller: "Meilleure Vente",
       },
-      // Travel
       travel: {
         sectionLabel: "Guide de Voyage",
         title: "Planifiez Votre Voyage Mondial",
@@ -206,7 +194,6 @@ export const translations = {
         searchFlights: "Rechercher Vols",
         hostCities: "Villes Hôtes - USA, Canada et Mexique",
       },
-      // Schedule
       schedule: {
         sectionLabel: "Calendrier des Matchs",
         title: "Calendrier Coupe du Monde 2026",
@@ -218,7 +205,6 @@ export const translations = {
         semiFinal: "Demi-Finale",
         final: "Finale",
       },
-      // Countdown
       countdown: {
         limitedOffer: "Offre Mondiale Limitée",
         endsIn: "Se termine dans:",
@@ -227,12 +213,10 @@ export const translations = {
         mins: "Mins",
         secs: "Secs",
       },
-      // Common
       common: {
         scrollTop: "Retour en haut",
         loading: "Chargement...",
       },
-      // Footer
       footer: {
         tagline: "Votre destination premium pour l'équipement fan Coupe du Monde 2026, offres de voyage et calendriers.",
         quickLinks: "Liens Rapides",

@@ -31,7 +31,7 @@ const Navbar = () => {
 
   const languages = [
     { code: 'en' as const, label: 'English', displayCode: 'EN' },
-    { code: 'es' as const, label: 'Español', displayCode: 'ES' },
+    { code: 'ar' as const, label: 'العربية', displayCode: 'AR' },
     { code: 'fr' as const, label: 'Français', displayCode: 'FR' },
   ];
 
