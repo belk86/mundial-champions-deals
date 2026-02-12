@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const { t } = useTranslation();
-  const { isRTL } = useLanguage();
+  const { language } = useLanguage();
 
   const quickLinks = [
     { label: 'Home', href: '#home' },

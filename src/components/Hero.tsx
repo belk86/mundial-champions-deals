@@ -7,7 +7,7 @@ import stadiumBg from '@/assets/stadium-hero.jpg';
 
 const Hero = () => {
   const { t } = useTranslation();
-  const { isRTL } = useLanguage();
+  const { language } = useLanguage();
 
   const features = [
     { icon: ShieldCheck, label: 'Verified Sellers' },
@@ -95,7 +95,7 @@ const Hero = () => {
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.cta')}
-              <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <Button
               variant="outline"
