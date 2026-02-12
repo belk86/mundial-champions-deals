@@ -1,79 +1,95 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Trophy } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
 
-type Language = 'en' | 'ar' | 'fr';
+type Language = 'en' | 'es' | 'fr';
 
 const MATCHES = [
   {
-    round: { en: 'Opening Match', ar: 'مباراة الافتتاح', fr: "Match d'Ouverture" },
+    round: { en: 'Opening Match', es: 'Partido Inaugural', fr: "Match d'Ouverture" },
     date: '11 June 2026',
-    city: { en: 'Mexico City', ar: 'مدينة مكسيكو', fr: 'Mexico' },
+    city: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
     stadium: 'Estadio Azteca',
-    teams: { en: 'TBD vs TBD', ar: 'لم يُحدد', fr: 'À déf. vs À déf.' },
+    teams: { en: 'TBD vs TBD', es: 'Por definir', fr: 'À déf. vs À déf.' },
   },
   {
-    round: { en: 'Group Stage', ar: 'دور المجموعات', fr: 'Phase de Groupes' },
+    round: { en: 'Group Stage', es: 'Fase de Grupos', fr: 'Phase de Groupes' },
     date: '12 June – 4 July 2026',
-    city: { en: 'Multiple Cities', ar: 'مدن متعددة', fr: 'Plusieurs Villes' },
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
     stadium: '—',
-    teams: { en: '48 Teams', ar: '48 فريقاً', fr: '48 Équipes' },
+    teams: { en: '48 Teams', es: '48 Equipos', fr: '48 Équipes' },
   },
   {
-    round: { en: 'Round of 32', ar: 'دور الـ32', fr: '32èmes de Finale' },
+    round: { en: 'Round of 32', es: 'Dieciseisavos de Final', fr: '32èmes de Finale' },
     date: '5 – 8 July 2026',
-    city: { en: 'Multiple Cities', ar: 'مدن متعددة', fr: 'Plusieurs Villes' },
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
     stadium: '—',
-    teams: { en: '32 Teams', ar: '32 فريقاً', fr: '32 Équipes' },
+    teams: { en: '32 Teams', es: '32 Equipos', fr: '32 Équipes' },
   },
   {
-    round: { en: 'Quarter Final', ar: 'ربع النهائي', fr: 'Quart de Finale' },
+    round: { en: 'Quarter Final', es: 'Cuartos de Final', fr: 'Quart de Finale' },
     date: '11 – 12 July 2026',
-    city: { en: 'Multiple Cities', ar: 'مدن متعددة', fr: 'Plusieurs Villes' },
+    city: { en: 'Multiple Cities', es: 'Varias Ciudades', fr: 'Plusieurs Villes' },
     stadium: '—',
-    teams: { en: '8 Teams', ar: '8 فرق', fr: '8 Équipes' },
+    teams: { en: '8 Teams', es: '8 Equipos', fr: '8 Équipes' },
   },
   {
-    round: { en: 'Semi Final', ar: 'نصف النهائي', fr: 'Demi-Finale' },
+    round: { en: 'Semi Final', es: 'Semifinal', fr: 'Demi-Finale' },
     date: '15 July 2026',
-    city: { en: 'Dallas', ar: 'دالاس', fr: 'Dallas' },
+    city: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
     stadium: 'AT&T Stadium',
-    teams: { en: 'TBD vs TBD', ar: 'لم يُحدد', fr: 'À déf. vs À déf.' },
+    teams: { en: 'TBD vs TBD', es: 'Por definir', fr: 'À déf. vs À déf.' },
   },
   {
-    round: { en: 'Final', ar: 'النهائي', fr: 'Finale' },
+    round: { en: 'Final', es: 'Final', fr: 'Finale' },
     date: '19 July 2026',
-    city: { en: 'New York/NJ', ar: 'نيويورك/نيوجيرسي', fr: 'New York/NJ' },
+    city: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
     stadium: 'MetLife Stadium',
-    teams: { en: 'TBD vs TBD', ar: 'لم يُحدد', fr: 'À déf. vs À déf.' },
+    teams: { en: 'TBD vs TBD', es: 'Por definir', fr: 'À déf. vs À déf.' },
   },
 ];
 
 const TABLE_HEADERS: Record<Language, { round: string; date: string; city: string; stadium: string; teams: string }> = {
   en: { round: 'Round', date: 'Date', city: 'City', stadium: 'Stadium', teams: 'Match' },
-  ar: { round: 'الجولة', date: 'التاريخ', city: 'المدينة', stadium: 'الملعب', teams: 'المباراة' },
+  es: { round: 'Ronda', date: 'Fecha', city: 'Ciudad', stadium: 'Estadio', teams: 'Partido' },
   fr: { round: 'Tour', date: 'Date', city: 'Ville', stadium: 'Stade', teams: 'Match' },
 };
 
 const ScheduleSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { language } = useLanguage();
   const langKey = (language as Language) || 'en';
   const headers = TABLE_HEADERS[langKey];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Force translation refresh when this section enters the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            i18n.changeLanguage(language);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [language, i18n]);
 
   return (
-    <section id="schedule" className="py-16 md:py-24 bg-secondary/30">
+    <section ref={sectionRef} id="schedule" className="py-16 md:py-24 bg-secondary/30">
       <div className="container px-4">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +110,6 @@ const ScheduleSection = () => {
           </p>
         </motion.div>
 
-        {/* Text-Only Table */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,7 +144,6 @@ const ScheduleSection = () => {
           </Table>
         </motion.div>
 
-        {/* Disclaimer */}
         <p className="text-xs text-muted-foreground text-center mt-6">
           {t('schedule.disclaimer')}
         </p>

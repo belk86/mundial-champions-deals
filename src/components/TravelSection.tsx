@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -5,45 +6,67 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-type Language = 'en' | 'ar' | 'fr';
+type Language = 'en' | 'es' | 'fr';
 
 const HOST_CITIES = [
   {
-    name: { en: 'New York/NJ', ar: 'نيويورك/نيوجيرسي', fr: 'New York/NJ' },
+    name: { en: 'New York/NJ', es: 'Nueva York/NJ', fr: 'New York/NJ' },
     stadium: 'MetLife Stadium',
-    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
+    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Los Angeles', ar: 'لوس أنجلوس', fr: 'Los Angeles' },
+    name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
     stadium: 'SoFi Stadium',
-    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
+    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Miami', ar: 'ميامي', fr: 'Miami' },
+    name: { en: 'Miami', es: 'Miami', fr: 'Miami' },
     stadium: 'Hard Rock Stadium',
-    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
+    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Dallas', ar: 'دالاس', fr: 'Dallas' },
+    name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
     stadium: 'AT&T Stadium',
-    country: { en: 'USA', ar: 'الولايات المتحدة', fr: 'États-Unis' },
+    country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
   },
   {
-    name: { en: 'Toronto', ar: 'تورونتو', fr: 'Toronto' },
+    name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' },
     stadium: 'BMO Field',
-    country: { en: 'Canada', ar: 'كندا', fr: 'Canada' },
+    country: { en: 'Canada', es: 'Canadá', fr: 'Canada' },
   },
   {
-    name: { en: 'Mexico City', ar: 'مدينة مكسيكو', fr: 'Mexico' },
+    name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
     stadium: 'Estadio Azteca',
-    country: { en: 'Mexico', ar: 'المكسيك', fr: 'Mexique' },
+    country: { en: 'Mexico', es: 'México', fr: 'Mexique' },
   },
 ];
 
 const TravelSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { language } = useLanguage();
   const langKey = (language as Language) || 'en';
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Force translation refresh when this section enters the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Force i18n to re-apply the current language
+            i18n.changeLanguage(language);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [language, i18n]);
 
   const hotelsLink = `https://www.booking.com/searchresults.html?aid=8013322&lang=${langKey}`;
   const carsLink = `https://www.booking.com/cars/index.html?aid=8013322&lang=${langKey}`;
@@ -76,9 +99,8 @@ const TravelSection = () => {
   ];
 
   return (
-    <section id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
+    <section ref={sectionRef} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
       <div className="container px-4">
-        {/* Unified Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,11 +121,10 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        {/* Hotels / Cars / Flights Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
           {travelCards.map((card, i) => (
             <motion.div
-              key={i}
+              key={`${langKey}-${i}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
