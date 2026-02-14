@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Plane, Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
+import { Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -88,14 +88,6 @@ const TravelSection = () => {
       link: carsLink,
       color: 'bg-emerald-500/20 text-emerald-300',
     },
-    {
-      icon: Plane,
-      title: t('travel.flights'),
-      desc: t('travel.flightsDesc'),
-      cta: t('travel.searchFlights'),
-      link: 'https://www.booking.com/flights/index.html?aid=8013322&lang=en',
-      color: 'bg-orange-500/20 text-orange-300',
-    },
   ];
 
   return (
@@ -121,7 +113,7 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
           {travelCards.map((card, i) => (
             <motion.div
               key={`${langKey}-${i}`}
