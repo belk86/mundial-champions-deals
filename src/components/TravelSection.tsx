@@ -93,7 +93,7 @@ const TravelSection = () => {
       title: t('travel.flights'),
       desc: t('travel.flightsDesc'),
       cta: t('travel.searchFlights'),
-      link: '',
+      link: `https://www.booking.com/flights/index.html?aid=8013322&lang=${langKey}`,
       color: 'bg-orange-500/20 text-orange-300',
     },
   ];
