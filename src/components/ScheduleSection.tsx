@@ -54,10 +54,16 @@ const MATCHES = [
   },
 ];
 
-const TABLE_HEADERS: Record<Language, { round: string; date: string; city: string; stadium: string; teams: string }> = {
-  en: { round: 'Round', date: 'Date', city: 'City', stadium: 'Stadium', teams: 'Match' },
-  es: { round: 'Ronda', date: 'Fecha', city: 'Ciudad', stadium: 'Estadio', teams: 'Partido' },
-  fr: { round: 'Tour', date: 'Date', city: 'Ville', stadium: 'Stade', teams: 'Match' },
+const TABLE_HEADERS: Record<Language, { round: string; date: string; city: string; stadium: string; teams: string; status: string }> = {
+  en: { round: 'Round', date: 'Date', city: 'City', stadium: 'Stadium', teams: 'Match', status: 'Status' },
+  es: { round: 'Ronda', date: 'Fecha', city: 'Ciudad', stadium: 'Estadio', teams: 'Partido', status: 'Estado' },
+  fr: { round: 'Tour', date: 'Date', city: 'Ville', stadium: 'Stade', teams: 'Match', status: 'Statut' },
+};
+
+const STATUS_LABELS: Record<Language, string> = {
+  en: 'Booking Soon',
+  es: 'Reserva Pronto',
+  fr: 'Réservation Bientôt',
 };
 
 const ScheduleSection = () => {
@@ -128,6 +134,7 @@ const ScheduleSection = () => {
                 </TableHead>
                 <TableHead className="text-primary font-bold hidden lg:table-cell">{headers.stadium}</TableHead>
                 <TableHead className="text-primary font-bold">{headers.teams}</TableHead>
+                <TableHead className="text-primary font-bold">{headers.status}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -138,6 +145,11 @@ const ScheduleSection = () => {
                   <TableCell className="text-muted-foreground hidden md:table-cell">{match.city[langKey]}</TableCell>
                   <TableCell className="text-muted-foreground hidden lg:table-cell">{match.stadium}</TableCell>
                   <TableCell className="text-foreground font-medium">{match.teams[langKey]}</TableCell>
+                  <TableCell>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/15 text-accent border border-accent/25">
+                      {STATUS_LABELS[langKey]}
+                    </span>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
