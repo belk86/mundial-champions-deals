@@ -9,16 +9,25 @@ const FanEdgeFooter = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !email.includes('@')) {
       toast.error('Please enter a valid email address');
       return;
     }
-    setIsSubmitted(true);
-    toast.success('Successfully subscribed! Welcome to FanEdge.');
-    setEmail('');
-    setTimeout(() => setIsSubmitted(false), 3000);
+    try {
+      await fetch('https://formspree.io/f/mgolngpj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      setIsSubmitted(true);
+      toast.success('Successfully subscribed! Welcome to FanEdge.');
+      setEmail('');
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch {
+      toast.error('Something went wrong. Please try again.');
+    }
   };
 
   const quickLinks = [
@@ -101,6 +110,7 @@ const FanEdgeFooter = () => {
             <form onSubmit={handleSubscribe} className="flex gap-2">
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
