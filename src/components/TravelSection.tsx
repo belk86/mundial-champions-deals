@@ -68,8 +68,8 @@ const TravelSection = () => {
     return () => observer.disconnect();
   }, [language, i18n]);
 
-  const hotelsLink = `https://www.booking.com/searchresults.html?aid=8013322&lang=${langKey}`;
-  const carsLink = `https://www.booking.com/cars/index.html?aid=8013322&lang=${langKey}`;
+  const hotelsLink = `https://www.booking.com/searchresults.html?aid=8013322&lang=en`;
+  const carsLink = `https://www.booking.com/cars/index.html?aid=8013322&lang=en`;
 
   const travelCards = [
     {
@@ -156,7 +156,7 @@ const TravelSection = () => {
             {HOST_CITIES.map((city) => (
               <a
                 key={city.name.en}
-                href={`https://www.booking.com/searchresults.html?ss=${city.name.en}&aid=8013322`}
+                href={`https://www.booking.com/searchresults.html?ss=${city.name.en}&aid=8013322&lang=en`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"
