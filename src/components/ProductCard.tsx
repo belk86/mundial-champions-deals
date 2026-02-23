@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, Star, ShieldCheck, Flame, TrendingUp, Package, Clock } from 'lucide-react';
+import { ExternalLink, Star, ShieldCheck, Flame, TrendingUp, Package, Clock, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -82,14 +82,14 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </div>
       )}
 
-      <div className="absolute top-12 right-3 z-10 max-w-[140px]">
-        <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 border-l-4 border-primary shadow-lg">
-          <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
-            🔥 <span>{language === 'es' ? 'Viral en TikTok' : language === 'fr' ? 'Viral sur TikTok' : 'Viral on TikTok'}</span>
+      <div className="absolute top-12 right-3 z-10 max-w-[160px]">
+        <div className="bg-black/70 backdrop-blur-md rounded-lg p-2.5 border-l-4 border-accent shadow-xl">
+          <p className="text-xs font-bold text-white flex items-center gap-1">
+            🔥 <span>{language === 'es' ? 'Viral en TikTok - 2M+ vistas' : language === 'fr' ? 'Viral sur TikTok - 2M+ vues' : 'Viral on TikTok - 2M+ views'}</span>
           </p>
-            <p className="text-[9px] text-muted-foreground">
+          <p className="text-[11px] text-white/80 mt-1 font-semibold">
             📍 {language === 'es' ? 'Más vendido en' : language === 'fr' ? 'Meilleur vendeur aux' : 'Top Seller in'}{' '}
-            <span className="text-primary font-bold">{language === 'es' ? 'EE.UU.' : language === 'fr' ? 'USA' : 'USA'}</span>
+            <span className="text-accent font-bold">{language === 'es' ? 'EE.UU.' : 'USA'}</span>
           </p>
         </div>
       </div>
@@ -148,7 +148,8 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           </div>
         </div>
 
-        <Button className="w-full bg-amazon hover:bg-amazon-dark text-black font-bold group/btn transition-all duration-300" onClick={handleGetDeal}>
+        <Button className="w-full bg-gradient-to-r from-[hsl(280,100%,45%)] to-[hsl(220,100%,50%)] hover:from-[hsl(280,100%,40%)] hover:to-[hsl(220,100%,45%)] text-white font-bold rounded-xl group/btn transition-all duration-300 pulse-button-purple" onClick={handleGetDeal}>
+          <ShoppingCart className="w-4 h-4 mr-1" />
           {t('products.getDeal')}
           <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
         </Button>

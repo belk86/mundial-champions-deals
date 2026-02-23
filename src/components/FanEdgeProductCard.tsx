@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Sparkles, TrendingUp } from 'lucide-react';
+import { ExternalLink, Sparkles, TrendingUp, ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -80,9 +80,10 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
         </div>
 
         <Button
-          className="w-full bg-amazon hover:bg-amazon-dark text-white font-semibold group/btn transition-all duration-300 pulse-button-amazon"
+          className="w-full bg-gradient-to-r from-[hsl(280,100%,45%)] to-[hsl(220,100%,50%)] hover:from-[hsl(280,100%,40%)] hover:to-[hsl(220,100%,45%)] text-white font-semibold rounded-xl group/btn transition-all duration-300 pulse-button-purple"
           onClick={handleBuyClick}
         >
+          <ShoppingCart className="w-4 h-4 mr-1" />
           {t('products.buyOnAmazon')}
           <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
         </Button>
