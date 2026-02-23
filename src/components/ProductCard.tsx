@@ -87,9 +87,9 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           <p className="text-[10px] font-bold text-foreground flex items-center gap-1">
             🔥 <span>{language === 'es' ? 'Viral en TikTok' : language === 'fr' ? 'Viral sur TikTok' : 'Viral on TikTok'}</span>
           </p>
-          <p className="text-[9px] text-muted-foreground">
-            📍 {language === 'es' ? 'Más vendido en' : language === 'fr' ? 'Meilleur vendeur à' : 'Top Seller in'}{' '}
-            <span className="text-primary font-bold">{language === 'es' ? 'Tánger' : language === 'fr' ? 'Tanger' : 'Tangier'}</span>
+            <p className="text-[9px] text-muted-foreground">
+            📍 {language === 'es' ? 'Más vendido en' : language === 'fr' ? 'Meilleur vendeur aux' : 'Top Seller in'}{' '}
+            <span className="text-primary font-bold">{language === 'es' ? 'EE.UU.' : language === 'fr' ? 'USA' : 'USA'}</span>
           </p>
         </div>
       </div>
