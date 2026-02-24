@@ -24,6 +24,12 @@ export const translations = {
         buyOnAmazon: "Buy on Amazon",
         viralTikTok: "Viral on TikTok",
         topSeller: "Top Seller",
+        socialProof: {
+          viral: "🔥 Viral on TikTok - 2M+ views in USA",
+          topSeller: "⭐ Top Seller in USA",
+          recommended: "⭐ Recommended for Fans",
+          limited: "🏆 Limited World Cup Offer",
+        },
       },
       travel: {
         sectionLabel: "Travel Guide",
@@ -97,6 +103,12 @@ export const translations = {
         buyOnAmazon: "Comprar en Amazon",
         viralTikTok: "Viral en TikTok",
         topSeller: "Más Vendido",
+        socialProof: {
+          viral: "🔥 Viral en TikTok - 2M+ vistas en EE.UU.",
+          topSeller: "⭐ Más Vendido en EE.UU.",
+          recommended: "⭐ Recomendado para Fans",
+          limited: "🏆 Oferta Mundial Limitada",
+        },
       },
       travel: {
         sectionLabel: "Guía de Viaje",
@@ -170,6 +182,12 @@ export const translations = {
         buyOnAmazon: "Acheter sur Amazon",
         viralTikTok: "Viral sur TikTok",
         topSeller: "Meilleure Vente",
+        socialProof: {
+          viral: "🔥 Viral sur TikTok - 2M+ vues aux USA",
+          topSeller: "⭐ Meilleure Vente aux USA",
+          recommended: "⭐ Recommandé pour les Fans",
+          limited: "🏆 Offre Mondiale Limitée",
+        },
       },
       travel: {
         sectionLabel: "Guide de Voyage",

@@ -17,7 +17,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71NnB+Ri+kL._AC_UF894,1000_QL80_FMwebp_.jpg",
     category: "Home Cinema",
     affiliateUrl: "https://amzn.to/3B77C2n",
-    socialProof: "Viral on TikTok - 2M+ views",
+    socialProof: "viral",
     tag: 'viral'
   },
   {
@@ -27,7 +27,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71SSISN8iHL._AC_SL1500_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/4qOiuUq",
-    socialProof: "Top Seller in Tangier",
+    socialProof: "topSeller",
     tag: 'top_seller'
   },
   {
@@ -37,7 +37,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/81WdS0Baq1L._AC_UF350,350_QL80_FMwebp_.jpg",
     category: "Travel",
     affiliateUrl: "https://amzn.to/4qKX1vq",
-    socialProof: "Essential for 2026 Travelers"
+    socialProof: "recommended"
   },
   {
     id: '4',
@@ -46,7 +46,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/814z8oFlhdL._AC_UF1000,1000_QL80_FMwebp_.jpg",
     category: "Collectibles",
     affiliateUrl: "https://amzn.to/3Z3O9VK",
-    socialProof: "Limited World Cup Offer",
+    socialProof: "limited",
     tag: 'limited'
   },
   {
@@ -56,7 +56,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71fUNemtqhL._AC_UF350,350_QL80_FMwebp_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/4k1n4fm",
-    socialProof: "Stadium Must-Have"
+    socialProof: "topSeller"
   },
   {
     id: '6',
@@ -65,7 +65,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/81tJFl-0x7L._AC_UF1000,1000_QL80_FMwebp_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/4ka6DxC",
-    socialProof: "Plan Your Journey"
+    socialProof: "recommended"
   },
   {
     id: '7',
@@ -74,7 +74,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/61RMoclW7mL._AC_UL1500_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/3B9D9o7",
-    socialProof: "Perfect Party Gift"
+    socialProof: "recommended"
   },
   {
     id: '8',
@@ -83,7 +83,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/81a+GTgEVyL._AC_UF894,1000_QL80_FMwebp_.jpg",
     category: "Collectibles",
     affiliateUrl: "https://amzn.to/3Z5M7K8",
-    socialProof: "Official Merchandise",
+    socialProof: "topSeller",
     tag: 'top_seller'
   },
   {
@@ -93,7 +93,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/517X28DHnDL._AC_UY1000_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/49A8U0U",
-    socialProof: "Support Your Team"
+    socialProof: "recommended"
   },
   {
     id: '10',
@@ -102,7 +102,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71wnE6TJq8L._AC_UF1000,1000_QL80_FMwebp_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/3B4H9mN",
-    socialProof: "Top Seller"
+    socialProof: "viral"
   },
   {
     id: '11',
@@ -111,7 +111,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71XexGUTwbL._AC_UF1000,1000_QL80_FMwebp_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/4k7B2mF",
-    socialProof: "Viral Decor"
+    socialProof: "viral"
   },
   {
     id: '12',
@@ -120,7 +120,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71tjdn2HuXL._AC_UF1000,1000_QL80_FMwebp_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/3Z6Y7X9",
-    socialProof: "Comfort in Stadiums"
+    socialProof: "topSeller"
   },
   {
     id: '13',
@@ -129,7 +129,7 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71xuYlE+-+L._AC_SL1500_.jpg",
     category: "Travel",
     affiliateUrl: "https://amzn.to/49B2Z1V",
-    socialProof: "Travel in Style"
+    socialProof: "recommended"
   },
   {
     id: '14',
@@ -138,6 +138,6 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/71YP54MHXXL._AC_SL1500_.jpg",
     category: "Fans Gear",
     affiliateUrl: "https://amzn.to/3Z8R9W2",
-    socialProof: "Eco-Friendly Fan"
+    socialProof: "recommended"
   }
 ];
