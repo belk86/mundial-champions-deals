@@ -61,7 +61,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="text-foreground font-medium">Tangier, Morocco</p>
+                  <p className="text-foreground font-medium">Global Support - USA Operations</p>
                 </div>
               </div>
 
