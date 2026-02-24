@@ -73,6 +73,13 @@ const FanEdgeProductCard = ({ product, index }: ProductCardProps) => {
           {product.name}
         </h3>
 
+        {/* Social Proof Label */}
+        {product.socialProof && (
+          <p className={`text-xs font-semibold ${product.socialProof === 'viral' ? 'text-gold' : 'text-purple-400'}`}>
+            {t(`products.socialProof.${product.socialProof}`)}
+          </p>
+        )}
+
         <div className="flex items-baseline gap-2 flex-wrap">
           <span className="text-xl font-bold text-foreground">
             ${product.price.toFixed(2)}
