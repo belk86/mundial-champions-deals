@@ -1,3 +1,4 @@
+import WorldCupCountdown from '@/components/WorldCupCountdown';
 import FanEdgeNavbar from '@/components/FanEdgeNavbar';
 import FanEdgeHero from '@/components/FanEdgeHero';
 import FanEdgeProductGrid from '@/components/FanEdgeProductGrid';
@@ -10,6 +11,7 @@ import TikaAdvisor from '@/components/TikaAdvisor';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background moroccan-pattern text-foreground">
+      <WorldCupCountdown />
       <FanEdgeNavbar />
       <FanEdgeHero />
       <FanEdgeProductGrid />
