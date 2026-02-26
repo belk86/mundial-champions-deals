@@ -1,9 +1,28 @@
-import { Mail, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin, Check, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import FanEdgeLogo from './FanEdgeLogo';
 
 const FanEdgeFooter = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) return;
+    try {
+      const res = await fetch('https://formspree.io/f/mgolngpj', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target as HTMLFormElement),
+      });
+      if (res.ok) {
+        setIsSubmitted(true);
+        setEmail('');
+      }
+    } catch { /* silent fail */ }
+  };
 
   const quickLinks = [
     { label: 'Home', href: '#home' },
@@ -82,21 +101,35 @@ const FanEdgeFooter = () => {
             <p className="text-muted-foreground text-sm mb-4">
               Get exclusive deals and World Cup 2026 updates.
             </p>
-            <form action="https://formspree.io/f/mgolngpj" method="POST" className="flex gap-2">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Your email"
-                className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon transition-all"
-              />
-              <button 
-                type="submit"
-                className="px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 bg-amazon hover:bg-amazon-dark text-black"
-              >
-                Join Now
-              </button>
-            </form>
+            {isSubmitted ? (
+              <div className="flex items-center gap-3 p-4 rounded-lg bg-gradient-to-r from-purple-900/40 to-amber-900/30 border border-purple-500/30">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-amber-400 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-amber-300">Welcome to the Frontline!</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">You're now subscribed for exclusive World Cup 2026 updates.</p>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex gap-2">
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email"
+                  className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon transition-all"
+                />
+                <button 
+                  type="submit"
+                  className="px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 bg-amazon hover:bg-amazon-dark text-black"
+                >
+                  Join Now
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
