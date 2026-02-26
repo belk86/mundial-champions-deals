@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Hotel, Car, MapPin, ExternalLink, Star, Users, Zap } from 'lucide-react';
+import { Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -83,23 +83,6 @@ const HOST_CITIES = [
   },
 ];
 
-const CAR_CATEGORIES = [
-  {
-    key: 'compact',
-    icon: Car,
-    color: 'bg-blue-500/20 text-blue-300',
-  },
-  {
-    key: 'suv',
-    icon: Users,
-    color: 'bg-emerald-500/20 text-emerald-300',
-  },
-  {
-    key: 'luxury',
-    icon: Star,
-    color: 'bg-amber-500/20 text-amber-300',
-  },
-];
 
 const TravelSection = () => {
   const { t, i18n } = useTranslation();
@@ -123,8 +106,8 @@ const TravelSection = () => {
   }, [language, i18n]);
 
   const langParam = langKey === 'es' ? 'es' : langKey === 'fr' ? 'fr' : 'en';
-  const bookingBase = `https://www.booking.com/searchresults.html?aid=8944582&lang=${langParam}&checkin=2026-06-11&checkout=2026-07-19`;
-  const carsBase = `https://www.booking.com/cars/index.html?aid=8944582&lang=${langParam}`;
+  const hotelUrl = (city: string) => `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&checkin=2026-06-11&checkout=2026-07-19`;
+  const carUrl = (city: string) => `https://www.booking.com/cars/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}`;
 
   return (
     <section ref={sectionRef} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -187,7 +170,7 @@ const TravelSection = () => {
                     <Button
                       size="sm"
                       className="w-full"
-                      onClick={() => window.open(`${bookingBase}&ss=${city.searchQuery}`, '_blank', 'noopener,noreferrer')}
+                      onClick={() => window.open(hotelUrl(city.searchQuery), '_blank', 'noopener,noreferrer')}
                     >
                       {t('travel.bookStay')}
                       <ExternalLink className="w-3.5 h-3.5 ms-1.5" />
@@ -199,7 +182,7 @@ const TravelSection = () => {
           </div>
         </div>
 
-        {/* ── Car Rentals: Category Grid ── */}
+        {/* ── Car Rentals: City-Specific Links ── */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
@@ -209,33 +192,28 @@ const TravelSection = () => {
               {t('travel.carRentals')}
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {CAR_CATEGORIES.map((cat, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {HOST_CITIES.map((city, i) => (
               <motion.div
-                key={`car-${cat.key}`}
+                key={`car-${city.name.en}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ delay: i * 0.05 }}
               >
                 <Card className="bg-card border-border h-full card-hover-purple">
-                  <CardContent className="p-6 flex flex-col items-center text-center h-full">
-                    <div className={`w-14 h-14 rounded-xl ${cat.color} flex items-center justify-center mb-4`}>
-                      <cat.icon className="w-7 h-7" />
-                    </div>
-                    <h4 className="font-bold text-lg text-foreground mb-2">
-                      {t(`travel.car.${cat.key}.title`)}
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-5 flex-1">
-                      {t(`travel.car.${cat.key}.desc`)}
-                    </p>
+                  <CardContent className="p-4 flex flex-col items-center text-center h-full">
+                    <span className="text-2xl mb-2">{city.emoji}</span>
+                    <h4 className="font-bold text-sm text-foreground mb-1">{city.name[langKey]}</h4>
+                    <p className="text-[10px] text-muted-foreground mb-3">{city.country[langKey]}</p>
                     <Button
                       variant="outline"
-                      className="w-full"
-                      onClick={() => window.open(carsBase, '_blank', 'noopener,noreferrer')}
+                      size="sm"
+                      className="w-full mt-auto"
+                      onClick={() => window.open(carUrl(city.searchQuery), '_blank', 'noopener,noreferrer')}
                     >
+                      <Car className="w-3.5 h-3.5 me-1.5" />
                       {t('travel.rentCar')}
-                      <ExternalLink className="w-3.5 h-3.5 ms-1.5" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -257,7 +235,7 @@ const TravelSection = () => {
             {HOST_CITIES.map((city) => (
               <a
                 key={`guide-${city.name.en}`}
-                href={`${bookingBase}&ss=${city.searchQuery}`}
+                href={hotelUrl(city.searchQuery)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"
