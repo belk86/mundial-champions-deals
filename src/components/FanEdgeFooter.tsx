@@ -1,34 +1,9 @@
-import { useState } from 'react';
-import { Mail, MapPin, Check } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import FanEdgeLogo from './FanEdgeLogo';
-import { toast } from 'sonner';
 
 const FanEdgeFooter = () => {
   const { t } = useTranslation();
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim() || !email.includes('@')) {
-      toast.error('Please enter a valid email address');
-      return;
-    }
-    try {
-      await fetch('https://formspree.io/f/mgolngpj', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      setIsSubmitted(true);
-      toast.success('Successfully subscribed! Welcome to FanEdge.');
-      setEmail('');
-      setTimeout(() => setIsSubmitted(false), 3000);
-    } catch {
-      toast.error('Something went wrong. Please try again.');
-    }
-  };
 
   const quickLinks = [
     { label: 'Home', href: '#home' },
@@ -107,31 +82,19 @@ const FanEdgeFooter = () => {
             <p className="text-muted-foreground text-sm mb-4">
               Get exclusive deals and World Cup 2026 updates.
             </p>
-            <form onSubmit={handleSubscribe} className="flex gap-2">
+            <form action="https://formspree.io/f/mgolngpj" method="POST" className="flex gap-2">
               <input
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                required
                 placeholder="Your email"
                 className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amazon transition-all"
               />
               <button 
                 type="submit"
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 ${
-                  isSubmitted 
-                    ? 'bg-green-500 text-white' 
-                    : 'bg-amazon hover:bg-amazon-dark text-black'
-                }`}
+                className="px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 bg-amazon hover:bg-amazon-dark text-black"
               >
-                {isSubmitted ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Success!
-                  </>
-                ) : (
-                  'Join Now'
-                )}
+                Join Now
               </button>
             </form>
           </div>
