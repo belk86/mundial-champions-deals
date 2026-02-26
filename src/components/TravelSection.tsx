@@ -106,8 +106,8 @@ const TravelSection = () => {
   }, [language, i18n]);
 
   const langParam = langKey === 'es' ? 'es' : langKey === 'fr' ? 'fr' : 'en';
-  const hotelUrl = (city: string) => `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&checkin=2026-06-11&checkout=2026-07-19`;
-  const carUrl = (city: string) => `https://www.booking.com/cars/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}`;
+  const hotelUrl = (city: string) => `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city&checkin=2026-06-11&checkout=2026-07-19`;
+  const carUrl = (city: string) => `https://www.booking.com/cars/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city`;
 
   return (
     <section ref={sectionRef} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
