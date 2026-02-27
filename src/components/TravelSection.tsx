@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Hotel, Car, MapPin, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -85,32 +84,16 @@ const HOST_CITIES = [
 
 
 const TravelSection = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { language } = useLanguage();
   const langKey = (language as Language) || 'en';
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            i18n.changeLanguage(language);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, [language, i18n]);
 
   const langParam = langKey === 'es' ? 'es' : langKey === 'fr' ? 'fr' : 'en';
   const hotelUrl = (city: string) => `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city&checkin=2026-06-11&checkout=2026-07-19`;
-  const carUrl = (city: string) => `https://www.booking.com/cars/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city`;
+  const carUrl = (city: string) => `https://www.booking.com/cars.${langParam}.html?ss=${city}&aid=8944582&dest_type=city`;
 
   return (
-    <section ref={sectionRef} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
+    <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
       <div className="container px-4">
         {/* Section Header */}
         <motion.div
