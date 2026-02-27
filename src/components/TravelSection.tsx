@@ -116,7 +116,7 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        {/* ── Hotels: Curated City Cards ── */}
+        {/* ── Hotels & Stays ── */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
@@ -136,7 +136,7 @@ const TravelSection = () => {
                 transition={{ delay: i * 0.06 }}
               >
                 <Card className="bg-card border-border h-full card-hover-purple overflow-hidden">
-                  <div className="h-32 bg-gradient-to-br from-primary/30 to-secondary flex items-center justify-center text-5xl">
+                  <div className="h-28 bg-gradient-to-br from-primary/30 to-secondary flex items-center justify-center text-5xl">
                     {city.emoji}
                   </div>
                   <CardContent className="p-5 flex flex-col">
@@ -146,10 +146,7 @@ const TravelSection = () => {
                         {city.country[langKey]}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mb-2">📍 {city.stadium[langKey]}</p>
-                    <p className="text-xs text-muted-foreground mb-4 line-clamp-3 flex-1">
-                      {city.fanGuide[langKey]}
-                    </p>
+                    <p className="text-xs text-muted-foreground mb-3">📍 {city.stadium[langKey]}</p>
                     <Button
                       size="sm"
                       className="w-full"
@@ -165,8 +162,8 @@ const TravelSection = () => {
           </div>
         </div>
 
-        {/* ── Car Rentals: City-Specific Links ── */}
-        <div className="mb-16">
+        {/* ── Car Rentals ── */}
+        <div>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
               <Car className="w-5 h-5 text-emerald-300" />
@@ -204,36 +201,6 @@ const TravelSection = () => {
             ))}
           </div>
         </div>
-
-        {/* ── Host Cities Quick Guide ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-xl md:text-2xl font-bold text-center mb-6 text-foreground">
-            {t('travel.hostCities')}
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {HOST_CITIES.map((city) => (
-              <a
-                key={`guide-${city.name.en}`}
-                href={hotelUrl(city.searchQuery)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"
-              >
-                <span className="text-2xl block mb-2">{city.emoji}</span>
-                <h4 className="font-bold text-sm text-foreground">{city.name[langKey]}</h4>
-                <p className="text-[10px] text-muted-foreground mt-1">{city.stadium[langKey]}</p>
-                <p className="text-[10px] text-primary mt-0.5">{city.country[langKey]}</p>
-                <span className="inline-flex items-center gap-1 text-[10px] text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t('travel.viewStadiumHotels')} <ExternalLink className="w-2.5 h-2.5" />
-                </span>
-              </a>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
