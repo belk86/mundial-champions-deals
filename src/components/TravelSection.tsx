@@ -10,31 +10,31 @@ type Language = 'en' | 'es' | 'fr';
 const HOST_CITIES = [
   {
     name: { en: 'New York / NJ', es: 'Nueva York / NJ', fr: 'New York / NJ' },
-    stadium: 'MetLife Stadium',
+    stadium: { en: 'MetLife Stadium', es: 'Estadio MetLife', fr: 'Stade MetLife' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
     fanGuide: {
       en: 'The Big Apple offers world-class dining, iconic landmarks like Times Square, and vibrant nightlife. Perfect base for multiple group stage matches.',
       es: 'La Gran Manzana ofrece gastronomía de clase mundial, monumentos icónicos como Times Square y vida nocturna vibrante. Base perfecta para varios partidos.',
       fr: 'La Grosse Pomme offre une cuisine de classe mondiale, des monuments iconiques comme Times Square et une vie nocturne vibrante. Base parfaite pour plusieurs matchs.',
     },
-    searchQuery: 'New+York',
+    searchQuery: 'New%20York',
     emoji: '🗽',
   },
   {
     name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
-    stadium: 'SoFi Stadium',
+    stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
     fanGuide: {
       en: 'Sun, beaches, and Hollywood glamour. SoFi Stadium is state-of-the-art. Enjoy Santa Monica, Venice Beach, and incredible food between matches.',
       es: 'Sol, playas y glamour de Hollywood. SoFi Stadium es de última tecnología. Disfruta Santa Mónica y Venice Beach entre partidos.',
       fr: 'Soleil, plages et glamour hollywoodien. SoFi Stadium est ultramoderne. Profitez de Santa Monica et Venice Beach entre les matchs.',
     },
-    searchQuery: 'Los+Angeles',
+    searchQuery: 'Los%20Angeles',
     emoji: '🌴',
   },
   {
     name: { en: 'Miami', es: 'Miami', fr: 'Miami' },
-    stadium: 'Hard Rock Stadium',
+    stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
     fanGuide: {
       en: 'Tropical vibes, Latin flavor, and stunning beaches. South Beach and Wynwood Arts District offer unforgettable fan experiences.',
@@ -46,7 +46,7 @@ const HOST_CITIES = [
   },
   {
     name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
-    stadium: 'AT&T Stadium',
+    stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
     fanGuide: {
       en: 'Everything is bigger in Texas! AT&T Stadium\'s massive screen and BBQ culture make Dallas a must-visit World Cup destination.',
@@ -58,7 +58,7 @@ const HOST_CITIES = [
   },
   {
     name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' },
-    stadium: 'BMO Field',
+    stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' },
     country: { en: 'Canada', es: 'Canadá', fr: 'Canada' },
     fanGuide: {
       en: 'Canada\'s cultural capital with the iconic CN Tower. Diverse food scene, safe neighborhoods, and passionate soccer fans await you.',
@@ -70,14 +70,14 @@ const HOST_CITIES = [
   },
   {
     name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
-    stadium: 'Estadio Azteca',
+    stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' },
     country: { en: 'Mexico', es: 'México', fr: 'Mexique' },
     fanGuide: {
       en: 'The legendary Estadio Azteca hosted two World Cup finals. Explore ancient ruins, incredible street food, and passionate fan culture.',
       es: 'El legendario Estadio Azteca albergó dos finales de Copa del Mundo. Explora ruinas antiguas, comida callejera increíble y cultura fan apasionada.',
       fr: 'Le légendaire Estadio Azteca a accueilli deux finales de Coupe du Monde. Explorez ruines anciennes, street food et culture fan passionnée.',
     },
-    searchQuery: 'Mexico+City',
+    searchQuery: 'Mexico%20City',
     emoji: '🇲🇽',
   },
 ];
@@ -146,7 +146,7 @@ const TravelSection = () => {
                         {city.country[langKey]}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mb-2">📍 {city.stadium}</p>
+                    <p className="text-xs text-muted-foreground mb-2">📍 {city.stadium[langKey]}</p>
                     <p className="text-xs text-muted-foreground mb-4 line-clamp-3 flex-1">
                       {city.fanGuide[langKey]}
                     </p>
@@ -225,7 +225,7 @@ const TravelSection = () => {
               >
                 <span className="text-2xl block mb-2">{city.emoji}</span>
                 <h4 className="font-bold text-sm text-foreground">{city.name[langKey]}</h4>
-                <p className="text-[10px] text-muted-foreground mt-1">{city.stadium}</p>
+                <p className="text-[10px] text-muted-foreground mt-1">{city.stadium[langKey]}</p>
                 <p className="text-[10px] text-primary mt-0.5">{city.country[langKey]}</p>
                 <span className="inline-flex items-center gap-1 text-[10px] text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   {t('travel.viewStadiumHotels')} <ExternalLink className="w-2.5 h-2.5" />
