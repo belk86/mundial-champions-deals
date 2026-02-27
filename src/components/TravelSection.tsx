@@ -12,85 +12,51 @@ const HOST_CITIES = [
     name: { en: 'New York / NJ', es: 'Nueva York / NJ', fr: 'New York / NJ' },
     stadium: { en: 'MetLife Stadium', es: 'Estadio MetLife', fr: 'Stade MetLife' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
-    fanGuide: {
-      en: 'The Big Apple offers world-class dining, iconic landmarks like Times Square, and vibrant nightlife. Perfect base for multiple group stage matches.',
-      es: 'La Gran Manzana ofrece gastronomía de clase mundial, monumentos icónicos como Times Square y vida nocturna vibrante. Base perfecta para varios partidos.',
-      fr: 'La Grosse Pomme offre une cuisine de classe mondiale, des monuments iconiques comme Times Square et une vie nocturne vibrante. Base parfaite pour plusieurs matchs.',
-    },
-    searchQuery: 'New%20York',
     emoji: '🗽',
   },
   {
     name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' },
     stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
-    fanGuide: {
-      en: 'Sun, beaches, and Hollywood glamour. SoFi Stadium is state-of-the-art. Enjoy Santa Monica, Venice Beach, and incredible food between matches.',
-      es: 'Sol, playas y glamour de Hollywood. SoFi Stadium es de última tecnología. Disfruta Santa Mónica y Venice Beach entre partidos.',
-      fr: 'Soleil, plages et glamour hollywoodien. SoFi Stadium est ultramoderne. Profitez de Santa Monica et Venice Beach entre les matchs.',
-    },
-    searchQuery: 'Los%20Angeles',
     emoji: '🌴',
   },
   {
     name: { en: 'Miami', es: 'Miami', fr: 'Miami' },
     stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
-    fanGuide: {
-      en: 'Tropical vibes, Latin flavor, and stunning beaches. South Beach and Wynwood Arts District offer unforgettable fan experiences.',
-      es: 'Vibras tropicales, sabor latino y playas impresionantes. South Beach y Wynwood ofrecen experiencias inolvidables para fans.',
-      fr: 'Ambiance tropicale, saveur latine et plages magnifiques. South Beach et Wynwood offrent des expériences inoubliables.',
-    },
-    searchQuery: 'Miami',
     emoji: '🏖️',
   },
   {
     name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' },
     stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' },
     country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' },
-    fanGuide: {
-      en: 'Everything is bigger in Texas! AT&T Stadium\'s massive screen and BBQ culture make Dallas a must-visit World Cup destination.',
-      es: '¡Todo es más grande en Texas! La pantalla gigante del AT&T Stadium y la cultura BBQ hacen de Dallas un destino imperdible.',
-      fr: 'Tout est plus grand au Texas ! L\'écran géant de l\'AT&T Stadium et la culture BBQ font de Dallas une destination incontournable.',
-    },
-    searchQuery: 'Dallas',
     emoji: '🤠',
   },
   {
     name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' },
     stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' },
     country: { en: 'Canada', es: 'Canadá', fr: 'Canada' },
-    fanGuide: {
-      en: 'Canada\'s cultural capital with the iconic CN Tower. Diverse food scene, safe neighborhoods, and passionate soccer fans await you.',
-      es: 'La capital cultural de Canadá con la icónica Torre CN. Gastronomía diversa, barrios seguros y fans apasionados te esperan.',
-      fr: 'La capitale culturelle du Canada avec l\'emblématique Tour CN. Cuisine diversifiée, quartiers sûrs et fans passionnés vous attendent.',
-    },
-    searchQuery: 'Toronto',
     emoji: '🍁',
   },
   {
     name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' },
     stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' },
     country: { en: 'Mexico', es: 'México', fr: 'Mexique' },
-    fanGuide: {
-      en: 'The legendary Estadio Azteca hosted two World Cup finals. Explore ancient ruins, incredible street food, and passionate fan culture.',
-      es: 'El legendario Estadio Azteca albergó dos finales de Copa del Mundo. Explora ruinas antiguas, comida callejera increíble y cultura fan apasionada.',
-      fr: 'Le légendaire Estadio Azteca a accueilli deux finales de Coupe du Monde. Explorez ruines anciennes, street food et culture fan passionnée.',
-    },
-    searchQuery: 'Mexico%20City',
     emoji: '🇲🇽',
   },
 ];
 
-
 const TravelSection = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const langKey = (language as Language) || 'en';
+  const lang = (language as Language) || 'en';
+  const langParam = lang === 'es' ? 'es' : lang === 'fr' ? 'fr' : 'en';
 
-  const langParam = langKey === 'es' ? 'es' : langKey === 'fr' ? 'fr' : 'en';
-  const hotelUrl = (city: string) => `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city&checkin=2026-06-11&checkout=2026-07-19`;
-  const carUrl = (city: string) => `https://www.booking.com/cars.${langParam}.html?ss=${city}&aid=8944582&dest_type=city`;
+  const hotelUrl = `https://www.booking.com/searchresults.html?ss=USA&aid=8944582&lang=${langParam}&dest_type=country&checkin=2026-06-11&checkout=2026-07-19`;
+  const carUrl = `https://www.booking.com/cars.${langParam}.html?ss=USA&aid=8944582&dest_type=country`;
+
+  const cityHotelUrl = (city: string) =>
+    `https://www.booking.com/searchresults.html?ss=${city}&aid=8944582&lang=${langParam}&dest_type=city&checkin=2026-06-11&checkout=2026-07-19`;
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -116,88 +82,94 @@ const TravelSection = () => {
           </p>
         </motion.div>
 
-        {/* ── Hotels & Stays ── */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-              <Hotel className="w-5 h-5 text-blue-300" />
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground">
-              {t('travel.matchDayStays')}
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {HOST_CITIES.map((city, i) => (
-              <motion.div
-                key={`hotel-${city.name.en}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
+        {/* ── 1. Hotels ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <Card className="bg-card border-border overflow-hidden">
+            <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
+              <div className="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
+                <Hotel className="w-7 h-7 text-blue-300" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-foreground mb-1">{t('travel.hotelsTitle')}</h3>
+                <p className="text-sm text-muted-foreground">{t('travel.hotelsDesc')}</p>
+              </div>
+              <Button
+                size="lg"
+                className="shrink-0"
+                onClick={() => window.open(hotelUrl, '_blank', 'noopener,noreferrer')}
               >
-                <Card className="bg-card border-border h-full card-hover-purple overflow-hidden">
-                  <div className="h-28 bg-gradient-to-br from-primary/30 to-secondary flex items-center justify-center text-5xl">
-                    {city.emoji}
-                  </div>
-                  <CardContent className="p-5 flex flex-col">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-foreground">{city.name[langKey]}</h4>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
-                        {city.country[langKey]}
-                      </span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3">📍 {city.stadium[langKey]}</p>
-                    <Button
-                      size="sm"
-                      className="w-full"
-                      onClick={() => window.open(hotelUrl(city.searchQuery), '_blank', 'noopener,noreferrer')}
-                    >
-                      {t('travel.bookStay')}
-                      <ExternalLink className="w-3.5 h-3.5 ms-1.5" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                {t('travel.findHotels')}
+                <ExternalLink className="w-4 h-4 ms-2" />
+              </Button>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-        {/* ── Car Rentals ── */}
+        {/* ── 2. Car Rentals ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14"
+        >
+          <Card className="bg-card border-border overflow-hidden">
+            <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
+              <div className="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                <Car className="w-7 h-7 text-emerald-300" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-foreground mb-1">{t('travel.carsTitle')}</h3>
+                <p className="text-sm text-muted-foreground">{t('travel.carsDesc')}</p>
+              </div>
+              <Button
+                size="lg"
+                variant="outline"
+                className="shrink-0"
+                onClick={() => window.open(carUrl, '_blank', 'noopener,noreferrer')}
+              >
+                {t('travel.findCars')}
+                <ExternalLink className="w-4 h-4 ms-2" />
+              </Button>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* ── 3. Host Cities ── */}
         <div>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-              <Car className="w-5 h-5 text-emerald-300" />
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground">
-              {t('travel.carRentals')}
+          <div className="text-center mb-8">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+              {t('travel.hostCities')}
             </h3>
+            <p className="text-sm text-muted-foreground">{t('travel.hostCitiesDesc')}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {HOST_CITIES.map((city, i) => (
-              <motion.div
-                key={`car-${city.name.en}`}
+              <motion.a
+                key={city.name.en}
+                href={cityHotelUrl(city.name.en.replace(/ /g, '%20'))}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
+                className="group p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"
               >
-                <Card className="bg-card border-border h-full card-hover-purple">
-                  <CardContent className="p-4 flex flex-col items-center text-center h-full">
-                    <span className="text-2xl mb-2">{city.emoji}</span>
-                    <h4 className="font-bold text-sm text-foreground mb-1">{city.name[langKey]}</h4>
-                    <p className="text-[10px] text-muted-foreground mb-3">{city.country[langKey]}</p>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full mt-auto"
-                      onClick={() => window.open(carUrl(city.searchQuery), '_blank', 'noopener,noreferrer')}
-                    >
-                      <Car className="w-3.5 h-3.5 me-1.5" />
-                      {t('travel.rentCar')}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <span className="text-3xl block mb-2">{city.emoji}</span>
+                <h4 className="font-bold text-sm text-foreground">{city.name[lang]}</h4>
+                <p className="text-[10px] text-muted-foreground mt-1">📍 {city.stadium[lang]}</p>
+                <span className="inline-block text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium mt-2">
+                  {city.country[lang]}
+                </span>
+                <span className="flex items-center justify-center gap-1 text-[10px] text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {t('travel.viewStadiumHotels')} <ExternalLink className="w-2.5 h-2.5" />
+                </span>
+              </motion.a>
             ))}
           </div>
         </div>
