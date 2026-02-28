@@ -14,8 +14,8 @@ const TRANSLATIONS = {
 
 const getSecureLink = (type: 'hotel' | 'car' | 'flight', lang: string) => {
   const links = {
-    hotel: `https://www.booking.com/searchresults.html?ss=USA&dest_type=country&lang=${lang}&selected_currency=USD&aid=8944582&checkin=2026-06-11&checkout=2026-07-19`,
-    car: `https://www.booking.com/cars/country/us.html?lang=${lang}&selected_currency=USD&aid=8944582`,
+    hotel: `https://www.booking.com/searchresults.html?ss=USA&dest_type=country&lang=${lang}&selected_currency=USD`,
+    car: `https://www.booking.com/cars/country/us.html?lang=${lang}&selected_currency=USD`,
     flight: `https://arangrant.com/search?destination=USA&lang=${lang}`,
   };
   return links[type];
@@ -36,7 +36,7 @@ const TravelSection = () => {
   const txt = TRANSLATIONS[lang];
 
   const cityHotelUrl = (search: string) =>
-    `https://www.booking.com/searchresults.html?ss=${search}&dest_type=city&lang=${lang}&selected_currency=USD&aid=8944582&checkin=2026-06-11&checkout=2026-07-19`;
+    `https://www.booking.com/searchresults.html?ss=${search}&lang=${lang}`;
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">

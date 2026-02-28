@@ -1,3 +1,4 @@
+import { useLanguage } from '@/contexts/LanguageContext';
 import WorldCupCountdown from '@/components/WorldCupCountdown';
 import FanEdgeNavbar from '@/components/FanEdgeNavbar';
 import FanEdgeHero from '@/components/FanEdgeHero';
@@ -9,8 +10,9 @@ import ScrollToTop from '@/components/ScrollToTop';
 import TikaAdvisor from '@/components/TikaAdvisor';
 
 const Index = () => {
+  const { language } = useLanguage();
   return (
-    <div className="min-h-screen bg-background moroccan-pattern text-foreground">
+    <div key={language} className="min-h-screen bg-background moroccan-pattern text-foreground">
       <WorldCupCountdown />
       <FanEdgeNavbar />
       <FanEdgeHero />
