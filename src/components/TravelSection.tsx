@@ -14,11 +14,17 @@ const TRANSLATIONS = {
 
 const getSecureLink = (type: 'hotel' | 'car' | 'flight', lang: string) => {
   const links = {
-    hotel: `https://www.booking.com/searchresults.html?ss=USA&dest_type=country&lang=${lang}&selected_currency=USD`,
-    car: `https://www.booking.com/cars/country/us.html?lang=${lang}&selected_currency=USD`,
+    hotel: `https://www.booking.com/searchresults.html?ss=USA&dest_type=country&selected_currency=USD&lang=${lang}`,
+    car: `https://www.booking.com/cars/country/us.html?selected_currency=USD&lang=${lang}`,
     flight: `https://arangrant.com/search?destination=USA&lang=${lang}`,
   };
   return links[type];
+};
+
+const NOTICE: Record<Language, string> = {
+  en: 'Note: You can manually set your preferred language and currency inside the booking page.',
+  es: 'Nota: Puede configurar su idioma y moneda manualmente dentro de la página de reserva.',
+  fr: 'Note: Vous pouvez régler votre langue et votre devise manuellement dans la page de réservation.',
 };
 
 const HOST_CITIES = [
@@ -36,7 +42,7 @@ const TravelSection = () => {
   const txt = TRANSLATIONS[lang];
 
   const cityHotelUrl = (search: string) =>
-    `https://www.booking.com/searchresults.html?ss=${search}&lang=${lang}`;
+    `https://www.booking.com/searchresults.html?ss=${search}&selected_currency=USD&lang=${lang}`;
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -51,7 +57,13 @@ const TravelSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">{txt.subtitle}</p>
         </motion.div>
 
-        {/* ── 1. Hotels ── */}
+        {/* Dynamic Language Notice */}
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-10">
+          <p className="text-xs text-muted-foreground italic bg-secondary/50 inline-block px-4 py-2 rounded-full">
+            {NOTICE[lang]}
+          </p>
+        </motion.div>
+
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
