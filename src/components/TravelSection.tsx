@@ -42,7 +42,7 @@ const TravelSection = () => {
   const txt = TRANSLATIONS[lang];
 
   const cityHotelUrl = (search: string) =>
-    `https://www.booking.com/searchresults.html?ss=${search}&selected_currency=USD&lang=${lang}`;
+    `https://www.booking.com/searchresults.html?ss=${search}+USA&selected_currency=USD&lang=${lang}`;
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -59,7 +59,7 @@ const TravelSection = () => {
 
         {/* Dynamic Language Notice */}
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-10">
-          <p className="text-xs text-muted-foreground italic bg-secondary/50 inline-block px-4 py-2 rounded-full">
+          <p className="text-xs font-semibold text-yellow-900 bg-yellow-400 inline-block px-4 py-2 rounded-full">
             {NOTICE[lang]}
           </p>
         </motion.div>
