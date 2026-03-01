@@ -14,9 +14,9 @@ const TRANSLATIONS = {
 
 const getSecureLink = (type: 'hotel' | 'car' | 'flight', lang: string) => {
   const links = {
-    hotel: `https://www.booking.com/searchresults.html?ss=USA&dest_type=country&selected_currency=USD&lang=${lang}`,
+    hotel: `https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD&lang=${lang}`,
     car: `https://www.booking.com/cars/country/us.html?selected_currency=USD&lang=${lang}`,
-    flight: `https://arangrant.com/search?destination=USA&lang=${lang}`,
+    flight: `https://arangrant.com`,
   };
   return links[type];
 };
@@ -42,7 +42,7 @@ const TravelSection = () => {
   const txt = TRANSLATIONS[lang];
 
   const cityHotelUrl = (search: string) =>
-    `https://www.booking.com/searchresults.html?ss=${search}+USA&selected_currency=USD&lang=${lang}`;
+    `https://www.booking.com/searchresults.html?ss=${search}+United+States&dest_type=city&selected_currency=USD&lang=${lang}`;
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -57,12 +57,15 @@ const TravelSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">{txt.subtitle}</p>
         </motion.div>
 
-        {/* Dynamic Language Notice */}
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-10">
-          <p className="text-xs font-semibold text-yellow-900 bg-yellow-400 inline-block px-4 py-2 rounded-full">
+        {/* Fixed Top Banner */}
+        <div className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-blue-600 to-purple-600 py-2 px-4 text-center">
+          <p className="text-xs md:text-sm font-bold text-white">
             {NOTICE[lang]}
           </p>
-        </motion.div>
+        </div>
+
+        {/* Spacer for fixed banner */}
+        <div className="h-8" />
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
