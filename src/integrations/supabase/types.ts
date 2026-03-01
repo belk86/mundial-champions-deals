@@ -163,6 +163,36 @@ export type Database = {
         }
         Relationships: []
       }
+      site_links: {
+        Row: {
+          actual_url: string
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          link_name: string
+          updated_at: string
+        }
+        Insert: {
+          actual_url: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          link_name: string
+          updated_at?: string
+        }
+        Update: {
+          actual_url?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          link_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
