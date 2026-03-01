@@ -3,6 +3,7 @@ import { Hotel, Car, Plane, MapPin, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useSiteLinks } from '@/hooks/useSiteLinks';
 
 type Language = 'en' | 'es' | 'fr';
 
@@ -12,13 +13,17 @@ const TRANSLATIONS = {
   fr: { sectionLabel: 'Guide de Voyage', title: 'Planifiez Votre Voyage Mondial', subtitle: 'Réservez hôtels, louez des voitures et explorez les villes hôtes aux USA, Canada et Mexique', hotel: 'Hôtels de la Coupe du Monde', hotelDesc: 'Trouvez les meilleurs hôtels près des stades de la Coupe du Monde', car: 'Location de Voitures', carDesc: 'Déplacez-vous facilement entre les villes hôtes — louez une voiture pour le tournoi', flight: 'Vols de la Coupe du Monde', flightDesc: 'Trouvez des vols vers les villes hôtes de la Coupe du Monde aux USA, Canada et Mexique', cities: 'Villes Hôtes', citiesDesc: '6 stades dans 3 pays — la plus grande Coupe du Monde de l\'histoire', btn: 'Réserver', viewHotels: 'Voir Hôtels' },
 };
 
-const getSecureLink = (type: 'hotel' | 'car' | 'flight', lang: string) => {
-  const links = {
-    hotel: `https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD&lang=${lang}`,
-    car: `https://www.booking.com/cars/country/us.html?selected_currency=USD&lang=${lang}`,
-    flight: `https://arangrant.com`,
-  };
-  return links[type];
+// Hardcoded fallbacks in case DB fetch fails
+const FALLBACK_LINKS: Record<string, string> = {
+  Hotels_USA: 'https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD',
+  Cars_USA: 'https://www.booking.com/cars/country/us.html?selected_currency=USD',
+  Flights: 'https://arangrant.com',
+  Hotel_NewYork: 'https://www.booking.com/searchresults.html?ss=New+York+United+States&dest_type=city&selected_currency=USD',
+  Hotel_LosAngeles: 'https://www.booking.com/searchresults.html?ss=Los+Angeles+United+States&dest_type=city&selected_currency=USD',
+  Hotel_Miami: 'https://www.booking.com/searchresults.html?ss=Miami+United+States&dest_type=city&selected_currency=USD',
+  Hotel_Dallas: 'https://www.booking.com/searchresults.html?ss=Dallas+United+States&dest_type=city&selected_currency=USD',
+  Hotel_Toronto: 'https://www.booking.com/searchresults.html?ss=Toronto+Canada&dest_type=city&selected_currency=USD',
+  Hotel_MexicoCity: 'https://www.booking.com/searchresults.html?ss=Mexico+City+Mexico&dest_type=city&selected_currency=USD',
 };
 
 const NOTICE: Record<Language, string> = {
@@ -28,21 +33,26 @@ const NOTICE: Record<Language, string> = {
 };
 
 const HOST_CITIES = [
-  { name: { en: 'New York / NJ', es: 'Nueva York / NJ', fr: 'New York / NJ' }, stadium: { en: 'MetLife Stadium', es: 'Estadio MetLife', fr: 'Stade MetLife' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🗽', search: 'New%20York' },
-  { name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' }, stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🌴', search: 'Los%20Angeles' },
-  { name: { en: 'Miami', es: 'Miami', fr: 'Miami' }, stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🏖️', search: 'Miami' },
-  { name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' }, stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🤠', search: 'Dallas' },
-  { name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' }, stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' }, country: { en: 'Canada', es: 'Canadá', fr: 'Canada' }, emoji: '🍁', search: 'Toronto' },
-  { name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' }, stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' }, country: { en: 'Mexico', es: 'México', fr: 'Mexique' }, emoji: '🇲🇽', search: 'Mexico%20City' },
+  { name: { en: 'New York / NJ', es: 'Nueva York / NJ', fr: 'New York / NJ' }, stadium: { en: 'MetLife Stadium', es: 'Estadio MetLife', fr: 'Stade MetLife' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🗽', linkKey: 'Hotel_NewYork' },
+  { name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' }, stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🌴', linkKey: 'Hotel_LosAngeles' },
+  { name: { en: 'Miami', es: 'Miami', fr: 'Miami' }, stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🏖️', linkKey: 'Hotel_Miami' },
+  { name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' }, stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🤠', linkKey: 'Hotel_Dallas' },
+  { name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' }, stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' }, country: { en: 'Canada', es: 'Canadá', fr: 'Canada' }, emoji: '🍁', linkKey: 'Hotel_Toronto' },
+  { name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' }, stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' }, country: { en: 'Mexico', es: 'México', fr: 'Mexique' }, emoji: '🇲🇽', linkKey: 'Hotel_MexicoCity' },
 ];
 
 const TravelSection = () => {
   const { language } = useLanguage();
   const lang = (language as Language) || 'en';
   const txt = TRANSLATIONS[lang];
+  const { data: siteLinks } = useSiteLinks();
 
-  const cityHotelUrl = (search: string) =>
-    `https://www.booking.com/searchresults.html?ss=${search}+United+States&dest_type=city&selected_currency=USD&lang=${lang}`;
+  const getLink = (key: string) => {
+    const base = siteLinks?.[key] || FALLBACK_LINKS[key] || '#';
+    // Append lang param (skip for non-booking URLs)
+    if (base.includes('booking.com')) return `${base}&lang=${lang}`;
+    return base;
+  };
 
   return (
     <section key={language} id="travel" className="py-16 md:py-24 bg-background relative moroccan-pattern">
@@ -67,6 +77,7 @@ const TravelSection = () => {
         {/* Spacer for fixed banner */}
         <div className="h-8" />
 
+        {/* Hotels */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
@@ -77,14 +88,14 @@ const TravelSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-1">{txt.hotel}</h3>
                 <p className="text-sm text-muted-foreground">{txt.hotelDesc}</p>
               </div>
-              <Button size="lg" className="shrink-0" onClick={() => window.open(getSecureLink('hotel', lang), '_blank', 'noopener,noreferrer')}>
+              <Button size="lg" className="shrink-0" onClick={() => window.open(getLink('Hotels_USA'), '_blank', 'noopener,noreferrer')}>
                 {txt.btn} <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* ── 2. Car Rentals ── */}
+        {/* Car Rentals */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
@@ -95,14 +106,14 @@ const TravelSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-1">{txt.car}</h3>
                 <p className="text-sm text-muted-foreground">{txt.carDesc}</p>
               </div>
-              <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getSecureLink('car', lang), '_blank', 'noopener,noreferrer')}>
+              <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getLink('Cars_USA'), '_blank', 'noopener,noreferrer')}>
                 {txt.btn} <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* ── 3. Flights ── */}
+        {/* Flights */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
@@ -113,14 +124,14 @@ const TravelSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-1">{txt.flight}</h3>
                 <p className="text-sm text-muted-foreground">{txt.flightDesc}</p>
               </div>
-              <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getSecureLink('flight', lang), '_blank', 'noopener,noreferrer')}>
+              <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getLink('Flights'), '_blank', 'noopener,noreferrer')}>
                 {txt.btn} <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* ── 4. Host Cities ── */}
+        {/* Host Cities */}
         <div>
           <div className="text-center mb-8">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{txt.cities}</h3>
@@ -130,7 +141,7 @@ const TravelSection = () => {
             {HOST_CITIES.map((city, i) => (
               <motion.a
                 key={city.name.en}
-                href={cityHotelUrl(city.search)}
+                href={getLink(city.linkKey)}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
