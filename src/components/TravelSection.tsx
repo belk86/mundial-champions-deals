@@ -15,7 +15,7 @@ const TRANSLATIONS = {
 
 // Hardcoded fallbacks in case DB fetch fails
 const FALLBACK_LINKS: Record<string, string> = {
-  Hotels_USA: 'https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD',
+  Hotels_USA: 'https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD&nflt=ht_id%3D204',
   Cars_USA: 'https://www.booking.com/cars/country/us.html?selected_currency=USD',
   Flights: 'https://arangrant.com',
   Hotel_NewYork: 'https://www.booking.com/searchresults.html?ss=New+York+United+States&dest_type=city&selected_currency=USD',
@@ -70,7 +70,7 @@ const TravelSection = () => {
         {/* Banner is now a separate global component */}
 
         {/* Hotels */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+        <motion.div id="hotels-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
               <div className="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
@@ -88,7 +88,7 @@ const TravelSection = () => {
         </motion.div>
 
         {/* Car Rentals */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+        <motion.div id="cars-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
               <div className="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
@@ -106,7 +106,7 @@ const TravelSection = () => {
         </motion.div>
 
         {/* Flights */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
+        <motion.div id="flights-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
               <div className="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center shrink-0">
