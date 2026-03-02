@@ -7,12 +7,14 @@ import TravelSection from '@/components/TravelSection';
 import ScheduleSection from '@/components/ScheduleSection';
 import FanEdgeFooter from '@/components/FanEdgeFooter';
 import ScrollToTop from '@/components/ScrollToTop';
-import TikaAdvisor from '@/components/TikaAdvisor';
+import BelkAI from '@/components/BelkAI';
+import SmartBanner from '@/components/SmartBanner';
 
 const Index = () => {
   const { language } = useLanguage();
   return (
     <div key={language} className="min-h-screen bg-background moroccan-pattern text-foreground">
+      <SmartBanner />
       <WorldCupCountdown />
       <FanEdgeNavbar />
       <FanEdgeHero />
@@ -21,7 +23,7 @@ const Index = () => {
       <ScheduleSection />
       <FanEdgeFooter />
       <ScrollToTop />
-      <TikaAdvisor />
+      <BelkAI />
     </div>
   );
 };
