@@ -67,15 +67,7 @@ const TravelSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">{txt.subtitle}</p>
         </motion.div>
 
-        {/* Fixed Top Banner */}
-        <div className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-blue-600 to-purple-600 py-2 px-4 text-center">
-          <p className="text-xs md:text-sm font-bold text-white">
-            {NOTICE[lang]}
-          </p>
-        </div>
-
-        {/* Spacer for fixed banner */}
-        <div className="h-8" />
+        {/* Banner is now a separate global component */}
 
         {/* Hotels */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
@@ -131,7 +123,7 @@ const TravelSection = () => {
           </Card>
         </motion.div>
 
-        {/* Host Cities */}
+        {/* Host Cities — Static Info Gallery */}
         <div>
           <div className="text-center mb-8">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{txt.cities}</h3>
@@ -139,27 +131,21 @@ const TravelSection = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {HOST_CITIES.map((city, i) => (
-              <motion.a
+              <motion.div
                 key={city.name.en}
-                href={getLink(city.linkKey)}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="group p-4 bg-secondary rounded-xl border border-border text-center hover:border-primary transition-all"
+                className="p-5 bg-secondary rounded-xl border border-border text-center hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(220,100%,60%,0.15)]"
               >
-                <span className="text-3xl block mb-2">{city.emoji}</span>
+                <span className="text-4xl block mb-3">{city.emoji}</span>
                 <h4 className="font-bold text-sm text-foreground">{city.name[lang]}</h4>
-                <p className="text-[10px] text-muted-foreground mt-1">📍 {city.stadium[lang]}</p>
+                <p className="text-[10px] text-muted-foreground mt-1.5">📍 {city.stadium[lang]}</p>
                 <span className="inline-block text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium mt-2">
                   {city.country[lang]}
                 </span>
-                <span className="flex items-center justify-center gap-1 text-[10px] text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {txt.viewHotels} <ExternalLink className="w-2.5 h-2.5" />
-                </span>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
         </div>
