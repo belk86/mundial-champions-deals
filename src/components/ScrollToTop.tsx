@@ -40,7 +40,8 @@ const ScrollToTop = () => {
           <Button
             onClick={scrollToTop}
             size="icon"
-            className="w-12 h-12 rounded-full bg-gold hover:bg-gold-light text-primary-foreground shadow-lg glow-gold-sm transition-all duration-300 hover:scale-110"
+            className="w-12 h-12 rounded-full text-white shadow-lg transition-all duration-300 hover:scale-110"
+            style={{ background: 'linear-gradient(135deg, #4D9FFF 0%, #9B4DFF 100%)' }}
             aria-label={t('common.scrollTop')}
           >
             <ArrowUp className="w-5 h-5" />
