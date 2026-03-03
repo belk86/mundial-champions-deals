@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fanedge-v3.1';
+const CACHE_NAME = 'fanedge-v3.2';
 const PRECACHE_URLS = ['/', '/favicon.png'];
 
 self.addEventListener('install', (event) => {
