@@ -44,8 +44,7 @@ const FanEdgeNavbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="sticky top-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-b border-primary/10"
-      style={{ zIndex: 99999 }}
+      className="sticky top-[36px] left-0 right-0 bg-background/80 backdrop-blur-xl border-b border-primary/10 z-[9998]"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
