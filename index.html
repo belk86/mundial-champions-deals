@@ -31,7 +31,32 @@
 </head>
 
   <body>
+    <!-- Static fallback banner visible until React hydrates -->
+    <div id="smart-banner-fallback" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(to right,hsl(220,100%,50%),hsl(280,100%,55%));padding:8px 16px;text-align:center;">
+      <p style="margin:0;font-size:13px;font-weight:700;color:#fff;">Please set your language and currency manually inside the booking sections for the best experience.</p>
+    </div>
     <div id="root"></div>
+    <script>
+      // Cache buster: force reload once if running old version
+      (function(){
+        var v='fanedge-v3.1';
+        if(localStorage.getItem('fe_v')!==v){
+          localStorage.setItem('fe_v',v);
+          location.reload();
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Hide fallback banner once React mounts
+      var observer=new MutationObserver(function(){
+        if(document.querySelector('[data-smart-banner]')){
+          var fb=document.getElementById('smart-banner-fallback');
+          if(fb)fb.style.display='none';
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById('root'),{childList:true,subtree:true});
+    </script>
   </body>
 </html>

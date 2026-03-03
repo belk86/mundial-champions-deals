@@ -9,7 +9,7 @@ const BANNER_TEXT: Record<string, string> = {
 const SmartBanner = () => {
   const { language } = useLanguage();
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-[hsl(220,100%,50%)] to-[hsl(280,100%,55%)] py-2 px-4 text-center">
+    <div data-smart-banner className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-[hsl(220,100%,50%)] to-[hsl(280,100%,55%)] py-2 px-4 text-center">
       <p className="text-xs md:text-sm font-bold text-primary-foreground">
         {BANNER_TEXT[language] || BANNER_TEXT.en}
       </p>
