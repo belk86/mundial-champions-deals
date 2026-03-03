@@ -7,7 +7,6 @@ import TravelSection from '@/components/TravelSection';
 import ScheduleSection from '@/components/ScheduleSection';
 import FanEdgeFooter from '@/components/FanEdgeFooter';
 import ScrollToTop from '@/components/ScrollToTop';
-import BelkAI from '@/components/BelkAI';
 import SmartBanner from '@/components/SmartBanner';
 
 const Index = () => {
@@ -23,7 +22,6 @@ const Index = () => {
       <ScheduleSection />
       <FanEdgeFooter />
       <ScrollToTop />
-      <BelkAI />
     </div>
   );
 };
