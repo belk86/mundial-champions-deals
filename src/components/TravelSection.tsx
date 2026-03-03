@@ -17,7 +17,7 @@ const TRANSLATIONS = {
 const FALLBACK_LINKS: Record<string, string> = {
   Hotels_USA: 'https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD&nflt=ht_id%3D204',
   Cars_USA: 'https://www.booking.com/cars/country/us.html?selected_currency=USD',
-  Flights: 'https://arangrant.com',
+  Flights: 'https://www.booking.com/flights/index.html?selected_currency=USD',
   Hotel_NewYork: 'https://www.booking.com/searchresults.html?ss=New+York+United+States&dest_type=city&selected_currency=USD',
   Hotel_LosAngeles: 'https://www.booking.com/searchresults.html?ss=Los+Angeles+United+States&dest_type=city&selected_currency=USD',
   Hotel_Miami: 'https://www.booking.com/searchresults.html?ss=Miami+United+States&dest_type=city&selected_currency=USD',
@@ -68,7 +68,12 @@ const TravelSection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">{txt.subtitle}</p>
         </motion.div>
 
-        {/* Banner is now a separate global component */}
+        {/* Language/Currency notice directly above Hotels */}
+        <div className="mb-6 rounded-xl bg-gradient-to-r from-[hsl(220,100%,50%)] to-[hsl(280,100%,55%)] px-6 py-4 text-center">
+          <p className="text-base md:text-lg font-bold text-white">
+            {NOTICE[lang]}
+          </p>
+        </div>
 
         {/* Hotels */}
         <motion.div id="hotels-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
