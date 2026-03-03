@@ -47,10 +47,11 @@ const TravelSection = () => {
   const txt = TRANSLATIONS[lang];
   const { data: siteLinks } = useSiteLinks();
 
+  const BOOKING_LANG: Record<Language, string> = { en: 'en-us', es: 'es', fr: 'fr' };
+
   const getLink = (key: string) => {
     const base = siteLinks?.[key] || FALLBACK_LINKS[key] || '#';
-    // Append lang param (skip for non-booking URLs)
-    if (base.includes('booking.com')) return `${base}&lang=${lang}`;
+    if (base.includes('booking.com')) return `${base}&lang=${BOOKING_LANG[lang]}`;
     return base;
   };
 
