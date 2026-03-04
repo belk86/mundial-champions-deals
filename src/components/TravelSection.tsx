@@ -17,7 +17,7 @@ const TRANSLATIONS = {
 const FALLBACK_LINKS: Record<string, string> = {
   Hotels_USA: 'https://www.booking.com/searchresults.html?ss=United+States&dest_type=country&selected_currency=USD&nflt=ht_id%3D204',
   Cars_USA: 'https://www.booking.com/cars/country/us.html?selected_currency=USD',
-  Flights: 'https://www.booking.com/flights/index.html?selected_currency=USD',
+  Flights: 'https://www.dpbolvw.net/click-101644092-17039663?language=en',
   Hotel_NewYork: 'https://www.booking.com/searchresults.html?ss=New+York+United+States&dest_type=city&selected_currency=USD',
   Hotel_LosAngeles: 'https://www.booking.com/searchresults.html?ss=Los+Angeles+United+States&dest_type=city&selected_currency=USD',
   Hotel_Miami: 'https://www.booking.com/searchresults.html?ss=Miami+United+States&dest_type=city&selected_currency=USD',
@@ -52,6 +52,7 @@ const TravelSection = () => {
   const getLink = (key: string) => {
     const base = siteLinks?.[key] || FALLBACK_LINKS[key] || '#';
     if (base.includes('booking.com')) return `${base}&lang=${BOOKING_LANG[lang]}`;
+    if (base.includes('dpbolvw.net')) return base.replace(/language=\w+/, `language=${lang}`);
     return base;
   };
 
