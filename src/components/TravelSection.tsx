@@ -130,32 +130,7 @@ const TravelSection = () => {
           </Card>
         </motion.div>
 
-        {/* Host Cities — Static Info Gallery */}
-        <div>
-          <div className="text-center mb-8">
-            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{txt.cities}</h3>
-            <p className="text-sm text-muted-foreground">{txt.citiesDesc}</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {HOST_CITIES.map((city, i) => (
-              <motion.div
-                key={city.name.en}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="p-5 bg-secondary rounded-xl border border-border text-center hover:border-primary/50 transition-all hover:shadow-[0_0_20px_hsl(220,100%,60%,0.15)]"
-              >
-                <span className="text-4xl block mb-3">{city.emoji}</span>
-                <h4 className="font-bold text-sm text-foreground">{city.name[lang]}</h4>
-                <p className="text-[10px] text-muted-foreground mt-1.5">📍 {city.stadium[lang]}</p>
-                <span className="inline-block text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium mt-2">
-                  {city.country[lang]}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        {/* Blog section rendered separately below */}
       </div>
     </section>
   );
