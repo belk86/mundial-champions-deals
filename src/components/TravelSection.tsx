@@ -24,7 +24,6 @@ const FALLBACK_LINKS: Record<string, string> = {
   Hotel_LosAngeles: 'https://www.booking.com/searchresults.html?ss=Los+Angeles+United+States&dest_type=city&selected_currency=USD',
   Hotel_Miami: 'https://www.booking.com/searchresults.html?ss=Miami+United+States&dest_type=city&selected_currency=USD',
   Hotel_Dallas: 'https://www.booking.com/searchresults.html?ss=Dallas+United+States&dest_type=city&selected_currency=USD',
-  Hotel_Toronto: 'https://www.booking.com/searchresults.html?ss=Toronto+Canada&dest_type=city&selected_currency=USD',
   Hotel_MexicoCity: 'https://www.booking.com/searchresults.html?ss=Mexico+City+Mexico&dest_type=city&selected_currency=USD',
 };
 
