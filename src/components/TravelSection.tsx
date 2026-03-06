@@ -39,7 +39,6 @@ const HOST_CITIES = [
   { name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' }, stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🌴', linkKey: 'Hotel_LosAngeles' },
   { name: { en: 'Miami', es: 'Miami', fr: 'Miami' }, stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🏖️', linkKey: 'Hotel_Miami' },
   { name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' }, stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🤠', linkKey: 'Hotel_Dallas' },
-  { name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' }, stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' }, country: { en: 'Canada', es: 'Canadá', fr: 'Canada' }, emoji: '🍁', linkKey: 'Hotel_Toronto' },
   { name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' }, stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' }, country: { en: 'Mexico', es: 'México', fr: 'Mexique' }, emoji: '🇲🇽', linkKey: 'Hotel_MexicoCity' },
 ];
 
