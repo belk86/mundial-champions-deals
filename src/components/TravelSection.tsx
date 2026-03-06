@@ -24,7 +24,6 @@ const FALLBACK_LINKS: Record<string, string> = {
   Hotel_LosAngeles: 'https://www.booking.com/searchresults.html?ss=Los+Angeles+United+States&dest_type=city&selected_currency=USD',
   Hotel_Miami: 'https://www.booking.com/searchresults.html?ss=Miami+United+States&dest_type=city&selected_currency=USD',
   Hotel_Dallas: 'https://www.booking.com/searchresults.html?ss=Dallas+United+States&dest_type=city&selected_currency=USD',
-  Hotel_Toronto: 'https://www.booking.com/searchresults.html?ss=Toronto+Canada&dest_type=city&selected_currency=USD',
   Hotel_MexicoCity: 'https://www.booking.com/searchresults.html?ss=Mexico+City+Mexico&dest_type=city&selected_currency=USD',
 };
 
@@ -39,7 +38,6 @@ const HOST_CITIES = [
   { name: { en: 'Los Angeles', es: 'Los Ángeles', fr: 'Los Angeles' }, stadium: { en: 'SoFi Stadium', es: 'Estadio SoFi', fr: 'Stade SoFi' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🌴', linkKey: 'Hotel_LosAngeles' },
   { name: { en: 'Miami', es: 'Miami', fr: 'Miami' }, stadium: { en: 'Hard Rock Stadium', es: 'Estadio Hard Rock', fr: 'Stade Hard Rock' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🏖️', linkKey: 'Hotel_Miami' },
   { name: { en: 'Dallas', es: 'Dallas', fr: 'Dallas' }, stadium: { en: 'AT&T Stadium', es: 'Estadio AT&T', fr: 'Stade AT&T' }, country: { en: 'USA', es: 'EE.UU.', fr: 'États-Unis' }, emoji: '🤠', linkKey: 'Hotel_Dallas' },
-  { name: { en: 'Toronto', es: 'Toronto', fr: 'Toronto' }, stadium: { en: 'BMO Field', es: 'Campo BMO', fr: 'Terrain BMO' }, country: { en: 'Canada', es: 'Canadá', fr: 'Canada' }, emoji: '🍁', linkKey: 'Hotel_Toronto' },
   { name: { en: 'Mexico City', es: 'Ciudad de México', fr: 'Mexico' }, stadium: { en: 'Estadio Azteca', es: 'Estadio Azteca', fr: 'Stade Azteca' }, country: { en: 'Mexico', es: 'México', fr: 'Mexique' }, emoji: '🇲🇽', linkKey: 'Hotel_MexicoCity' },
 ];
 
@@ -96,7 +94,7 @@ const TravelSection = () => {
           </Card>
         </motion.div>
 
-        {/* Car Rentals */}
+        {/* Car Rentals — ENGLISH ONLY, no translation */}
         <motion.div id="cars-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
@@ -104,17 +102,17 @@ const TravelSection = () => {
                 <Car className="w-7 h-7 text-emerald-300" />
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-foreground mb-1">{TRANSLATIONS.en.car}</h3>
-                <p className="text-sm text-muted-foreground">{TRANSLATIONS.en.carDesc}</p>
+                <h3 className="text-xl font-bold text-foreground mb-1">Rental Cars</h3>
+                <p className="text-sm text-muted-foreground">Get around host cities with ease — rent a car for the tournament</p>
               </div>
               <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getLink('Cars_USA'), '_blank', 'noopener,noreferrer')}>
-                {TRANSLATIONS.en.btn} <ExternalLink className="w-4 h-4 ms-2" />
+                Book Now <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Exclusive Flight Deals */}
+        {/* Exclusive Flight Deals — translated like Hotels (EN/ES/FR) */}
         <motion.div id="flights-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
           <Card className="bg-card border-border overflow-hidden bg-gradient-to-br from-purple-500/10 to-blue-500/10">
             <CardContent className="p-8 md:p-10 flex flex-col items-center text-center gap-6">
