@@ -104,11 +104,11 @@ const TravelSection = () => {
                 <Car className="w-7 h-7 text-emerald-300" />
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-foreground mb-1">{txt.car}</h3>
-                <p className="text-sm text-muted-foreground">{txt.carDesc}</p>
+                <h3 className="text-xl font-bold text-foreground mb-1">{TRANSLATIONS.en.car}</h3>
+                <p className="text-sm text-muted-foreground">{TRANSLATIONS.en.carDesc}</p>
               </div>
               <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getLink('Cars_USA'), '_blank', 'noopener,noreferrer')}>
-                {txt.btn} <ExternalLink className="w-4 h-4 ms-2" />
+                {TRANSLATIONS.en.btn} <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
