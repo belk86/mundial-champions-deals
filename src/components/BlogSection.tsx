@@ -94,7 +94,7 @@ const ARTICLES: BlogArticle[] = [
   },
   {
     id: 'toronto-guide',
-    image: 'https://images.unsplash.com/photo-1517090504332-6a35de961d1e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517090504586-fde19ea6066f?q=80&w=1000&auto=format&fit=crop',
     category: { en: 'City Guide', es: 'Guía de Ciudad', fr: 'Guide Ville' },
     title: {
       en: "Toronto: Canada's World Cup Hub at BMO Field",
