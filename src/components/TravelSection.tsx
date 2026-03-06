@@ -95,7 +95,7 @@ const TravelSection = () => {
           </Card>
         </motion.div>
 
-        {/* Car Rentals */}
+        {/* Car Rentals — ENGLISH ONLY, no translation */}
         <motion.div id="cars-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <Card className="bg-card border-border overflow-hidden">
             <CardContent className="p-8 flex flex-col md:flex-row items-center gap-6">
@@ -103,17 +103,17 @@ const TravelSection = () => {
                 <Car className="w-7 h-7 text-emerald-300" />
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-foreground mb-1">{TRANSLATIONS.en.car}</h3>
-                <p className="text-sm text-muted-foreground">{TRANSLATIONS.en.carDesc}</p>
+                <h3 className="text-xl font-bold text-foreground mb-1">Rental Cars</h3>
+                <p className="text-sm text-muted-foreground">Get around host cities with ease — rent a car for the tournament</p>
               </div>
               <Button size="lg" variant="outline" className="shrink-0" onClick={() => window.open(getLink('Cars_USA'), '_blank', 'noopener,noreferrer')}>
-                {TRANSLATIONS.en.btn} <ExternalLink className="w-4 h-4 ms-2" />
+                Book Now <ExternalLink className="w-4 h-4 ms-2" />
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Exclusive Flight Deals */}
+        {/* Exclusive Flight Deals — translated like Hotels (EN/ES/FR) */}
         <motion.div id="flights-section" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
           <Card className="bg-card border-border overflow-hidden bg-gradient-to-br from-purple-500/10 to-blue-500/10">
             <CardContent className="p-8 md:p-10 flex flex-col items-center text-center gap-6">
